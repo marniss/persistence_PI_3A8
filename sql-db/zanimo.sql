@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `centre_dressage` (
 
 DROP TABLE IF EXISTS `concours`;
 CREATE TABLE IF NOT EXISTS `concours` (
-  `id_concours` int(25) NOT NULL,
+  `id_concours` int(25) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
   `race` varchar(255) NOT NULL,
   `date_debut` date NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `concours` (
 
 DROP TABLE IF EXISTS `fiche_dressage`;
 CREATE TABLE IF NOT EXISTS `fiche_dressage` (
-  `id_f_dressage` int(25) NOT NULL,
+  `id_f_dressage` int(25) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) NOT NULL,
   `etat` varchar(255) NOT NULL,
   `date_visite` date NOT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `fiche_soin` (
 
 DROP TABLE IF EXISTS `membre`;
 CREATE TABLE IF NOT EXISTS `membre` (
-  `id_m` int(25) NOT NULL,
+  `id_m` int(25) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
   `age` int(25) NOT NULL,
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `nourriture` (
 
 DROP TABLE IF EXISTS `participation`;
 CREATE TABLE IF NOT EXISTS `participation` (
-  `id_participation` int(25) NOT NULL,
+  `id_participation` int(25) NOT NULL AUTO_INCREMENT,
   `id_a` int(25) NOT NULL,
   PRIMARY KEY (`id_participation`),
   KEY `id_a` (`id_a`)
