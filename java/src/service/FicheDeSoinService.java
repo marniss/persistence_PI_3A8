@@ -6,7 +6,7 @@
 package service;
 
 import Iservice.IficheDeSoin;
-import entites.FicheDeSoin;
+import entites.ficheDeSoin;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import singleton.DataSource;
-import entites.FicheDeSoin;
+import entites.ficheDeSoin;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -38,7 +38,7 @@ public class FicheDeSoinService implements IficheDeSoin {
     }
 
     @Override
-    public void ajouterFicheDeSoin(FicheDeSoin fsDeSoin) {
+    public void ajouterFicheDeSoin(ficheDeSoin fsDeSoin) {
 
         String req = "INSERT INTO `fiche_soin`(`description`, `etat`, `medicament`, `id_a`, `id_m`) VALUES ('" + fsDeSoin.getDescription() + "','" + fsDeSoin.getEtat() + "','" + fsDeSoin.getMedicament() + "'," + fsDeSoin.getId_animal() + "," + fsDeSoin.getId_membre() + ")";
         try {
@@ -51,11 +51,11 @@ public class FicheDeSoinService implements IficheDeSoin {
     }
 
     @Override
-    public void supprimerFicheDeSoin(FicheDeSoin fsDeSoin) {
+    public void supprimerFicheDeSoin(ficheDeSoin fsDeSoin) {
     }
 
     @Override
-    public boolean rechercherEnseignant(FicheDeSoin fsDeSoin) {
+    public boolean rechercherEnseignant(ficheDeSoin fsDeSoin) {
         return false;
 
     }
@@ -68,13 +68,13 @@ public class FicheDeSoinService implements IficheDeSoin {
     }
 
     @Override
-    public List<FicheDeSoin> selectFicheDeSoin() {
-        List<FicheDeSoin> ficheDeSoins = new ArrayList<>();
+    public List<ficheDeSoin> selectFicheDeSoin() {
+        List<ficheDeSoin> ficheDeSoins = new ArrayList<>();
         try {
 
             ResultSet res = ste.executeQuery("select * from fiche_soin");
             while (res.next()) {
-                FicheDeSoin u = new FicheDeSoin();
+                ficheDeSoin u = new ficheDeSoin();
                 u.setId_f_soin(res.getInt("id_f_soin"));
                 u.setDescription(res.getString("description"));
                 ficheDeSoins.add(u);

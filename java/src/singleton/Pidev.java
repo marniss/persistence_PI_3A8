@@ -5,7 +5,7 @@
  */
 package singleton;
 
-import entites.FicheDeSoin;
+import entites.ficheDeSoin;
 import service.membreService;
 import entites.membre;
 import java.sql.SQLException;
@@ -31,11 +31,11 @@ public class Pidev {
 
         s.supprimerMembre(1);
          */
-        FicheDeSoin ah = new FicheDeSoin("ssssssss", "val", "jjjjjj", 0, 0);
+        ficheDeSoin ah = new ficheDeSoin("ssssssss", "val", "jjjjjj", 0, 0);
         FicheDeSoinService fs = new FicheDeSoinService();
         fs.selectFicheDeSoin();
         fs.ajouterFicheDeSoin(ah);
-        for (FicheDeSoin u : fs.selectFicheDeSoin()) {
+        for (ficheDeSoin u : fs.selectFicheDeSoin()) {
             System.out.println(u);
         }
 

@@ -5,7 +5,7 @@
  */
 package Iservice;
 
-import entites.FicheDeSoin;
+import entites.ficheDeSoin;
 import java.util.List;
 
 /**
@@ -14,14 +14,14 @@ import java.util.List;
  */
 public interface IficheDeSoin {
 
-    public void ajouterFicheDeSoin(FicheDeSoin fsDeSoin);
+    public void ajouterFicheDeSoin(ficheDeSoin fsDeSoin);
 
-    public void supprimerFicheDeSoin(FicheDeSoin fsDeSoin);
+    public void supprimerFicheDeSoin(ficheDeSoin fsDeSoin);
 
-    public boolean rechercherEnseignant(FicheDeSoin fsDeSoin);
+    public boolean rechercherEnseignant(ficheDeSoin fsDeSoin);
 
     public boolean rechercherFicheDeSoin(int id);
 
-    public List<FicheDeSoin> selectFicheDeSoin();
+    public List<ficheDeSoin> selectFicheDeSoin();
 
 }

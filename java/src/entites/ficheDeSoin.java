@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author makni
  */
-public class FicheDeSoin {
+public class ficheDeSoin {
 
     private int id_f_soin;
     private String description;
@@ -77,10 +77,10 @@ public class FicheDeSoin {
         this.id_membre = id_membre;
     }
 
-    public FicheDeSoin() {
+    public ficheDeSoin() {
     }
 
-    public FicheDeSoin(int id_f_soin, String description, String etat, Date dateVisite, String medicament, int id_animal, int id_membre) {
+    public ficheDeSoin(int id_f_soin, String description, String etat, Date dateVisite, String medicament, int id_animal, int id_membre) {
         this.id_f_soin = id_f_soin;
         this.description = description;
         this.etat = etat;
@@ -90,7 +90,7 @@ public class FicheDeSoin {
         this.id_membre = id_membre;
     }
 
-    public FicheDeSoin(String description, String etat, String medicament, int id_animal, int id_membre) {
+    public ficheDeSoin(String description, String etat, String medicament, int id_animal, int id_membre) {
 
         this.description = description;
         this.etat = etat;
