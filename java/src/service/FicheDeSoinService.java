@@ -52,10 +52,19 @@ public class FicheDeSoinService implements IficheDeSoin {
 
     @Override
     public void supprimerFicheDeSoin(FicheDeSoin fsDeSoin) {
+
+        String req = "select * from `fiche_soin` VALUES ('" + fsDeSoin.getDescription() + "','" + fsDeSoin.getEtat() + "','" + fsDeSoin.getMedicament() + "'," + fsDeSoin.getId_animal() + "," + fsDeSoin.getId_membre() + ")";
+        try {
+            ste.executeQuery(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(FicheDeSoinService.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Erreeur d'ajout ");
+        }
     }
 
     @Override
     public boolean rechercherEnseignant(FicheDeSoin fsDeSoin) {
+        
         return false;
 
     }
