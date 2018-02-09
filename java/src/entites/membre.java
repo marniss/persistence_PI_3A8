@@ -9,7 +9,7 @@ package entites;
  *
  * @author houssem
  */
-public class membre 
+public class Membre 
 {private String nom;
 private String prenom ;
 private  int age;
@@ -18,7 +18,7 @@ private String sexe;
 private int tel;
 private int type ;
 
-    public membre(String nom, String prenom, int age, String adresse, String sexe, int tel, int type) {
+    public Membre(String nom, String prenom, int age, String adresse, String sexe, int tel, int type) {
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
@@ -84,7 +84,7 @@ private int type ;
         this.type = type;
     }
 
-    public membre() {
+    public Membre() {
     }
 
     @Override
