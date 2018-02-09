@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 09 fév. 2018 à 19:12
+-- Généré le :  ven. 09 fév. 2018 à 22:49
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -112,8 +112,21 @@ CREATE TABLE IF NOT EXISTS `faq` (
 
 DROP TABLE IF EXISTS `f_dressage`;
 CREATE TABLE IF NOT EXISTS `f_dressage` (
-  `id_f_Dressage` int(11) NOT NULL,
+  `id_f_Dressage` int(11) NOT NULL AUTO_INCREMENT,
   `id_membre` int(11) NOT NULL,
+  `espece` varchar(254) DEFAULT NULL,
+  `nom` varchar(254) DEFAULT NULL,
+  `poids` float DEFAULT NULL,
+  `proprietaire` varchar(250) DEFAULT NULL,
+  `photo` varchar(250) DEFAULT NULL,
+  `displine` int(6) DEFAULT NULL,
+  `obeissance` int(6) DEFAULT NULL,
+  `specialite` varchar(250) DEFAULT NULL,
+  `accompagnement` int(6) DEFAULT NULL,
+  `interception` int(6) DEFAULT NULL,
+  `noteTotal` float DEFAULT NULL,
+  `dateDebut` date DEFAULT NULL,
+  `datFin` date DEFAULT NULL,
   PRIMARY KEY (`id_f_Dressage`),
   KEY `id_membre` (`id_membre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -138,6 +151,7 @@ CREATE TABLE IF NOT EXISTS `f_soin` (
   `photo` varchar(250) DEFAULT NULL,
   `medicament` varchar(250) DEFAULT NULL,
   `proprietaire` varchar(250) DEFAULT NULL,
+  `prochainRDV` date DEFAULT NULL,
   PRIMARY KEY (`id_f_Soin`),
   KEY `id_membre` (`id_membre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

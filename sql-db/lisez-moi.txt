@@ -1,0 +1,3 @@
+1-suprimer l'encienne bd
+2-il Faut faire une nouvelle bd sous le nom zanimo
+3-exporter fichier zanimoOfficieldb.sql
