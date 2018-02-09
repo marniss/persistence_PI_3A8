@@ -23,22 +23,21 @@ public class Pidev {
      */
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
-/*
+
         membre a = new membre("houssem", "marnissi", 0, "hassan nousri", "h", 0, 1);
         membreService s = new membreService();
         System.out.println(a.toString());
         s.ajouterMembre(a);
 
-        s.supprimerMembre(1);
-         */
-        ficheDeSoin ah = new ficheDeSoin("ssssssss", "val", "jjjjjj", 0, 0);
+        //  s.supprimerMembre(1);
+
+        /*    ficheDeSoin ah = new ficheDeSoin("ssssssss", "val", "jjjjjj", 0, 0);
         FicheDeSoinService fs = new FicheDeSoinService();
         fs.selectFicheDeSoin();
         fs.ajouterFicheDeSoin(ah);
         for (ficheDeSoin u : fs.selectFicheDeSoin()) {
             System.out.println(u);
-        }
-
+        } */
     }
 
 }
