@@ -7,14 +7,53 @@ package IHM;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
  *
- * @author pc asus
+ * @author pc makni
  */
 public class FicheDeSoinIHMController implements Initializable {
+
+    @FXML
+    private Button ajouter;
+    @FXML
+    private Button annuler;
+    @FXML
+    private Text id_membre;
+    @FXML
+    private TextField prop;
+    @FXML
+    private TextField nom;
+    @FXML
+    private TextField espece;
+    @FXML
+    private TextField poids;
+    @FXML
+    private TextField race;
+    @FXML
+    private RadioButton male;
+    @FXML
+    private RadioButton femmel;
+    @FXML
+    private DatePicker neLe;
+    @FXML
+    private DatePicker datePoids;
+    @FXML
+    private DatePicker revoireLe;
+    @FXML
+    private ListView<?> medicament;
+    @FXML
+    private Text id_f_Soin;
 
     /**
      * Initializes the controller class.
@@ -22,6 +61,14 @@ public class FicheDeSoinIHMController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+
+    @FXML
+    private void ajouter(ActionEvent event) {
+    }
+
+    @FXML
+    private void annuler(ActionEvent event) {
     }
 
 }
