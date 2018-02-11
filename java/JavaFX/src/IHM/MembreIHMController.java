@@ -34,24 +34,22 @@ public class MembreIHMController implements Initializable {
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
-    
+    }
 
     @FXML
     private void ajouter(ActionEvent event) throws SQLException {
-        Membre m = new Membre(nom.getText(), prenom.getText(), 0, "", "", 0, 0);
-        
+        /*  Membre m = new Membre(nom.getText(), prenom.getText(), 0, "", "", 0, 0);
+
         MembreService aService;
         aService = new MembreService();
-        aService.ajouterMembre(m);
+        aService.ajouterMembre(m); */
     }
-    
-     
+
 }
