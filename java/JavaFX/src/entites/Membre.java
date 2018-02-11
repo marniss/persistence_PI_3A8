@@ -91,6 +91,9 @@ public class Membre {
         this.type = type;
     }
     
-    
-    
+    // nos methodes
+    public void ajouterMembre(){
+        
+    }
+    /* ...*/
 }
