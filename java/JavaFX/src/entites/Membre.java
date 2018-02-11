@@ -7,25 +7,27 @@ package entites;
 
 /**
  *
- * @author houssem
+ * @author Ahmed
  */
-public class Membre 
-{private String nom;
-private String prenom ;
-private  int age;
-private String adresse;
-private String sexe;
-private int tel;
-private int type ;
+public class Membre {
+    // les attribuyts
+    
+    private int id;
+    private String nom;
+    private String prenom;
+    private String adresse;
+    private String email;
+    private int num;
+    private String type;
+    
+    // getters
 
-    public Membre(String nom, String prenom, int age, String adresse, String sexe, int tel, int type) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.age = age;
-        this.adresse = adresse;
-        this.sexe = sexe;
-        this.tel = tel;
-        this.type = type;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -44,14 +46,6 @@ private int type ;
         this.prenom = prenom;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getAdresse() {
         return adresse;
     }
@@ -60,43 +54,43 @@ private int type ;
         this.adresse = adresse;
     }
 
-    public String getSexe() {
-        return sexe;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSexe(String sexe) {
-        this.sexe = sexe;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getTel() {
-        return tel;
+    public int getNum() {
+        return num;
     }
 
-    public void setTel(int tel) {
-        this.tel = tel;
+    public void setNum(int num) {
+        this.num = num;
     }
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 
     public Membre() {
     }
 
-    @Override
-    public String toString() {
-        return "membre{" + "nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", adresse=" + adresse + ", sexe=" + sexe + ", tel=" + tel + ", type=" + type + '}';
+    public Membre(int id, String nom, String prenom, String adresse, String email, int num, String type) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.email = email;
+        this.num = num;
+        this.type = type;
     }
     
     
-
-  
-
-
-
     
 }
