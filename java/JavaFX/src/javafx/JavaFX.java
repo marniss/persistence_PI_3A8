@@ -24,7 +24,9 @@ public class JavaFX extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/IHM/FicheDeSoinIHM.fxml"));
+        
+        System.out.println("message mt6a666666666666   "+getClass().getResource("IHM.IHM_Ajouter_Accessoire.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("IHM.IHM_Ajouter_Accessoire.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
