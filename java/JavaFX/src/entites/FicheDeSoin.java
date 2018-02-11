@@ -5,7 +5,7 @@
  */
 package entites;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -18,10 +18,11 @@ public class FicheDeSoin {
     private String nom;
     private String espece;
     private float poids;
-    private Date datePoids;
-    private Date neLe;
+    private String datePoids;
+    private String neLe;
     private String genre;
     private String observation;
+
     private String photo;
     private String medicament;
     private String proprietaire;
@@ -30,7 +31,7 @@ public class FicheDeSoin {
     public FicheDeSoin() {
     }
 
-    public FicheDeSoin(int id_f_Soin, int id_membre, String nom, String espece, float poids, Date datePoids, Date neLe, String genre, String observation, String photo, String medicament, String proprietaire, String prochainRDV) {
+    public FicheDeSoin(int id_f_Soin, int id_membre, String nom, String espece, float poids, String datePoids, String neLe, String genre, String observation, String photo, String medicament, String proprietaire, String prochainRDV) {
         this.id_f_Soin = id_f_Soin;
         this.id_membre = id_membre;
         this.nom = nom;
@@ -44,6 +45,27 @@ public class FicheDeSoin {
         this.medicament = medicament;
         this.proprietaire = proprietaire;
         this.prochainRDV = prochainRDV;
+    }
+
+    public FicheDeSoin(int id_membre, String nom, String espece, float poids, String datePoids, String neLe, String genre, String observation, String photo, String medicament, String proprietaire, String prochainRDV) {
+
+        this.id_membre = id_membre;
+        this.nom = nom;
+        this.espece = espece;
+        this.poids = poids;
+        this.datePoids = datePoids;
+        this.neLe = neLe;
+        this.genre = genre;
+        this.observation = observation;
+        this.photo = photo;
+        this.medicament = medicament;
+        this.proprietaire = proprietaire;
+        this.prochainRDV = prochainRDV;
+    }
+
+    @Override
+    public String toString() {
+        return "FicheDeSoin{" + "id_f_Soin=" + id_f_Soin + ", id_membre=" + id_membre + ", nom=" + nom + ", espece=" + espece + ", poids=" + poids + ", datePoids=" + datePoids + ", neLe=" + neLe + ", genre=" + genre + ", observation=" + observation + ", photo=" + photo + ", medicament=" + medicament + ", proprietaire=" + proprietaire + ", prochainRDV=" + prochainRDV + '}';
     }
 
     public int getId_f_Soin() {
@@ -86,19 +108,19 @@ public class FicheDeSoin {
         this.poids = poids;
     }
 
-    public Date getDatePoids() {
+    public String getDatePoids() {
         return datePoids;
     }
 
-    public void setDatePoids(Date datePoids) {
+    public void setDatePoids(String datePoids) {
         this.datePoids = datePoids;
     }
 
-    public Date getNeLe() {
+    public String getNeLe() {
         return neLe;
     }
 
-    public void setNeLe(Date neLe) {
+    public void setNeLe(String neLe) {
         this.neLe = neLe;
     }
 

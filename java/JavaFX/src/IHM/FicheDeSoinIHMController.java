@@ -15,6 +15,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 /**
@@ -51,9 +52,13 @@ public class FicheDeSoinIHMController implements Initializable {
     @FXML
     private DatePicker revoireLe;
     @FXML
-    private ListView<?> medicament;
+    private ListView<String> medicament;
     @FXML
     private Text id_f_Soin;
+    @FXML
+    private Button btn;
+    @FXML
+    private TextField medi;
 
     /**
      * Initializes the controller class.
@@ -69,6 +74,24 @@ public class FicheDeSoinIHMController implements Initializable {
 
     @FXML
     private void annuler(ActionEvent event) {
+    }
+
+    @FXML
+    private void btn(ActionEvent event) {
+
+        btn.setOnAction(e -> {
+            String ahmed = medi.getText();
+            medicament.getItems().add(ahmed);
+        });
+    }
+
+    @FXML
+    private void medi(ActionEvent event) {
+    }
+
+    @FXML
+    private void ajouter(MouseEvent event) {
+
     }
 
 }
