@@ -6,7 +6,6 @@
 package services;
 
 import entites.FicheDeSoin;
-import iServices.FicheDeSoinInterface;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -17,12 +16,13 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ientites.ificheDeSoinInterface;
 
 /**
  *
  * @author makni
  */
-public class FicheDeSoinService implements FicheDeSoinInterface {
+public class FicheDeSoinService implements ificheDeSoinInterface {
 
     DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
     private Statement ste;
@@ -30,11 +30,7 @@ public class FicheDeSoinService implements FicheDeSoinInterface {
     private PreparedStatement ps;
 
     public FicheDeSoinService() {
-        try {
-            ste = conn.createStatement();
-        } catch (SQLException ex) {
-            System.out.println("Erreur de Creation De Statement");
-        }
+
     }
 
     @Override

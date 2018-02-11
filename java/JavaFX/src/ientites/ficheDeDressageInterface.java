@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package iServices;
+package ientites;
 
 import entites.FicheDeDressage;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author pc asus
  */
-public interface FicheDeDressageInterface {
+public interface ficheDeDressageInterface {
 
     public void ajouterFicheDeDressage(FicheDeDressage ficheDeDressage);
 

@@ -6,14 +6,14 @@
 package services;
 
 import entites.FicheDeDressage;
-import iServices.FicheDeDressageInterface;
 import java.util.List;
+import ientites.ficheDeDressageInterface;
 
 /**
  *
  * @author makni
  */
-public class FicheDeDressageService implements FicheDeDressageInterface {
+public class FicheDeDressageService implements ficheDeDressageInterface {
 
     @Override
     public void ajouterFicheDeDressage(FicheDeDressage ficheDeDressage) {

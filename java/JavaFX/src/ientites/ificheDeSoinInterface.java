@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package iServices;
+package ientites;
 
 import entites.FicheDeSoin;
 import java.util.List;
@@ -12,13 +12,13 @@ import java.util.List;
  *
  * @author pc asus
  */
-public interface FicheDeSoinInterface {
+public interface ificheDeSoinInterface {
 
-    public void ajouterFicheDeSoin(FicheDeSoin ficheDeSoin);
+    public void ajouterFicheDeSoin();
 
-    public void modifierFicheDeSoin(FicheDeSoin ficheDeSoin);
+    public void modifierFicheDeSoin();
 
-    public boolean rechercheFicheDeSoin(int id_f_Soin);
+    public FicheDeSoin rechercheFicheDeSoin(int id_f_Soin);
 
     public List<FicheDeSoin> displayFicheDeSoin();
 
