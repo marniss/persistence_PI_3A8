@@ -14,11 +14,13 @@ import java.util.List;
  */
 public interface ficheDeDressageInterface {
 
-    public void ajouterFicheDeDressage(FicheDeDressage ficheDeDressage);
+    public int ajouterFicheDeDressage();
 
-    public void modifierFicheDeDressage(FicheDeDressage ficheDeDressage);
+    public int modifierFicheDeDressage();
 
-    public boolean rechercheFicheDeDressage(int id_f_Dressage);
+    public int rechercheFicheDeDressage(int id_f_Dressage);
 
-    public List<FicheDeDressage> displayFicheDeDressage();
+    public int displayFicheDeDressage();
+
+    public int supprimerFicheDeDressage();
 }

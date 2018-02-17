@@ -5,16 +5,11 @@
  */
 package javafx;
 
-import entites.FicheDeSoin;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import services.FicheDeSoinService;
 
 /**
  *
@@ -24,9 +19,12 @@ public class JavaFX extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        
-        System.out.println("message mt6a666666666666   "+getClass().getResource("IHM.IHM_Ajouter_Accessoire.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("IHM.IHM_Ajouter_Accessoire.fxml"));
+
+        // System.out.println("message mt6a666666666666   "+getClass().getResource("IHM.IHM_Ajouter_Accessoire.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/IHM/NoteVetIHM.fxml"));
+        // Parent root = FXMLLoader.load(getClass().getResource("/IHM/ConsulterFicheDeSoinIHM.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/IHM/MenuIHM.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/IHM/AjouterVeterinaireIHM.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -37,7 +35,9 @@ public class JavaFX extends Application {
         fs.setId_f_Soin(5);
         fs.setNom("Liza");
         fsService.modifierFicheDeSoin(fs);
-         */
+
+        FicheDeSoin fsDeSoin = new FicheDeSoin(1, "houssem", "", 12, "", "", "", "", "", "", "", "", 1);
+        fsDeSoin.ajouterFicheDeSoin();*/
     }
 
     /**

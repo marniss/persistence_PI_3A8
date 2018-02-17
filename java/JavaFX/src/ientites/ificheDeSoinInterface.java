@@ -14,12 +14,14 @@ import java.util.List;
  */
 public interface ificheDeSoinInterface {
 
-    public void ajouterFicheDeSoin();
+    public int ajouterFicheDeSoin();
 
-    public void modifierFicheDeSoin();
+    public int modifierFicheDeSoin();
 
-    public FicheDeSoin rechercheFicheDeSoin(int id_f_Soin);
+    public int rechercheFicheDeSoin(int id_f_Soin);
 
     public List<FicheDeSoin> displayFicheDeSoin();
+
+    public int supprimerFicheDeSoin();
 
 }

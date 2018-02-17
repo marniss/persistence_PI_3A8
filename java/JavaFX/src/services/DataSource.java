@@ -13,9 +13,10 @@ import java.sql.SQLException;
  *
  * @author houssem
  */
- public class DataSource {
-    private  static DataSource data ;
-    private String url = "jdbc:mysql://localhost:8080/zanimo";
+public class DataSource {
+
+    private static DataSource data;
+    private String url = "jdbc:mysql://localhost:3306/zanimo";
     private String username = "root";
     private String pasword = "";
     private Connection con;
@@ -26,7 +27,7 @@ import java.sql.SQLException;
             System.out.println("connexion etablie");
 
         } catch (SQLException e) {
-
+            System.out.println(e.getMessage());
             System.out.println("Erreur de Connexion");
         }
     }

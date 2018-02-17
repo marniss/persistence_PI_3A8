@@ -11,7 +11,7 @@ package entites;
  */
 public class Membre {
     // les attribuyts
-    
+
     private int id;
     private String nom;
     private String prenom;
@@ -19,9 +19,8 @@ public class Membre {
     private String email;
     private int num;
     private String type;
-    
-    // getters
 
+    // getters
     public int getId() {
         return id;
     }
@@ -90,10 +89,55 @@ public class Membre {
         this.num = num;
         this.type = type;
     }
-    
+
     // nos methodes
-    public void ajouterMembre(){
-        
+    public void ajouterMembre() {
+
     }
-    /* ...*/
+
+    /* ...
+    public int noterVetirinaire() {
+        private PreparedStatement ps = null;
+     try {
+            String req = "update membre set note=? where id_membre=? and type=vetirinaire";
+            ps = conn.prepareStatement(req);
+            ps.setInt(1, this.note);
+            ps.setInt(2, this.id_membre);
+            ps.execute();
+            return 1;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+
+        return 0;
+    }
+
+        public int consulterNoteVetirinaire() {
+        membre vet=new membre();
+        private PreparedStatement ps = null;
+        private ResultSet rs = null;
+     try {
+            String req = "select note from membre  where id_membre=? and type=vetirinaire";
+            ps = conn.prepareStatement(req);
+            ps.setInt(1, this.note);
+            ps.setInt(2, this.id_membre);
+            ps.setString(3, this.type);
+            ps.execute();
+    if(rs.next())
+    {
+        vet.note=rs.getFloat(x);
+
+    }
+            return 1;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+     
+
+        return 0;
+    }
+     */
 }
