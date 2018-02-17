@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import services.DataSource;
 
@@ -37,6 +39,8 @@ public class FicheDeDressage implements ficheDeDressageInterface {
     private Date dateFin;
     private int etat;
 
+    SimpleDateFormat formater = new SimpleDateFormat("YYYY-MM-DD");
+
 //Les attributs DB
     static Connection conn = DataSource.getInstance().getConnection();
     private ResultSet rs = null;
@@ -54,6 +58,25 @@ public class FicheDeDressage implements ficheDeDressageInterface {
      */
     public FicheDeDressage(int id_f_Dressage, int id_membre, String espece, String nom, float poids, String proprietaire, String specialite, String photo, float displine, float obeissance, float accompagnement, float interception, float noteTotal, Date dateDebut, Date dateFin) {
         this.id_f_Dressage = id_f_Dressage;
+        this.id_membre = id_membre;
+        this.espece = espece;
+        this.nom = nom;
+        this.poids = poids;
+        this.proprietaire = proprietaire;
+        this.specialite = specialite;
+        this.photo = photo;
+        this.displine = displine;
+        this.obeissance = obeissance;
+        this.accompagnement = accompagnement;
+        this.interception = interception;
+        this.noteTotal = noteTotal;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+
+    }
+
+    public FicheDeDressage(int id_membre, String espece, String nom, float poids, String proprietaire, String specialite, String photo, float displine, float obeissance, float accompagnement, float interception, float noteTotal, Date dateDebut, Date dateFin) {
+
         this.id_membre = id_membre;
         this.espece = espece;
         this.nom = nom;
@@ -223,6 +246,8 @@ public class FicheDeDressage implements ficheDeDressageInterface {
      */
     @Override
     public int ajouterFicheDeDressage() {
+        String datdebu = formater.format(this.dateDebut);
+        String datfin = formater.format(this.dateFin);
         String req1 = "INSERT INTO `f_dressage`(`id_membre`, `espece`, `nom`, `poids`, `proprietaire`, `photo`, `displine`, `obeissance`, `specialite`, `accompagnement`, `interception`, `noteTotal`, `dateDebut`, `datFin`)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
 
@@ -239,8 +264,8 @@ public class FicheDeDressage implements ficheDeDressageInterface {
             ps.setFloat(10, this.accompagnement);
             ps.setFloat(11, this.interception);
             ps.setFloat(12, this.noteTotal);
-            ps.setDate(13, (java.sql.Date) this.dateDebut);
-            ps.setDate(14, (java.sql.Date) this.dateFin);
+            ps.setString(13, datdebu);
+            ps.setString(14, datfin);
             ps.execute();
             System.out.println("Insertion Ok");
             return 1;
@@ -256,6 +281,9 @@ public class FicheDeDressage implements ficheDeDressageInterface {
     @Override
     public int modifierFicheDeDressage() {
         try {
+            String datdebu = formater.format(this.dateDebut);
+            String datfin = formater.format(this.dateFin);
+
             String req = "UPDATE `f_dressage` SET `id_membre`=?,`espece`=?,`nom`=?,`poids`=?,`proprietaire`=?,`photo`=?,`displine`=?,`obeissance`=?,`specialite`=?,`accompagnement`=?,`interception`=?,`noteTotal`=?,`dateDebut`=?,`datFin`=? Where id_f_soin =? ";
             ps = conn.prepareStatement(req);
             ps.setInt(1, this.id_membre);
@@ -270,8 +298,8 @@ public class FicheDeDressage implements ficheDeDressageInterface {
             ps.setFloat(10, this.accompagnement);
             ps.setFloat(11, this.interception);
             ps.setFloat(12, this.noteTotal);
-            ps.setDate(13, (java.sql.Date) this.dateDebut);
-            ps.setDate(14, (java.sql.Date) this.dateFin);
+            ps.setString(13, datdebu);
+            ps.setString(14, datfin);
             ps.setInt(15, this.id_f_Dressage);
             ps.execute();
             return 1;
@@ -307,7 +335,7 @@ public class FicheDeDressage implements ficheDeDressageInterface {
                 fdd.specialite = rs.getString(10);
                 fdd.accompagnement = rs.getFloat(11);
                 fdd.interception = rs.getFloat(12);
-                fdd.noteTotal = rs.getInt(13);
+                fdd.noteTotal = rs.getFloat(13);
                 fdd.dateDebut = rs.getDate(14);
                 fdd.dateFin = rs.getDate(15);
             }
@@ -323,11 +351,13 @@ public class FicheDeDressage implements ficheDeDressageInterface {
 * *** Consultation ****
      */
     @Override
-    public int displayFicheDeDressage() {
+    public ArrayList displayFicheDeDressage() {
+
         FicheDeDressage fdd = new FicheDeDressage();
+        ArrayList<FicheDeDressage> fiList = new ArrayList<>();
         try {
 
-            String req = "Select *From f_dressage  ";
+            String req = "Select * From f_dressage where etat=1 ";
             ps = conn.prepareStatement(req);
 
             rs = ps.executeQuery();
@@ -347,12 +377,12 @@ public class FicheDeDressage implements ficheDeDressageInterface {
                 fdd.noteTotal = rs.getInt(13);
                 fdd.dateDebut = rs.getDate(14);
                 fdd.dateFin = rs.getDate(15);
+                fiList.add(fdd);
             }
-
-            return 1;
+            return fiList;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            return 0;
+            return fiList;
         }
     }
 

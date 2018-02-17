@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -113,7 +112,7 @@ public class ConsulterFicheDeSoinIHMController implements Initializable {
             e.getModButton().setOnAction((event) -> {
                 try {
                     id_f_soin_modifier = e.getId_f_Soin();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/FicheDeSoinVue.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/FicheDeSoinIHM.fxml"));
                     Parent root = (Parent) loader.load();
                     FicheDeSoinVueController control = loader.getController();
                     control.initFields(e);
@@ -145,7 +144,7 @@ public class ConsulterFicheDeSoinIHMController implements Initializable {
 
     @FXML
     private void add(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/FicheDeSoinVue.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/FicheDeSoinIHM.fxml"));
         try {
 
             Parent root = (Parent) loader.load();

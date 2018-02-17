@@ -24,13 +24,13 @@ public class ControlleurListeVeterinaire {
         return ldv.ListVetirinaire();
     }
 
-    public int modifierVeterinaire(String nom, String prenom, String tel, String adresse, String mail, String photo) {
-        ListeDesVetirinaires ldv = new ListeDesVetirinaires(nom, prenom, tel, adresse, mail, photo);
+    public int modifierVeterinaire(int id, String nom, String prenom, String tel, String adresse, String mail, String photo) {
+        ListeDesVetirinaires ldv = new ListeDesVetirinaires(id, nom, prenom, tel, adresse, mail, photo);
         return ldv.modifierVetirinaire();
     }
 
-    public int supprimerVeterinaire(String nom, String prenom, String tel, String adresse, String mail, String photo) {
-        ListeDesVetirinaires ldv = new ListeDesVetirinaires(nom, prenom, tel, adresse, mail, photo);
+    public int supprimerVeterinaire(ListeDesVetirinaires vet) {
+        ListeDesVetirinaires ldv = new ListeDesVetirinaires(vet.getId(), vet.getNom(), vet.getPrenom(), vet.getTel(), vet.getAdresse(), vet.getMail(), vet.getPhoto());
         return ldv.supprimerVetirinaire();
     }
 

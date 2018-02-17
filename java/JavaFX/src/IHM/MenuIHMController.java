@@ -59,7 +59,7 @@ public class MenuIHMController implements Initializable {
 
     @FXML
     private void listeDesVétér(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/ListeVeterinaireIHM.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/ListeDesVeterinaireAdmin.fxml"));
         Parent root = (Parent) loader.load();
         Stage window;
         window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -69,11 +69,25 @@ public class MenuIHMController implements Initializable {
     }
 
     @FXML
-    private void ficheDeDressage(ActionEvent event) {
+    private void ficheDeDressage(ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/FicheDeDressageIHM.fxml"));
+        Parent root = (Parent) loader.load();
+        Stage window;
+        window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root));
+        window.show();
     }
 
     @FXML
-    private void listeDesDresseur(ActionEvent event) {
+    private void listeDesDresseur(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/ListeDresseurAdmin.fxml"));
+        Parent root = (Parent) loader.load();
+        Stage window;
+        window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root));
+        window.show();
+
     }
 
     @FXML
@@ -88,7 +102,14 @@ public class MenuIHMController implements Initializable {
     }
 
     @FXML
-    private void noteDresseur(ActionEvent event) {
+    private void noteDresseur(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/NoteDresseur.fxml"));
+        Parent root = (Parent) loader.load();
+        Stage window;
+        window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root));
+        window.show();
+
     }
 
 }

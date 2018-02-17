@@ -19,13 +19,6 @@ public class ControlleurNoteVeterinaire {
         return nv.ajouterNote();
     }
 
-    /* public float moyenneNote() {
-        System.out.println("Controlleur");
-        NoteVetirinaire nv = new NoteVetirinaire();
-        System.out.println("Controller " + nv.moyNotee());
-        return nv.moyNotee();
-
-    }*/
     public String moyenneNote() {
         System.out.println("Controlleur");
         NoteVetirinaire nv = new NoteVetirinaire();

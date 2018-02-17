@@ -112,43 +112,6 @@ public class NoteVetirinaire {
         return 0;
     }
 
-    public float moyNoteee() {
-        String st = null;
-        //Connexion à La DB
-        conn = DataSource.getInstance().getConnection();
-        System.out.println("Modele");
-
-        /**
-         * Creation Du Req
-         */
-        String req = "select AVG(note) from notevetirinaire ";
-
-        try {
-            /*
-            * Creation Du Statement **
-             */
-            stm = conn.createStatement();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Erreur de creation de Statement");
-        }
-        try {
-            ResultSet executeQuery = stm.executeQuery(req);
-            while (executeQuery.next()) {
-                System.out.println("Ahmado " + executeQuery.getString(1));
-                System.out.println(executeQuery.getObject(1));
-
-            }
-            System.out.println("Ahmeeeeed");
-            return 1;
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Erreur de l'Execution");
-        }
-        return 0;
-
-    }
-
     public String moyNotee() {
         String st = null;
         //Connexion à La DB

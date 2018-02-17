@@ -22,9 +22,9 @@ public class JavaFX extends Application {
 
         // System.out.println("message mt6a666666666666   "+getClass().getResource("IHM.IHM_Ajouter_Accessoire.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/IHM/NoteVetIHM.fxml"));
-        // Parent root = FXMLLoader.load(getClass().getResource("/IHM/ConsulterFicheDeSoinIHM.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/IHM/MenuIHM.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/IHM/AjouterVeterinaireIHM.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/IHM/ListeVeterinaire.fxml"));
+        // Parent root = FXMLLoader.load(getClass().getResource("/IHM/MenuIHM.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/IHM/ListeDresseur.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

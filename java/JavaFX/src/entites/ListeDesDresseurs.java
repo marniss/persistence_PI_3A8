@@ -166,7 +166,7 @@ public class ListeDesDresseurs {
             /**
              * Creation du req*
              */
-            String req = "update listedesdresseurs set `nom`=?,`prenom`=?,`tel`=?,`adresse`=?,`mail`=?,`photo`=?,`etat`=? WHERE `id`=? ";
+            String req = "update listedesdresseurs set `nom`=?,`prenom`=?,`tel`=?,`adresse`=?,`mail`=?,`photo`=?  WHERE `id`= ? ;";
 
             try {
                 /*

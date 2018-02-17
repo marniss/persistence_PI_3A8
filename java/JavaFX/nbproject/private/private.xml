@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/ESPRIT/3A8/2%20eme%20S/PIDEV/pidev/persistence_PI_3A8/java/JavaFX/src/IHM/ConsulterFicheDeSoinIHMController.java</file>
-            <file>file:/F:/ESPRIT/3A8/2%20eme%20S/PIDEV/pidev/persistence_PI_3A8/java/JavaFX/src/services/ControlleurFicheDeSoin.java</file>
-            <file>file:/F:/ESPRIT/3A8/2%20eme%20S/PIDEV/pidev/persistence_PI_3A8/java/JavaFX/src/javafx/JavaFX.java</file>
-            <file>file:/F:/ESPRIT/3A8/2%20eme%20S/PIDEV/pidev/persistence_PI_3A8/java/JavaFX/src/entites/FicheDeSoin.java</file>
-            <file>file:/F:/ESPRIT/3A8/2%20eme%20S/PIDEV/pidev/persistence_PI_3A8/java/JavaFX/src/IHM/FicheDeSoinVueController.java</file>
-            <file>file:/F:/ESPRIT/3A8/2%20eme%20S/PIDEV/pidev/persistence_PI_3A8/java/JavaFX/src/IHM/FicheDeSoinIHMController.java</file>
+            <file>file:/F:/ESPRIT/3A8/2%20eme%20S/PIDEV/pidev/persistence_PI_3A8/java/JavaFX/src/IHM/ListeDresseurController.java</file>
+            <file>file:/F:/ESPRIT/3A8/2%20eme%20S/PIDEV/pidev/persistence_PI_3A8/java/JavaFX/src/IHM/ListeDresseurAdminController.java</file>
         </group>
     </open-files>
 </project-private>

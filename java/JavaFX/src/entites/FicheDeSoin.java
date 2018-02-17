@@ -396,8 +396,7 @@ public class FicheDeSoin implements ificheDeSoinInterface {
      */
     @Override
     public ArrayList<FicheDeSoin> displayFicheDeSoin() {
-        ArrayList<FicheDeSoin> ficheDeSoins;
-        ficheDeSoins = new ArrayList<>();
+        ArrayList<FicheDeSoin> ficheDeSoins = new ArrayList<>();
         String req = "Select * From f_soin where etat=1";
         try {
             ps = conn.prepareStatement(req);

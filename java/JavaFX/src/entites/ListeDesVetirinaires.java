@@ -53,6 +53,58 @@ public class ListeDesVetirinaires {
         this.photo = photo;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
     @Override
     public String toString() {
         return "ListeDesVetirinaires{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel + ", adresse=" + adresse + ", mail=" + mail + ", photo=" + photo + '}';
@@ -62,6 +114,10 @@ public class ListeDesVetirinaires {
      * Attribus relatives au DB**
      */
     Connection conn = DataSource.getInstance().getConnection();
+
+    public String getTel() {
+        return tel;
+    }
     private PreparedStatement ps;
     private Statement stme;
     private ResultSet rs;
@@ -110,7 +166,7 @@ public class ListeDesVetirinaires {
             /**
              * Creation du req*
              */
-            String req = "update listedesvetirinaire set `nom`=?,`prenom`=?,`tel`=?,`adresse`=?,`mail`=?,`photo`=?,`etat`=? WHERE `id_ved`=? ";
+            String req = "update listedesvetirinaire set `nom`=?,`prenom`=?,`tel`=?,`adresse`=?,`mail`=?,`photo`=?  WHERE `id_ved`=? ";
 
             try {
                 /*

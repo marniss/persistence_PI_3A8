@@ -24,14 +24,14 @@ public class ControlleurListeDresseur {
         return ldd.afficherDresseur();
     }
 
-    public int modifierDresseur(String nom, String prenom, String tel, String adresse, String mail, String photo) {
-        ListeDesDresseurs ldd = new ListeDesDresseurs(nom, prenom, tel, adresse, mail, photo);
+    public int modifierDresseur(int id, String nom, String prenom, String tel, String adresse, String mail, String photo) {
+        ListeDesDresseurs ldd = new ListeDesDresseurs(id, nom, prenom, tel, adresse, mail, photo);
+        System.out.println("Controolleeeur  " + ldd);
         return ldd.modifierDresseur();
 
     }
 
-    public int supprimerDresseur(String nom, String prenom, String tel, String adresse, String mail, String photo) {
-        ListeDesDresseurs ldd = new ListeDesDresseurs(nom, prenom, tel, adresse, mail, photo);
-        return ldd.supprimerDresseur();
+    public int supprimerDresseur(ListeDesDresseurs d) {
+        return d.supprimerDresseur();
     }
 }

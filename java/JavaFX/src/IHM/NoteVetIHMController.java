@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -55,6 +56,11 @@ public class NoteVetIHMController implements Initializable {
         ControlleurNoteVeterinaire cnv = new ControlleurNoteVeterinaire();
         cnv.ajouterNote(Integer.parseInt(id_membre.getText()), Float.parseFloat(note.getText()), observation.getText());
         System.out.println("Vue");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("Note Ajouter");
+        alert.showAndWait();
     }
 
     @FXML

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ListeDesVeterinaireAdminController">
+    <stylesheets>
+        <URL value="@listedesveterinaireadmin.css" />
+    </stylesheets>
+   <children>
+      <TableView fx:id="listedvet" layoutX="24.0" layoutY="85.0" prefHeight="370.0" prefWidth="450.0">
+         <columns>
+            <TableColumn fx:id="nom" prefWidth="75.0" text="nom" />
+            <TableColumn fx:id="prenom" prefWidth="75.0" text="prenom" />
+            <TableColumn fx:id="tel" prefWidth="75.0" text="Tel" />
+            <TableColumn fx:id="adresse" prefWidth="75.0" text="Adresse" />
+            <TableColumn fx:id="mail" prefWidth="75.0" text="Mail" />
+            <TableColumn fx:id="photo" prefWidth="75.0" text="Photo" />
+         </columns>
+      </TableView>
+      <Label layoutX="127.0" layoutY="32.0" prefHeight="39.0" prefWidth="450.0" text="La Liste Des Vétérinaires Admin">
+         <font>
+            <Font name="System Bold Italic" size="27.0" />
+         </font>
+      </Label>
+      <Button fx:id="supprimer" layoutX="484.0" layoutY="435.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+      <Button fx:id="modifier" layoutX="724.0" layoutY="435.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+      <Button fx:id="ajouter" layoutX="648.0" layoutY="435.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+      <Button fx:id="Annuler" layoutX="575.0" layoutY="435.0" mnemonicParsing="false" onAction="#Annuler" text="Annuler" />
+      <TextField fx:id="nomtext" layoutX="559.0" layoutY="85.0" promptText="Nom" />
+      <TextField fx:id="prenomtext" layoutX="558.0" layoutY="143.0" promptText="Prenom" />
+      <TextField fx:id="teltext" layoutX="558.0" layoutY="204.0" promptText="Tel" />
+      <TextField fx:id="adressetext" layoutX="558.0" layoutY="260.0" promptText="Adresse" />
+      <TextField fx:id="mailtext" layoutX="559.0" layoutY="306.0" promptText="Mail" />
+      <TextField fx:id="phototext" layoutX="559.0" layoutY="363.0" promptText="Photo" />
+      <Label layoutX="499.0" layoutY="85.0" text="Nom" />
+      <Label layoutX="499.0" layoutY="145.0" text="Prenom" />
+      <Label layoutX="499.0" layoutY="211.0" text="Tel" />
+      <Label layoutX="499.0" layoutY="268.0" text="Adresse" />
+      <Label layoutX="499.0" layoutY="314.0" text="Mail" />
+      <Label layoutX="499.0" layoutY="371.0" text="Photo" />
+      <Button fx:id="brouse" layoutX="724.0" layoutY="363.0" mnemonicParsing="false" onAction="#brouse" text="parcourir" />
+   </children>
+</AnchorPane>

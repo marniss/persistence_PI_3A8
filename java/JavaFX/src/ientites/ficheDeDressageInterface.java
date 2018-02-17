@@ -6,6 +6,7 @@
 package ientites;
 
 import entites.FicheDeDressage;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public interface ficheDeDressageInterface {
 
     public int rechercheFicheDeDressage(int id_f_Dressage);
 
-    public int displayFicheDeDressage();
+    public ArrayList displayFicheDeDressage();
 
     public int supprimerFicheDeDressage();
 }

@@ -1,0 +1,156 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package IHM;
+
+import entites.ListeDesDresseurs;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import services.ControlleurListeDresseur;
+
+/**
+ * FXML Controller class
+ *
+ * @author pc asus
+ */
+public class ListeDresseurAdminController implements Initializable {
+
+    @FXML
+    private TableView<ListeDesDresseurs> listedress;
+    @FXML
+    private TableColumn<ListeDesDresseurs, String> nom;
+    @FXML
+    private TableColumn<ListeDesDresseurs, String> prenom;
+    @FXML
+    private TableColumn<ListeDesDresseurs, String> tel;
+    @FXML
+    private TableColumn<ListeDesDresseurs, String> adresse;
+    @FXML
+    private TableColumn<ListeDesDresseurs, String> mail;
+    @FXML
+    private TableColumn<ListeDesDresseurs, String> photo;
+    ControlleurListeDresseur cld = new ControlleurListeDresseur();
+    @FXML
+    private Button supprimer;
+    @FXML
+    private Button modifier;
+    @FXML
+    private Button ajouter;
+    @FXML
+    private Button Annuler;
+    @FXML
+    private Button brouse;
+    @FXML
+    private TextField nomtext;
+    @FXML
+    private TextField prenomtext;
+    @FXML
+    private TextField teltext;
+    @FXML
+    private TextField adressetext;
+    @FXML
+    private TextField mailtext;
+    @FXML
+    private TextField phototext;
+    URL url;
+    ResourceBundle rb;
+    @FXML
+    private Button suivant;
+    private static int id;
+
+    /*
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+
+        ArrayList<ListeDesDresseurs> listedesdreArrayList = cld.displayList();
+        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        tel.setCellValueFactory(new PropertyValueFactory<>("tel"));
+        adresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+        mail.setCellValueFactory(new PropertyValueFactory<>("mail"));
+        photo.setCellValueFactory(new PropertyValueFactory<>("photo"));
+
+        for (ListeDesDresseurs dre : listedesdreArrayList) {
+            System.out.println(dre);
+            listedress.getItems().addAll(dre);
+        }
+        listedress.setOnMouseClicked((event) -> {
+            if ((event.getClickCount() == 2)) {
+                ListeDesDresseurs dresseur = listedress.getItems().get(listedress.getSelectionModel().getSelectedIndex());
+                nomtext.setText(dresseur.getNom());
+                prenomtext.setText(dresseur.getPrenom());
+                teltext.setText(dresseur.getTel());
+                adressetext.setText(dresseur.getAdresse());
+                mailtext.setText(dresseur.getMail());
+                phototext.setText(dresseur.getPhoto());
+                id = dresseur.getId();
+
+            }
+        });
+    }
+
+    @FXML
+    private void supprimer(ActionEvent event) {
+        cld.supprimerDresseur(listedress.getItems().get(listedress.getSelectionModel().getSelectedIndex()));
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("Dresseur supprimer");
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void modifier(ActionEvent event) {
+        System.out.println("modifier" + id);
+        cld.modifierDresseur(id, nomtext.getText(), prenomtext.getText(), teltext.getText(), adressetext.getText(), mailtext.getText(), phototext.getText());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("Dresseur Modifier");
+        alert.showAndWait();
+
+    }
+
+    @FXML
+    private void ajouter(ActionEvent event) {
+
+        cld.ajouterDresseur(nomtext.getText(), prenomtext.getText(), teltext.getText(), adressetext.getText(), mailtext.getText(), phototext.getText());
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("Dresseur Ajouter");
+        alert.showAndWait();
+        // initialize(url, rb);
+        //listedress.getItems().add(e);
+    }
+
+    @FXML
+    private void Annuler(ActionEvent event) {
+    }
+
+    @FXML
+    private void brouse(ActionEvent event) {
+    }
+
+    @FXML
+    private void suivant(ActionEvent event) {
+        //listedress.getItems().
+    }
+
+}
