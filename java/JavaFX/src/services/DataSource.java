@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
  public class DataSource {
     private  static DataSource data ;
-    private String url = "jdbc:mysql://localhost:8080/zanimo";
+    private String url = "jdbc:mysql://localhost:3306/zanimo";
     private String username = "root";
     private String pasword = "";
     private Connection con;

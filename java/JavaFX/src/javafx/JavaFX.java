@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import services.ControlleurMembre;
 import services.FicheDeSoinService;
 
 /**
@@ -25,8 +26,17 @@ public class JavaFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         
-        System.out.println("message mt6a666666666666   "+getClass().getResource("IHM.IHM_Ajouter_Accessoire.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("IHM.IHM_Ajouter_Accessoire.fxml"));
+        //System.out.println("message mt6a666666666666   "+getClass().getResource("/IHM/MembreIHM.fxml"));
+       // Parent root = FXMLLoader.load(getClass().getResource("/IHM/IHM_Adoption.fxml"));
+      //  Parent root = FXMLLoader.load(getClass().getResource("/IHM/IHM_liste_membre.fxml"));
+        ControlleurMembre cm = new ControlleurMembre();
+        String housssem ="houss";
+        System.out.println(housssem);
+        String cry = cm.encrypt(housssem);
+        System.out.println(cry);
+        System.out.println(cm.decrypt(cry));
+      Parent root = FXMLLoader.load(getClass().getResource("/IHM/IHM_login.fxml"));
+       // Parent root = FXMLLoader.load(getClass().getResource("/IHM/IHM_Adoption.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
