@@ -5,6 +5,7 @@
  */
 package services;
 
+import entites.Animal;
 import entites.FicheDeSoin;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,15 +20,14 @@ public class ControlleurFicheDeSoin {
     //Attributs
     //Controle de saisie
     //Instancier
-    public int ajouterFicheDeSoin(int id_membre, String nom, String espece, float poids, Date datePoids, Date neLe, String genre, String observation, String photo, String medicament, String proprietaire, Date prochainRDV, int etat) {
-        FicheDeSoin fsSoin = new FicheDeSoin(id_membre, nom, espece, poids, datePoids, neLe, genre, observation, photo, medicament, proprietaire, prochainRDV, etat);
+    public int ajouterFicheDeSoin(int id_membre, String observation, String medicament, Date prochainRDV, int id_animal, int etat) {
+        FicheDeSoin fsSoin = new FicheDeSoin(id_membre, observation, medicament, prochainRDV, id_animal, 1);
         return fsSoin.ajouterFicheDeSoin();
-
     }
 
-    public int modifierFicheDeSoin(int id_f_Soin, int id_membre, String nom, String espece, float poids, Date datePoids, Date neLe, String genre, String observation, String photo, String medicament, String proprietaire, Date prochainRDV, int etat
+    public int modifierFicheDeSoin(int id_f_Soin, int id_membre, String observation, String medicament, Date prochainRDV, int id_animal
     ) {
-        FicheDeSoin fsSoin = new FicheDeSoin(id_f_Soin, id_membre, nom, espece, poids, datePoids, neLe, genre, observation, photo, medicament, proprietaire, prochainRDV, etat);
+        FicheDeSoin fsSoin = new FicheDeSoin(id_f_Soin, id_membre, observation, medicament, prochainRDV, id_animal, 1);
         return fsSoin.modifierFicheDeSoin();
     }
 
@@ -37,8 +37,16 @@ public class ControlleurFicheDeSoin {
     }
 
     public int updateFicheDeSoin(FicheDeSoin fs) {
-        FicheDeSoin fsSoin = new FicheDeSoin(fs.getId_f_Soin(), fs.getId_membre(), fs.getNom(), fs.getEspece(), fs.getPoids(), fs.getDatePoids(), fs.getNeLe(), fs.getGenre(), fs.getObservation(), fs.getPhoto(), fs.getMedicament(), fs.getProprietaire(), fs.getProchainRDV(), 0);
+        FicheDeSoin fsSoin = new FicheDeSoin(fs.getId_f_Soin(), fs.getId_membre(), fs.getObservation(), fs.getMedicament(), fs.getProchainRDV(), fs.getId_animal(), 0);
         return fsSoin.supprimerFicheDeSoin();
     }
 
+    public int ajouterAhmed(int id, int id_membre, String nom, String espece, float poids, Date datePoids, Date neLe, String genre, String observation, String photo, String medicament, String proprietaire, Date prochainRDV, int etat) {
+        Animal x = new Animal();
+        Animal y = x.getAnimal(id);
+        FicheDeSoin fsSoin = new FicheDeSoin(id_membre, observation, medicament, prochainRDV, id, 1);
+
+        return fsSoin.ajouterFicheDeSoin();
+
+    }
 }

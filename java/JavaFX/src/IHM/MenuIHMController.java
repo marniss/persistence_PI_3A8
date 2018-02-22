@@ -49,66 +49,98 @@ public class MenuIHMController implements Initializable {
 
     @FXML
     private void ficheDeSoin(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/ConsulterFicheDeSoinIHM.fxml"));
+        /*  FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/ConsulterFicheDeSoinIHM.fxml"));
         Parent root = (Parent) loader.load();
         Stage window;
         window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
-        window.show();
+        window.show();*/
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/IHM/ConsulterFicheDeSoinIHM.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     private void listeDesVétér(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/ListeDesVeterinaireAdmin.fxml"));
+        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/ListeDesVeterinaireAdmin.fxml"));
         Parent root = (Parent) loader.load();
         Stage window;
         window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
-        window.show();
+        window.show();*/
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/IHM/ListeDesVeterinaireAdmin.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 
     @FXML
     private void ficheDeDressage(ActionEvent event) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/FicheDeDressageIHM.fxml"));
+        /*
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/ConsulterFicheDeDressage.fxml"));
         Parent root = (Parent) loader.load();
         Stage window;
         window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
-        window.show();
+        window.show();*/
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/IHM/ConsulterFicheDeDressage.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     private void listeDesDresseur(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/ListeDresseurAdmin.fxml"));
+        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/ListeDresseurAdmin.fxml"));
         Parent root = (Parent) loader.load();
         Stage window;
         window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
-        window.show();
+        window.show();*/
+
+        //Parent root = FXMLLoader.load(getClass().getResource("/IHM/ListeDresseur.fxml"));
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/IHM/ListeDresseurAdmin.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 
     @FXML
     private void noteVétéri(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/NoteVetIHM.fxml"));
+        /* FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/NoteVetIHM.fxml"));
         Parent root = (Parent) loader.load();
         Stage window;
         window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
-        window.show();
+        window.show();*/
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/IHM/ListeVeterinaire.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 
     @FXML
     private void noteDresseur(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/NoteDresseur.fxml"));
+        /* FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/NoteDresseur.fxml"));
         Parent root = (Parent) loader.load();
         Stage window;
         window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
-        window.show();
+        window.show();*/
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/IHM/ListeDresseur.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 

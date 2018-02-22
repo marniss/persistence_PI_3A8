@@ -14,10 +14,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import services.ControlleurChamps;
 import services.ControlleurListeVeterinaire;
 
 /**
@@ -65,6 +67,64 @@ public class ListeDesVeterinaireAdminController implements Initializable {
     private Button brouse;
     ControlleurListeVeterinaire clv = new ControlleurListeVeterinaire();
     private int id;
+    @FXML
+    private Label erreurnom;
+    @FXML
+    private Label erreurpre;
+    @FXML
+    private Label erreurtel;
+    @FXML
+    private Label erreurmail;
+    @FXML
+    private Label erreuradres;
+
+    private boolean verif() {
+        ControlleurChamps cc = new ControlleurChamps();
+        if (nomtext.getText().isEmpty()) {
+            erreurnom.setText("* Nom Vide");
+        } else if (!cc.isName(nomtext.getText())) {
+            erreurnom.setText("* il faut un Nom valide");
+        } else if (prenomtext.getText().isEmpty()) {
+            erreurnom.setText("");
+            erreurpre.setText("* Prenom Vide");
+        } else if (!cc.isName(prenomtext.getText())) {
+            erreurnom.setText("");
+            erreurpre.setText("* il faut un Prenom valide");
+        } else if (teltext.getText().isEmpty()) {
+            erreurnom.setText("");
+            erreurpre.setText("");
+            erreurtel.setText("* Tel Vide");
+        } else if (!cc.isNumber(teltext.getText())) {
+            erreurnom.setText("");
+            erreurpre.setText("");
+            erreurtel.setText("* il faut un tel valide");
+        } else if (adressetext.getText().isEmpty()) {
+            erreurnom.setText("");
+            erreurpre.setText("");
+            erreurtel.setText("");
+            erreuradres.setText("* Adresse Vide");
+        } else if (mailtext.getText().isEmpty()) {
+            erreurnom.setText("");
+            erreurpre.setText("");
+            erreurtel.setText("");
+            erreuradres.setText("");
+            erreurmail.setText("* Mail Vide");
+        } else if (!cc.isEmail(mailtext.getText())) {
+            erreurnom.setText("");
+            erreurpre.setText("");
+            erreurtel.setText("");
+            erreuradres.setText("");
+            erreurmail.setText("* il faut un Email valide");
+        } else {
+            erreurnom.setText("");
+            erreurpre.setText("");
+            erreurtel.setText("");
+            erreuradres.setText("");
+            erreurmail.setText("");
+            return true;
+        }
+        return false;
+    }
 
     /*
      * Initializes the controller class.
@@ -111,30 +171,39 @@ public class ListeDesVeterinaireAdminController implements Initializable {
 
     @FXML
     private void modifier(ActionEvent event) {
-        clv.modifierVeterinaire(id, nomtext.getText(), prenomtext.getText(), teltext.getText(), adressetext.getText(), mailtext.getText(), phototext.getText());
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText(null);
-        alert.setContentText("Veterinaire Modifier");
-        alert.showAndWait();
+        if (verif()) {
+            clv.modifierVeterinaire(id, nomtext.getText(), prenomtext.getText(), teltext.getText(), adressetext.getText(), mailtext.getText(), phototext.getText());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Veterinaire Modifier");
+            alert.showAndWait();
+
+        }
+
     }
 
     @FXML
     private void ajouter(ActionEvent event) {
-        clv.ajouterVeteriniare(nomtext.getText(), prenomtext.getText(), teltext.getText(), adressetext.getText(), mailtext.getText(), phototext.getText());
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText(null);
-        alert.setContentText("Veterinaire Ajouter");
-        alert.showAndWait();
+        if (verif()) {
+            clv.ajouterVeteriniare(nomtext.getText(), prenomtext.getText(), teltext.getText(), adressetext.getText(), mailtext.getText(), phototext.getText());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Veterinaire Ajouter");
+            alert.showAndWait();
+        }
+
     }
 
     @FXML
-    private void Annuler(ActionEvent event) {
+    private void Annuler(ActionEvent event
+    ) {
     }
 
     @FXML
-    private void brouse(ActionEvent event) {
+    private void brouse(ActionEvent event
+    ) {
     }
 
 }

@@ -29,6 +29,7 @@ public class ListeDesVetirinaires {
     private String adresse;
     private String mail;
     private String photo;
+    private int id_note;
 
     public ListeDesVetirinaires() {
     }
@@ -51,6 +52,10 @@ public class ListeDesVetirinaires {
         this.adresse = adresse;
         this.mail = mail;
         this.photo = photo;
+    }
+
+    public ListeDesVetirinaires(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -269,7 +274,6 @@ public class ListeDesVetirinaires {
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-
             rs = ps.executeQuery();
             while (rs.next()) {
                 ListeDesVetirinaires ldv = new ListeDesVetirinaires();
@@ -280,6 +284,7 @@ public class ListeDesVetirinaires {
                 ldv.adresse = rs.getString(5);
                 ldv.mail = rs.getString(6);
                 ldv.photo = rs.getString(7);
+                ldv.id_note = rs.getInt(8);
                 listeDesVetirinaireses.add(ldv);
             }
             return listeDesVetirinaireses;
@@ -289,4 +294,40 @@ public class ListeDesVetirinaires {
         }
         return listeDesVetirinaireses;
     }
+
+    public int getId_note() {
+        return id_note;
+    }
+
+    public ListeDesVetirinaires getNote() {
+        ListeDesVetirinaires temp = new ListeDesVetirinaires(this.id);
+        try {
+
+            /**
+             * Creation du req*
+             */
+            String req = "select id_note from listedesvetirinaire where id_ved =  " + this.id;
+
+            try {
+                /*
+                *Creation Du Statememnt
+                 */
+                ps = conn.prepareStatement(req);
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                temp.id_note = rs.getInt("id_note");
+
+            }
+            return temp;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return temp;
+    }
+
 }

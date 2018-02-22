@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ListeDresseurAdminController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ListeDresseurAdminController">
     <stylesheets>
         <URL value="@listedresseur.css" />
     </stylesheets>
@@ -46,6 +46,11 @@
         <Label layoutX="489.0" layoutY="304.0" text="Mail" />
         <Label layoutX="489.0" layoutY="361.0" text="Photo" />
         <Button fx:id="brouse" layoutX="714.0" layoutY="353.0" mnemonicParsing="false" onAction="#brouse" text="parcourir" />
-      <Button fx:id="suivant" layoutX="222.0" layoutY="461.0" mnemonicParsing="false" onAction="#suivant" text="--&gt;" />
+        <Button fx:id="suivant" layoutX="222.0" layoutY="461.0" mnemonicParsing="false" onAction="#suivant" text="--&gt;" />
+        <Label fx:id="erreurnom" layoutX="563.0" layoutY="110.0" textFill="#fc0c0c" />
+        <Label fx:id="erreurpre" layoutX="563.0" layoutY="170.0" textFill="#fc0c0c" />
+        <Label fx:id="erreurtel" layoutX="566.0" layoutY="242.0" textFill="#fc0c0c" />
+        <Label fx:id="erreurmail" layoutX="566.0" layoutY="338.0" textFill="#fc0c0c" />
+        <Label fx:id="erreuradres" layoutX="563.0" layoutY="285.0" textFill="#fc0c0c" />
     </children>
 </AnchorPane>

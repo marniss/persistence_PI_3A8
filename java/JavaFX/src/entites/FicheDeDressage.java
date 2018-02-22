@@ -24,12 +24,7 @@ public class FicheDeDressage implements ficheDeDressageInterface {
 
     private int id_f_Dressage;
     private int id_membre;
-    private String espece;
-    private String nom;
-    private float poids;
-    private String proprietaire;
     private String specialite;
-    private String photo;
     private float displine;
     private float obeissance;
     private float accompagnement;
@@ -37,9 +32,10 @@ public class FicheDeDressage implements ficheDeDressageInterface {
     private float noteTotal;
     private Date dateDebut;
     private Date dateFin;
+    private int id_animal;
     private int etat;
 
-    SimpleDateFormat formater = new SimpleDateFormat("YYYY-MM-DD");
+    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 
 //Les attributs DB
     static Connection conn = DataSource.getInstance().getConnection();
@@ -56,15 +52,18 @@ public class FicheDeDressage implements ficheDeDressageInterface {
     /*
 * *** 2 ****
      */
-    public FicheDeDressage(int id_f_Dressage, int id_membre, String espece, String nom, float poids, String proprietaire, String specialite, String photo, float displine, float obeissance, float accompagnement, float interception, float noteTotal, Date dateDebut, Date dateFin) {
+    public void setSpecialite(String specialite) {
+        this.specialite = specialite;
+    }
+
+    public String getSpecialite() {
+        return specialite;
+    }
+
+    public FicheDeDressage(int id_f_Dressage, int id_membre, String specialite, float displine, float obeissance, float accompagnement, float interception, float noteTotal, Date dateDebut, Date dateFin, int id_animal, int etat) {
         this.id_f_Dressage = id_f_Dressage;
         this.id_membre = id_membre;
-        this.espece = espece;
-        this.nom = nom;
-        this.poids = poids;
-        this.proprietaire = proprietaire;
         this.specialite = specialite;
-        this.photo = photo;
         this.displine = displine;
         this.obeissance = obeissance;
         this.accompagnement = accompagnement;
@@ -72,18 +71,14 @@ public class FicheDeDressage implements ficheDeDressageInterface {
         this.noteTotal = noteTotal;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-
+        this.id_animal = id_animal;
+        this.etat = etat;
     }
 
-    public FicheDeDressage(int id_membre, String espece, String nom, float poids, String proprietaire, String specialite, String photo, float displine, float obeissance, float accompagnement, float interception, float noteTotal, Date dateDebut, Date dateFin) {
+    public FicheDeDressage(int id_membre, String specialite, float displine, float obeissance, float accompagnement, float interception, float noteTotal, Date dateDebut, Date dateFin, int id_animal, int etat) {
 
         this.id_membre = id_membre;
-        this.espece = espece;
-        this.nom = nom;
-        this.poids = poids;
-        this.proprietaire = proprietaire;
         this.specialite = specialite;
-        this.photo = photo;
         this.displine = displine;
         this.obeissance = obeissance;
         this.accompagnement = accompagnement;
@@ -91,19 +86,9 @@ public class FicheDeDressage implements ficheDeDressageInterface {
         this.noteTotal = noteTotal;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
+        this.id_animal = id_animal;
+        this.etat = etat;
     }
-
-    public FicheDeDressage(int id_membre, String espece, String nom, float poids, String proprietaire, String specialite) {
-
-        this.id_membre = id_membre;
-        this.espece = espece;
-        this.nom = nom;
-        this.poids = poids;
-        this.proprietaire = proprietaire;
-        this.specialite = specialite;
-
-    }
-//Les Getters et les setters
 
     public int getId_f_Dressage() {
         return id_f_Dressage;
@@ -119,54 +104,6 @@ public class FicheDeDressage implements ficheDeDressageInterface {
 
     public void setId_membre(int id_membre) {
         this.id_membre = id_membre;
-    }
-
-    public String getEspece() {
-        return espece;
-    }
-
-    public void setEspece(String espece) {
-        this.espece = espece;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public float getPoids() {
-        return poids;
-    }
-
-    public void setPoids(float poids) {
-        this.poids = poids;
-    }
-
-    public String getProprietaire() {
-        return proprietaire;
-    }
-
-    public void setProprietaire(String proprietaire) {
-        this.proprietaire = proprietaire;
-    }
-
-    public String getSpecialite() {
-        return specialite;
-    }
-
-    public void setSpecialite(String specialite) {
-        this.specialite = specialite;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
     }
 
     public float getDispline() {
@@ -225,18 +162,20 @@ public class FicheDeDressage implements ficheDeDressageInterface {
         this.dateFin = dateFin;
     }
 
+    public int getId_animal() {
+        return id_animal;
+    }
+
+    public void setId_animal(int id_animal) {
+        this.id_animal = id_animal;
+    }
+
     public int getEtat() {
         return etat;
     }
 
     public void setEtat(int etat) {
         this.etat = etat;
-    }
-//toString()
-
-    @Override
-    public String toString() {
-        return "FicheDeDressage{" + "id_f_Dressage=" + id_f_Dressage + ", id_membre=" + id_membre + ", espece=" + espece + ", nom=" + nom + ", poids=" + poids + ", proprietaire=" + proprietaire + ", specialite=" + specialite + ", photo=" + photo + ", displine=" + displine + ", obeissance=" + obeissance + ", accompagnement=" + accompagnement + ", interception=" + interception + ", noteTotal=" + noteTotal + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", etat=" + etat + ", rs=" + rs + ", ps=" + ps + '}';
     }
 
 ////nos methodes
@@ -248,24 +187,20 @@ public class FicheDeDressage implements ficheDeDressageInterface {
     public int ajouterFicheDeDressage() {
         String datdebu = formater.format(this.dateDebut);
         String datfin = formater.format(this.dateFin);
-        String req1 = "INSERT INTO `f_dressage`(`id_membre`, `espece`, `nom`, `poids`, `proprietaire`, `photo`, `displine`, `obeissance`, `specialite`, `accompagnement`, `interception`, `noteTotal`, `dateDebut`, `datFin`)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String req1 = "INSERT INTO `f_dressage`(`id_membre`, `displine`, `obeissance`, `specialite`, `accompagnement`, `interception`, `noteTotal`, `dateDebut`, `datFin`, `id_animal`, `etat`) VALUES (?,?,?,?,?,?,?,?,?,?,1)";
         try {
 
             ps = conn.prepareStatement(req1);
             ps.setInt(1, this.id_membre);
-            ps.setString(2, this.nom);
-            ps.setString(3, this.espece);
-            ps.setFloat(4, this.poids);
-            ps.setString(5, this.proprietaire);
-            ps.setString(6, this.photo);
-            ps.setFloat(7, this.displine);
-            ps.setFloat(8, this.obeissance);
-            ps.setString(9, this.specialite);
-            ps.setFloat(10, this.accompagnement);
-            ps.setFloat(11, this.interception);
-            ps.setFloat(12, this.noteTotal);
-            ps.setString(13, datdebu);
-            ps.setString(14, datfin);
+            ps.setFloat(2, this.displine);
+            ps.setFloat(3, this.obeissance);
+            ps.setString(4, this.specialite);
+            ps.setFloat(5, this.accompagnement);
+            ps.setFloat(6, this.interception);
+            ps.setFloat(7, this.noteTotal);
+            ps.setString(8, datdebu);
+            ps.setString(9, datfin);
+            ps.setInt(10, this.id_animal);
             ps.execute();
             System.out.println("Insertion Ok");
             return 1;
@@ -283,24 +218,19 @@ public class FicheDeDressage implements ficheDeDressageInterface {
         try {
             String datdebu = formater.format(this.dateDebut);
             String datfin = formater.format(this.dateFin);
-
-            String req = "UPDATE `f_dressage` SET `id_membre`=?,`espece`=?,`nom`=?,`poids`=?,`proprietaire`=?,`photo`=?,`displine`=?,`obeissance`=?,`specialite`=?,`accompagnement`=?,`interception`=?,`noteTotal`=?,`dateDebut`=?,`datFin`=? Where id_f_soin =? ";
+            String req = "UPDATE `f_dressage` SET `id_membre`=?,`displine`=?,`obeissance`=?,`specialite`=?,`accompagnement`=?,`interception`=?,`noteTotal`=?,`dateDebut`=?,`datFin`=?,`id_animal`=?,`etat`=1 Where id_f_Dressage =? ";
             ps = conn.prepareStatement(req);
             ps.setInt(1, this.id_membre);
-            ps.setString(2, this.nom);
-            ps.setString(3, this.espece);
-            ps.setFloat(4, this.poids);
-            ps.setString(5, this.proprietaire);
-            ps.setString(6, this.photo);
-            ps.setFloat(7, this.displine);
-            ps.setFloat(8, this.obeissance);
-            ps.setString(9, this.specialite);
-            ps.setFloat(10, this.accompagnement);
-            ps.setFloat(11, this.interception);
-            ps.setFloat(12, this.noteTotal);
-            ps.setString(13, datdebu);
-            ps.setString(14, datfin);
-            ps.setInt(15, this.id_f_Dressage);
+            ps.setFloat(2, this.displine);
+            ps.setFloat(3, this.obeissance);
+            ps.setString(4, this.specialite);
+            ps.setFloat(5, this.accompagnement);
+            ps.setFloat(6, this.interception);
+            ps.setFloat(7, this.noteTotal);
+            ps.setString(8, datdebu);
+            ps.setString(9, datfin);
+            ps.setInt(10, this.id_animal);
+            ps.setInt(11, this.id_f_Dressage);
             ps.execute();
             return 1;
 
@@ -325,11 +255,6 @@ public class FicheDeDressage implements ficheDeDressageInterface {
             if (rs.next()) {
                 fdd.id_f_Dressage = rs.getInt(1);
                 fdd.id_membre = rs.getInt(2);
-                fdd.espece = rs.getString(3);
-                fdd.nom = rs.getString(4);
-                fdd.poids = rs.getFloat(5);
-                fdd.proprietaire = rs.getString(6);
-                fdd.photo = rs.getString(7);
                 fdd.displine = rs.getFloat(8);
                 fdd.obeissance = rs.getFloat(9);
                 fdd.specialite = rs.getString(10);
@@ -353,7 +278,7 @@ public class FicheDeDressage implements ficheDeDressageInterface {
     @Override
     public ArrayList displayFicheDeDressage() {
 
-        FicheDeDressage fdd = new FicheDeDressage();
+        FicheDeDressage fdd;
         ArrayList<FicheDeDressage> fiList = new ArrayList<>();
         try {
 
@@ -361,22 +286,19 @@ public class FicheDeDressage implements ficheDeDressageInterface {
             ps = conn.prepareStatement(req);
 
             rs = ps.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
+                fdd = new FicheDeDressage();
                 fdd.id_f_Dressage = rs.getInt(1);
                 fdd.id_membre = rs.getInt(2);
-                fdd.espece = rs.getString(3);
-                fdd.nom = rs.getString(4);
-                fdd.poids = rs.getFloat(5);
-                fdd.proprietaire = rs.getString(6);
-                fdd.photo = rs.getString(7);
-                fdd.displine = rs.getFloat(8);
-                fdd.obeissance = rs.getFloat(9);
-                fdd.specialite = rs.getString(10);
-                fdd.accompagnement = rs.getFloat(11);
-                fdd.interception = rs.getFloat(12);
-                fdd.noteTotal = rs.getInt(13);
-                fdd.dateDebut = rs.getDate(14);
-                fdd.dateFin = rs.getDate(15);
+                fdd.displine = rs.getFloat(3);
+                fdd.obeissance = rs.getFloat(4);
+                fdd.specialite = rs.getString(5);
+                fdd.accompagnement = rs.getFloat(6);
+                fdd.interception = rs.getFloat(7);
+                fdd.noteTotal = rs.getInt(8);
+                fdd.dateDebut = rs.getDate(9);
+                fdd.dateFin = rs.getDate(10);
+                fdd.id_animal = rs.getInt("id_animal");
                 fiList.add(fdd);
             }
             return fiList;
@@ -392,7 +314,7 @@ public class FicheDeDressage implements ficheDeDressageInterface {
     @Override
     public int supprimerFicheDeDressage() {
         try {
-            String req = "update f_dressage set etat= 0 where id_f_soin =? ";
+            String req = "update f_dressage set etat= 0 where id_f_Dressage =? ";
             ps = conn.prepareStatement(req);
             ps.setInt(1, this.id_f_Dressage);
             ps.execute();

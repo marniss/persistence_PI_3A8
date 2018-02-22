@@ -9,11 +9,17 @@ import entites.ListeDesDresseurs;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import org.controlsfx.control.Rating;
 import services.ControlleurListeDresseur;
 
 /**
@@ -38,6 +44,18 @@ public class ListeDresseurController implements Initializable {
     @FXML
     private TableColumn<ListeDesDresseurs, String> photo;
     ControlleurListeDresseur cld = new ControlleurListeDresseur();
+    @FXML
+    private Label nomvet;
+    @FXML
+    private Label note;
+    @FXML
+    private TextField lanote;
+    @FXML
+    private Button valide;
+    public static int iddd = 1;
+    @FXML
+    private Rating rateDress;
+    Float not;
 
     /**
      * Initializes the controller class.
@@ -45,7 +63,7 @@ public class ListeDresseurController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        rateDress.setDisable(true);
         ArrayList<ListeDesDresseurs> listedesdreArrayList = cld.displayList();
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
@@ -58,6 +76,31 @@ public class ListeDresseurController implements Initializable {
             System.out.println(dre);
             listedress.getItems().addAll(dre);
         }
+        listedress.setOnMouseClicked(
+        (event) -> {
+            if (event.getClickCount() == 2) {
+                ListeDresseurController.iddd = listedress.getItems().get(listedress.getSelectionModel().getSelectedIndex()).getId();
+                nomvet.setText(listedress.getItems().get(listedress.getSelectionModel().getSelectedIndex()).getNom());
+                note.setText("" + cld.getLaNote(iddd));
+                rateDress.setDisable(false);
+                rateDress.setRating(cld.getLaNote(iddd));
+            }
+
+        }
+        );
+    }
+
+    @FXML
+    private void valider(ActionEvent event) {
+        Float x = (Float.parseFloat(note.getText()) + not) / 2;
+        System.out.println(x);
+        cld.affecternote(x);
+        rateDress.setDisable(true);
+    }
+
+    @FXML
+    private void evaldress(MouseEvent event) {
+        not = (float) rateDress.getRating();
     }
 
 }

@@ -31,6 +31,7 @@ public class ListeDesDresseurs {
     private String adresse;
     private String mail;
     private String photo;
+    private int id_note;
 
     public ListeDesDresseurs() {
     }
@@ -54,6 +55,12 @@ public class ListeDesDresseurs {
         this.mail = mail;
         this.photo = photo;
     }
+
+    public ListeDesDresseurs(int id) {
+
+        this.id = id;
+
+    }
 //Getters
 
     public int getId() {
@@ -66,6 +73,10 @@ public class ListeDesDresseurs {
 
     public String getPrenom() {
         return prenom;
+    }
+
+    public int getId_note() {
+        return id_note;
     }
 
     public String getTel() {
@@ -250,6 +261,7 @@ public class ListeDesDresseurs {
                 ldd.adresse = rs.getString(5);
                 ldd.mail = rs.getString(6);
                 ldd.photo = rs.getString(7);
+                ldd.id_note = rs.getInt("idnote");
                 listeDesDresseurses.add(ldd);
             }
             return listeDesDresseurses;
@@ -258,5 +270,35 @@ public class ListeDesDresseurs {
             System.out.println(ex.getMessage());
         }
         return listeDesDresseurses;
+    }
+
+    public ListeDesDresseurs getNote() {
+        ListeDesDresseurs temp = new ListeDesDresseurs(this.id);
+        try {
+
+            /**
+             * Creation du req*
+             */
+            String req = "select idnote from listedesdresseurs where id=" + this.id;
+            try {
+                /*
+                *Creation Du Statememnt
+                 */
+                ps = conn.prepareStatement(req);
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                temp.id_note = rs.getInt("idnote");
+
+            }
+            return temp;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return temp;
+
     }
 }

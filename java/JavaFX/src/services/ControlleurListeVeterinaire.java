@@ -6,6 +6,7 @@
 package services;
 
 import entites.ListeDesVetirinaires;
+import entites.NoteVetirinaire;
 import java.util.ArrayList;
 
 /**
@@ -13,6 +14,8 @@ import java.util.ArrayList;
  * @author makni
  */
 public class ControlleurListeVeterinaire {
+
+    public static NoteVetirinaire tempo = new NoteVetirinaire();
 
     public int ajouterVeteriniare(String nom, String prenom, String tel, String adresse, String mail, String photo) {
         ListeDesVetirinaires ldv = new ListeDesVetirinaires(nom, prenom, tel, adresse, mail, photo);
@@ -32,6 +35,20 @@ public class ControlleurListeVeterinaire {
     public int supprimerVeterinaire(ListeDesVetirinaires vet) {
         ListeDesVetirinaires ldv = new ListeDesVetirinaires(vet.getId(), vet.getNom(), vet.getPrenom(), vet.getTel(), vet.getAdresse(), vet.getMail(), vet.getPhoto());
         return ldv.supprimerVetirinaire();
+    }
+
+    public Float getLaNote(int idvet) {
+        ListeDesVetirinaires x = new ListeDesVetirinaires(idvet);
+        x = x.getNote();
+        tempo = new NoteVetirinaire(x.getId_note());
+        NoteVetirinaire aaa = tempo.getlanote();
+        return aaa.getNote();
+    }
+
+    public void affecternote(float f) {
+        System.out.println("0.1");
+        tempo.setLaNote(f);
+
     }
 
 }

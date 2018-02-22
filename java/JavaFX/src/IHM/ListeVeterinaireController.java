@@ -9,11 +9,17 @@ import entites.ListeDesVetirinaires;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import org.controlsfx.control.Rating;
 import services.ControlleurListeVeterinaire;
 
 /**
@@ -37,17 +43,30 @@ public class ListeVeterinaireController implements Initializable {
     private TableColumn<ListeDesVetirinaires, String> mail;
     @FXML
     private TableColumn<ListeDesVetirinaires, String> photo;
+    @FXML
+    private Label nomvet;
+    @FXML
+    private Label note;
+    @FXML
+    private TextField lanote;
+    @FXML
+    private Button valide;
+    public static int iddd = 1;
+    ControlleurListeVeterinaire clv = new ControlleurListeVeterinaire();
+    @FXML
+    private Rating rateVet;
+    float not;
 
     /*
      * Initializes the controller class.
      */
     @Override
+
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-        ControlleurListeVeterinaire clv = new ControlleurListeVeterinaire();
         ArrayList<ListeDesVetirinaires> listeDesVetirinaireses = clv.displayList();
-
+        rateVet.setDisable(true);
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         tel.setCellValueFactory(new PropertyValueFactory<>("tel"));
@@ -59,6 +78,32 @@ public class ListeVeterinaireController implements Initializable {
             listevet.getItems().addAll(vet);
 
         }
+        listevet.setOnMouseClicked(
+        (event) -> {
+
+            if (event.getClickCount() == 2) {
+                ListeVeterinaireController.iddd = listevet.getItems().get(listevet.getSelectionModel().getSelectedIndex()).getId();
+                nomvet.setText(listevet.getItems().get(listevet.getSelectionModel().getSelectedIndex()).getNom());
+                note.setText("" + clv.getLaNote(iddd));
+                rateVet.setDisable(false);
+                rateVet.setRating(clv.getLaNote(iddd));
+            }
+        }
+        );
+    }
+
+    @FXML
+    private void valider(ActionEvent event) {
+        Float x = (Float.parseFloat(note.getText()) + not) / 2;
+        System.out.println(x);
+        clv.affecternote(x);
+        rateVet.setDisable(true);
+
+    }
+
+    @FXML
+    private void evalvet(MouseEvent event) {
+        not = (float) rateVet.getRating();
     }
 
 }

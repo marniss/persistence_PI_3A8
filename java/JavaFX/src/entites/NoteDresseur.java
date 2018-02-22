@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import services.ControlleurListeDresseur;
 import services.DataSource;
 
 /**
@@ -32,6 +33,10 @@ public class NoteDresseur {
     public NoteDresseur() {
     }
 
+    public NoteDresseur(int id) {
+        this.id_note = id;
+    }
+
     public NoteDresseur(int id_note, int id_membre, float note, String observation) {
         this.id_note = id_note;
         this.id_membre = id_membre;
@@ -45,7 +50,6 @@ public class NoteDresseur {
         this.note = note;
         this.observation = observation;
     }
-
 
     /*
      * Getters*
@@ -63,7 +67,7 @@ public class NoteDresseur {
     /**
      * Attributs Relative à DB
      */
-    Connection conn;
+    Connection conn = DataSource.getInstance().getConnection();
     private PreparedStatement ps;
     private Statement stm;
     private ResultSet rs;
@@ -73,7 +77,7 @@ public class NoteDresseur {
      */
     public int ajouterNote() {
         System.out.println("Modele");
-        conn = DataSource.getInstance().getConnection();
+
         try {
             /**
              * Creation du Requette**
@@ -142,5 +146,73 @@ public class NoteDresseur {
         }
         return "";
 
+    }
+
+    public NoteDresseur getlanote() {
+        NoteDresseur temp = new NoteDresseur(this.id_note);
+
+        try {
+
+            /**
+             * Creation du req*
+             */
+            String req = "select note from notedresseur  where idnote = " + this.id_note;
+
+            try {
+                /*
+                *Creation Du Statememnt
+                 */
+                stm = conn.createStatement();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            ResultSet rzs = stm.executeQuery(req);
+
+            while (rzs.next()) {
+                System.out.println("dans la boucle");
+                temp.note = rzs.getFloat("note");
+
+            }
+            return temp;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return temp;
+    }
+
+    public float getNote() {
+        return note;
+    }
+
+    public void setLaNote(float f) {
+        Statement sttt = null;
+        try {
+
+            /**
+             * Creation du req*
+             */
+            String req = "UPDATE `notedresseur` SET "
+            + "`note`= " + f
+            + " WHERE idnote = " + ControlleurListeDresseur.tempo.getId_note();
+            System.out.println(req);
+
+            try {
+                /*
+                *Creation Du Statememnt
+                 */
+                System.out.println("1");
+                sttt = conn.createStatement();
+                System.out.println("2");
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            System.out.println("3");
+            sttt.executeUpdate(req);
+            System.out.println("4");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

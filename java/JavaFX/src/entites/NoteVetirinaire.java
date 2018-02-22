@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import services.ControlleurListeVeterinaire;
 import services.DataSource;
 
 /**
@@ -31,6 +32,11 @@ public class NoteVetirinaire {
      */
 //1
     public NoteVetirinaire() {
+    }
+//2
+
+    public NoteVetirinaire(int id) {
+        this.id_note = id;
     }
 //2
 
@@ -67,7 +73,7 @@ public class NoteVetirinaire {
     /**
      * Attributs Relative à DB
      */
-    Connection conn;
+    Connection conn = DataSource.getInstance().getConnection();
     private PreparedStatement ps;
     private Statement stm;
     private ResultSet rs;
@@ -77,7 +83,7 @@ public class NoteVetirinaire {
      */
     public int ajouterNote() {
         System.out.println("Modele");
-        conn = DataSource.getInstance().getConnection();
+
         try {
             /**
              * Creation du Requette**
@@ -110,6 +116,10 @@ public class NoteVetirinaire {
             System.out.println("Erreur d'execution du req");
         }
         return 0;
+    }
+
+    public float getNote() {
+        return note;
     }
 
     public String moyNotee() {
@@ -148,6 +158,70 @@ public class NoteVetirinaire {
         }
         return "";
 
+    }
+
+    public NoteVetirinaire getlanote() {
+        NoteVetirinaire temp = new NoteVetirinaire(this.id_note);
+        Statement sttt = null;
+        try {
+
+            /**
+             * Creation du req*
+             */
+            String req = "select note from notevetirinaire  where idnoteVet =" + this.id_note;
+
+            try {
+                /*
+                *Creation Du Statememnt
+                 */
+                sttt = conn.createStatement();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            ResultSet rzs = sttt.executeQuery(req);
+
+            while (rzs.next()) {
+                System.out.println("dans la boucle");
+                temp.note = rzs.getFloat("note");
+
+            }
+            return temp;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return temp;
+    }
+
+    public void setLaNote(float f) {
+        Statement sttt = null;
+        try {
+
+            /**
+             * Creation du req*
+             */
+            String req = "UPDATE `notevetirinaire` SET "
+            + "`note`= " + f
+            + " WHERE idnoteVet = " + ControlleurListeVeterinaire.tempo.getId_note();
+            System.out.println(req);
+
+            try {
+                /*
+                *Creation Du Statememnt
+                 */
+                System.out.println("1");
+                sttt = conn.createStatement();
+                System.out.println("2");
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            System.out.println("3");
+            sttt.executeUpdate(req);
+            System.out.println("4");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 }

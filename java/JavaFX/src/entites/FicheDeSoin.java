@@ -6,12 +6,10 @@
 package entites;
 
 import java.sql.Connection;
-//import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import services.DataSource;
 import ientites.ificheDeSoinInterface;
-import javafx.scene.control.Button;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -27,36 +25,11 @@ public class FicheDeSoin implements ificheDeSoinInterface {
 //Les attributs
     private int id_f_Soin;
     private int id_membre;
-    private String nom;
-    private String espece;
-    private float poids;
-    private Date datePoids;
-    private Date neLe;
-    private String genre;
     private String observation;
-    private String photo;
     private String medicament;
-    private String proprietaire;
     private Date prochainRDV;
+    private int id_animal;
     private int etat;
-    private Button modButton;
-    private Button supButton;
-
-    public Button getModButton() {
-        return modButton;
-    }
-
-    public void setModButton(Button modButton) {
-        this.modButton = modButton;
-    }
-
-    public Button getSupButton() {
-        return supButton;
-    }
-
-    public void setSupButton(Button supButton) {
-        this.supButton = supButton;
-    }
 
 //Les attributs DB
     Connection conn = DataSource.getInstance().getConnection();
@@ -73,89 +46,32 @@ public class FicheDeSoin implements ificheDeSoinInterface {
 
     }
 
-    /*
-* *** 2 ****
-     */
-    public FicheDeSoin(int id_f_Soin, int id_membre, String nom, String espece, float poids, Date datePoids, Date neLe, String genre, String observation, String photo, String medicament, String proprietaire, Date prochainRDV, int etat, Button modButton, Button supButton) {
+    public FicheDeSoin(int id_f_Soin, int id_membre, String observation, String medicament, Date prochainRDV, int id_animal, int etat) {
         this.id_f_Soin = id_f_Soin;
         this.id_membre = id_membre;
-        this.nom = nom;
-        this.espece = espece;
-        this.poids = poids;
-        this.datePoids = datePoids;
-        this.neLe = neLe;
-        this.genre = genre;
         this.observation = observation;
-        this.photo = photo;
         this.medicament = medicament;
-        this.proprietaire = proprietaire;
         this.prochainRDV = prochainRDV;
+        this.id_animal = id_animal;
         this.etat = etat;
-        this.modButton = modButton;
-        this.supButton = supButton;
-
     }
 
-    public FicheDeSoin(int id_f_Soin, int id_membre, String nom, String espece, float poids, Date datePoids, Date neLe, String genre, String observation, String photo, String medicament, String proprietaire, Date prochainRDV, int etat) {
-        this.id_f_Soin = id_f_Soin;
-        this.id_membre = id_membre;
-        this.nom = nom;
-        this.espece = espece;
-        this.poids = poids;
-        this.datePoids = datePoids;
-        this.neLe = neLe;
-        this.genre = genre;
-        this.observation = observation;
-        this.photo = photo;
-        this.medicament = medicament;
-        this.proprietaire = proprietaire;
-        this.prochainRDV = prochainRDV;
-        this.etat = etat;
-
-    }
-
-    /*
-     ****3****
-     */
-    public FicheDeSoin(int id_membre, String nom, String espece, float poids, Date datePoids, Date neLe, String genre, String observation, String photo, String medicament, String proprietaire, Date prochainRDV, int etat) {
+    public FicheDeSoin(int id_membre, String observation, String medicament, Date prochainRDV, int id_animal, int etat) {
 
         this.id_membre = id_membre;
-        this.nom = nom;
-        this.espece = espece;
-        this.poids = poids;
-        this.datePoids = datePoids;
-        this.neLe = neLe;
-        this.genre = genre;
         this.observation = observation;
-        this.photo = photo;
         this.medicament = medicament;
-        this.proprietaire = proprietaire;
         this.prochainRDV = prochainRDV;
+        this.id_animal = id_animal;
         this.etat = etat;
-
     }
 
-    public FicheDeSoin(String nom, String espece, float poids, Date datePoids, Date neLe, String genre, String observation, String photo, String medicament, String proprietaire, Date prochainRDV, int etat) {
-
-        this.nom = nom;
-        this.espece = espece;
-        this.poids = poids;
-        this.datePoids = datePoids;
-        this.neLe = neLe;
-        this.genre = genre;
-        this.observation = observation;
-        this.photo = photo;
-        this.medicament = medicament;
-        this.proprietaire = proprietaire;
-        this.prochainRDV = prochainRDV;
-        this.etat = etat;
-
+    public Date getProchainRDV() {
+        return prochainRDV;
     }
-//Les Getters et les setters
 
-    @Override
-    public String toString() {
-        return "FicheDeSoin{" + "id_f_Soin=" + id_f_Soin + ", id_membre=" + id_membre + ", nom=" + nom + ", espece=" + espece + ", poids=" + poids + ", datePoids=" + datePoids + ", neLe=" + neLe + ", genre=" + genre + ", observation=" + observation + ", photo=" + photo + ", medicament=" + medicament + ", proprietaire=" + proprietaire + ", prochainRDV=" + prochainRDV + '}';
+    public void setProchainRDV(Date prochainRDV) {
+        this.prochainRDV = prochainRDV;
     }
 
     public int getId_f_Soin() {
@@ -174,68 +90,12 @@ public class FicheDeSoin implements ificheDeSoinInterface {
         this.id_membre = id_membre;
     }
 
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getEspece() {
-        return espece;
-    }
-
-    public void setEspece(String espece) {
-        this.espece = espece;
-    }
-
-    public float getPoids() {
-        return poids;
-    }
-
-    public void setPoids(float poids) {
-        this.poids = poids;
-    }
-
-    public Date getDatePoids() {
-        return datePoids;
-    }
-
-    public void setDatePoids(Date datePoids) {
-        this.datePoids = datePoids;
-    }
-
-    public Date getNeLe() {
-        return neLe;
-    }
-
-    public void setNeLe(Date neLe) {
-        this.neLe = neLe;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
     public String getObservation() {
         return observation;
     }
 
     public void setObservation(String observation) {
         this.observation = observation;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
     }
 
     public String getMedicament() {
@@ -246,20 +106,12 @@ public class FicheDeSoin implements ificheDeSoinInterface {
         this.medicament = medicament;
     }
 
-    public String getProprietaire() {
-        return proprietaire;
+    public int getId_animal() {
+        return id_animal;
     }
 
-    public void setProprietaire(String proprietaire) {
-        this.proprietaire = proprietaire;
-    }
-
-    public Date getProchainRDV() {
-        return prochainRDV;
-    }
-
-    public void setProchainRDV(Date prochainRDV) {
-        this.prochainRDV = prochainRDV;
+    public void setId_animal(int id_animal) {
+        this.id_animal = id_animal;
     }
 
     public int getEtat() {
@@ -287,13 +139,13 @@ public class FicheDeSoin implements ificheDeSoinInterface {
         }
         /**
          * Creation de la Requette**
+         *
          */
-
         SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
-        String datepoid = formater.format(this.datePoids);
-        String datNai = formater.format(this.neLe);
-        String dateRDV = formater.format(this.prochainRDV);
-        String req = "INSERT INTO `f_soin`(`id_membre`, `nom`, `espece`, `poids`, `datePoids`, `neLe`, `genre`, `observation`, `photo`, `medicament`, `proprietaire`, `prochainRDV`, `etat`) VALUES (" + this.id_membre + ",'" + this.nom + "','" + this.espece + "'," + this.poids + ",'" + datepoid + "','" + datNai + "','" + this.genre + "','" + this.observation + "','" + this.photo + "','" + this.medicament + "','" + this.proprietaire + "','" + dateRDV + "'," + this.etat + ");";
+        String dateprrdv = formater.format(this.prochainRDV);
+        System.out.println("dattteeeeeee rdv " + dateprrdv);
+
+        String req = "INSERT INTO `f_soin`(`id_f_Soin`, `id_membre`, `observation`, `medicament`, `prochainRDV`, `id_animal`, `etat`) VALUES (" + this.id_f_Soin + "," + this.id_membre + ",'" + this.observation + "','" + this.medicament + "','" + dateprrdv + "'," + this.id_animal + ",1)";
         try {
             /**
              * execution de la requette**
@@ -325,19 +177,11 @@ public class FicheDeSoin implements ificheDeSoinInterface {
         /**
          * Creation de la Requette**
          */
-        String req = "UPDATE `f_soin` "
-        + "SET `nom`='" + this.nom
-        + "',`espece`='" + this.espece
-        + "',`poids`=" + this.poids
-        + ",`datePoids`='" + this.datePoids
-        + "',`neLe`='" + this.neLe
-        + "',`genre`='" + this.genre
-        + "',`observation`='" + this.observation
-        + "',`photo`='" + this.photo
-        + "',`medicament`='" + this.medicament
-        + "',`proprietaire`='" + this.proprietaire
-        + "',`prochainRDV`='" + this.prochainRDV
-        + "' WHERE `id_f_Soin`=" + this.id_f_Soin + ";";
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+        String date = formater.format(prochainRDV);
+        System.out.println("Ahmeeeed date" + date);
+        String req = "UPDATE `f_soin` SET `id_membre`=" + this.id_membre + ",`observation`='" + this.observation + "',`medicament`='" + this.medicament + "',`prochainRDV`='" + date + "' WHERE `id_f_Soin`=" + this.id_f_Soin + ";";
+        System.out.println(req);
         try {
             /*
              * execution de la requette**
@@ -370,17 +214,9 @@ public class FicheDeSoin implements ificheDeSoinInterface {
             if (rs.next()) {
                 fs.id_f_Soin = rs.getInt(1);
                 fs.id_membre = rs.getInt(2);
-                fs.nom = rs.getString(3);
-                fs.espece = rs.getString(4);
-                fs.poids = rs.getInt(5);
-                fs.datePoids = rs.getDate(6);
-                fs.neLe = rs.getDate(7);
-                fs.genre = rs.getString(8);
-                fs.observation = rs.getString(9);
-                fs.photo = rs.getString(10);
-                fs.medicament = rs.getString(11);
-                fs.proprietaire = rs.getString(12);
-                fs.prochainRDV = rs.getDate(13);
+                fs.observation = rs.getString(3);
+                fs.medicament = rs.getString(4);
+                fs.prochainRDV = rs.getDate(5);
 
             }
             return 1;
@@ -405,20 +241,10 @@ public class FicheDeSoin implements ificheDeSoinInterface {
                 FicheDeSoin fs = new FicheDeSoin();
                 fs.id_f_Soin = rs.getInt(1);
                 fs.id_membre = rs.getInt(2);
-                fs.nom = rs.getString(3);
-                fs.espece = rs.getString(4);
-                fs.poids = rs.getInt(5);
-                fs.datePoids = rs.getDate(6);
-                fs.neLe = rs.getDate(7);
-                fs.genre = rs.getString(8);
-                fs.observation = rs.getString(9);
-                fs.photo = rs.getString(10);
-                fs.medicament = rs.getString(11);
-                fs.proprietaire = rs.getString(12);
-                fs.prochainRDV = rs.getDate(13);
-                fs.etat = rs.getInt(14);
-                fs.modButton = new Button("Modifier");
-                fs.supButton = new Button("Supprimer");
+                fs.observation = rs.getString(3);
+                fs.medicament = rs.getString(4);
+                fs.prochainRDV = rs.getDate(5);
+                fs.id_animal = rs.getInt("id_animal");
                 ficheDeSoins.add(fs);
             }
             return ficheDeSoins;

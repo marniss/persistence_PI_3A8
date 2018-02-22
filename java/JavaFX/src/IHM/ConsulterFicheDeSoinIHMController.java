@@ -8,7 +8,11 @@ package IHM;
 import entites.FicheDeSoin;
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,13 +23,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import services.ControlleurChamps;
 import services.ControlleurFicheDeSoin;
 
 /**
@@ -36,46 +44,46 @@ import services.ControlleurFicheDeSoin;
 public class ConsulterFicheDeSoinIHMController implements Initializable {
 
     @FXML
-    private TableView<FicheDeSoin> listFicheDeSoin;
-    @FXML
-    private TextField rech;
-    @FXML
-    private Button btn;
-
+    private TableView<FicheDeSoin> listeFicheDeSoin;
     @FXML
     private TableColumn<FicheDeSoin, Integer> id_f_soin;
     @FXML
-    private TableColumn<FicheDeSoin, String> nom;
-    @FXML
-    private TableColumn<FicheDeSoin, String> espece;
-    @FXML
-    private TableColumn<FicheDeSoin, Float> poids;
-    @FXML
-    private TableColumn<FicheDeSoin, String> datepoids;
-    @FXML
-    private TableColumn<FicheDeSoin, String> neLe;
-    @FXML
-    private TableColumn<FicheDeSoin, String> genre;
-    @FXML
     private TableColumn<FicheDeSoin, String> observation;
-    @FXML
-    private TableColumn<FicheDeSoin, String> photo;
+
     @FXML
     private TableColumn<FicheDeSoin, String> medicament;
-    @FXML
-    private TableColumn<FicheDeSoin, String> proprietaire;
+
     @FXML
     private TableColumn<FicheDeSoin, String> prochainRDV;
-    private TableColumn<FicheDeSoin, Boolean> col_action;
     @FXML
-    private Label idvet;
-    @FXML
-    private TableColumn<FicheDeSoin, Boolean> modifierCol;
-    @FXML
-    private TableColumn<FicheDeSoin, Boolean> supprimerCol;
+    private TableColumn<FicheDeSoin, Integer> id_animal;
     public static int id_f_soin_modifier;
+
     @FXML
-    private Button add;
+    private Button ajouter;
+    @FXML
+    private Button modifer;
+    @FXML
+    private Button annuler;
+    @FXML
+    private Button supprimer;
+    @FXML
+    private Label id_membre;
+    @FXML
+    private TextArea observ;
+    @FXML
+    private DatePicker prchRDV;
+    @FXML
+    private TextField medi;
+    ControlleurFicheDeSoin cfds = new ControlleurFicheDeSoin();
+    int id;
+    int idanim;
+    @FXML
+    private Label erreurobserv;
+    @FXML
+    private Label erreurdaterdv;
+    @FXML
+    private Label erreurMedi;
 
     /**
      * Initializes the controller class.
@@ -86,70 +94,94 @@ public class ConsulterFicheDeSoinIHMController implements Initializable {
         /**
          * Instanciation Du Controlleur*
          */
-        ControlleurFicheDeSoin cfds = new ControlleurFicheDeSoin();
         ArrayList<FicheDeSoin> ficheDeSoins = cfds.ConsulterFicheDeSoin();
         /*
          *Deffinition des Colonnes
          */
         id_f_soin.setCellValueFactory(new PropertyValueFactory("id_f_Soin"));
-        nom.setCellValueFactory(new PropertyValueFactory("Nom"));
-        espece.setCellValueFactory(new PropertyValueFactory("espece"));
-        poids.setCellValueFactory(new PropertyValueFactory("poids"));
-        datepoids.setCellValueFactory(new PropertyValueFactory("datepoids"));
-        neLe.setCellValueFactory(new PropertyValueFactory("neLe"));
-        genre.setCellValueFactory(new PropertyValueFactory("genre"));
         observation.setCellValueFactory(new PropertyValueFactory("observation"));
-        photo.setCellValueFactory(new PropertyValueFactory("photo"));
         medicament.setCellValueFactory(new PropertyValueFactory("medicament"));
-        proprietaire.setCellValueFactory(new PropertyValueFactory("proprietaire"));
         prochainRDV.setCellValueFactory(new PropertyValueFactory("prochainRDV"));
-        modifierCol.setCellValueFactory(new PropertyValueFactory("modButton"));
-        supprimerCol.setCellValueFactory(new PropertyValueFactory("supButton"));
-        ficheDeSoins.stream().filter(t -> t.getEtat() == 1).map((FicheDeSoin e) -> {
-            listFicheDeSoin.getItems().addAll(e);
-            return e;
-        }).map((e) -> {
-            e.getModButton().setOnAction((event) -> {
-                try {
-                    id_f_soin_modifier = e.getId_f_Soin();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/FicheDeSoinIHM.fxml"));
-                    Parent root = (Parent) loader.load();
-                    FicheDeSoinVueController control = loader.getController();
-                    control.initFields(e);
-                    // int id_f_Soin = listFicheDeSoin.getSelectionModel().getSelectedItem().getId_f_Soin();
-                    Stage window;
-                    window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    window.setScene(new Scene(root));
-                    window.show();
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            });
-            return e;
-        }).forEachOrdered((e) -> {
-            e.getSupButton().setOnAction((event) -> {
-                cfds.updateFicheDeSoin(e);
-                listFicheDeSoin.getSelectionModel().clearSelection();
-                listFicheDeSoin.getItems().remove(e);
-            });
+        id_animal.setCellValueFactory(new PropertyValueFactory("id_animal"));
+
+        for (FicheDeSoin fs : ficheDeSoins) {
+            listeFicheDeSoin.getItems().addAll(fs);
+
+        }
+        listeFicheDeSoin.setOnMouseClicked((event) -> {
+
+            if (event.getClickCount() == 2) {
+                FicheDeSoin fs = listeFicheDeSoin.getItems().get(listeFicheDeSoin.getSelectionModel().getSelectedIndex());
+                observ.setText(fs.getObservation());
+                LocalDate lc = LocalDate.parse(fs.getProchainRDV().toString());
+                prchRDV.setValue(lc);
+                medi.setText(fs.getMedicament());
+                id = fs.getId_f_Soin();
+                idanim = fs.getId_animal();
+
+            }
         });
-        idvet.setText("Code Vetirinaire : " + String.valueOf(ficheDeSoins.get(0).getId_membre()));
-        System.out.println("IHM");
+    }
+
+    private boolean verif() {
+        ControlleurChamps cc = new ControlleurChamps();
+        if (medi.getText().isEmpty()) {
+            erreurMedi.setText("* Medicament Vide");
+        } else if (observation.getText().isEmpty()) {
+            erreurMedi.setText("");
+            erreurobserv.setText("* Observation Vide");
+        } else if (prchRDV.getValue().toString().isEmpty()) {
+            erreurMedi.setText("");
+            erreurobserv.setText("");
+            erreurdaterdv.setText("*Date vide");
+        } else {
+            erreurMedi.setText("");
+            erreurobserv.setText("");
+            erreurdaterdv.setText("");
+            return true;
+        }
+        return false;
 
     }
 
     @FXML
-    private void btn(ActionEvent event) {
+
+    private void modifier(ActionEvent event) throws ParseException {
+        if (verif()) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date prcv = format.parse(prchRDV.getValue().toString());
+            cfds.modifierFicheDeSoin(id, 2, observ.getText(), medi.getText(), prcv, idanim);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("fiche de soin modifer");
+            alert.showAndWait();
+
+        }
+
     }
 
     @FXML
-    private void add(ActionEvent event) {
+    private void annuler(ActionEvent event) {
+    }
+
+    @FXML
+    private void supp(ActionEvent event) {
+        cfds.updateFicheDeSoin(listeFicheDeSoin.getItems().get(listeFicheDeSoin.getSelectionModel().getSelectedIndex()));
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("fiche de soin supprimer");
+        alert.showAndWait();
+        listeFicheDeSoin.getItems().remove(listeFicheDeSoin.getSelectionModel().getSelectedIndex());
+    }
+
+    @FXML
+    private void ajouter(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/IHM/FicheDeSoinIHM.fxml"));
         try {
-
             Parent root = (Parent) loader.load();
-            FicheDeSoinVueController control = loader.getController();
-
+            FicheDeSoinIHMController control = loader.getController();
             Stage window;
             window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(new Scene(root));
@@ -157,7 +189,7 @@ public class ConsulterFicheDeSoinIHMController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(ConsulterFicheDeSoinIHMController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        FicheDeSoinVueController control = loader.getController();
+
     }
 
 }
