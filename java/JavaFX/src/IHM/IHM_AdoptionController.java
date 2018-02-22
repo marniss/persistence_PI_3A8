@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -34,9 +35,11 @@ public class IHM_AdoptionController implements Initializable {
     @FXML
     private void donner(ActionEvent event) {
         try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ajouter_donnation.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_Animal_Donner.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.hide();
                 stage.setScene(new Scene(root1));  
                 stage.show();
         } catch(IOException e) {
@@ -73,6 +76,22 @@ public class IHM_AdoptionController implements Initializable {
             
           }
         
+    }
+
+    @FXML
+    private void annuler(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_Accueil.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(new Scene(root1));  
+                stage.show();
     }
     
 }

@@ -50,6 +50,11 @@ public class ControlleurMembre {
     {
         Membre x=new Membre();
         return x.getMembre(m);
+    
+    }  public Membre getMembreByEmail(String m)
+    {
+        Membre x=new Membre();
+        return x.getMembreByEmail(  m);
     }
     
     public int emailExiste(String email)
@@ -72,5 +77,12 @@ public class ControlleurMembre {
         Membre m = new Membre();
         return  m.decrypt(pasword);
         
+    }
+    public void setConnected(Membre m){
+        m.setConnected();
+
+    }
+    public void setDeconnected(Membre m){
+        m.setDeconnected();
     }
 }

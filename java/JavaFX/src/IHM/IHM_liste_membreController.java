@@ -22,6 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 import services.ControlleurMembre;
 
 /**
@@ -77,7 +78,6 @@ public class IHM_liste_membreController implements Initializable {
                 
                 
                 
-                // suprimer
                 
                 
 
@@ -173,7 +173,13 @@ public class IHM_liste_membreController implements Initializable {
   
 
     @FXML
-    private void reflechir(ActionEvent event) {
+    private void reflechir(ActionEvent event) throws IOException {
+       Parent parent125 = FXMLLoader.load(getClass().getResource("IHM_liste_membre.fxml"));
+       Scene scene1116 = new Scene(parent125 );
+       Stage stage1116  = (Stage)((Node)event.getSource()).getScene().getWindow();
+       stage1116 .hide();
+       stage1116 .setScene(scene1116 );
+       stage1116.show();
     }
 
     @FXML
@@ -218,6 +224,19 @@ public class IHM_liste_membreController implements Initializable {
        Stage stage1116  = (Stage)((Node)event.getSource()).getScene().getWindow();
        stage1116 .hide();
        stage1116 .setScene(scene1116 );
+
        stage1116.show();
+Notifications.create().text("vous etes deconnecter ").showInformation();;
+    }
+
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_Accueil.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(new Scene(root1));  
+                stage.show();
     }
 }

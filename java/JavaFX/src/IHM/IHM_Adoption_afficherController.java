@@ -6,13 +6,18 @@
 package IHM;
 
 import entites.Adoption;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -70,9 +75,16 @@ Adoption ad =new Adoption();
     }    
 
     @FXML
-    private void retour(ActionEvent event) {
+    private void retour(ActionEvent event) throws IOException {
         
-        dialoge.close();
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_Adoption.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(new Scene(root1));  
+                stage.show();
+        
     }
     
 }

@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/MembreIHMController.java</file>
-            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_loginController.java</file>
+            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_liste_membreController.java</file>
+            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_AdoptionController.java</file>
+            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/entites/Membre.java</file>
+            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_Animal_DonnerController.java</file>
+            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_inscriptionController.java</file>
+            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/services/ServiceEmail.java</file>
+            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/entites/Animal.java</file>
+            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_ajouter_donnationController.java</file>
         </group>
     </open-files>
 </project-private>

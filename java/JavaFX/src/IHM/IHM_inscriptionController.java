@@ -5,30 +5,38 @@
  */
 package IHM;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
+import entites.Membre;
 import java.io.File;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Random;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.JFileChooser;
 import services.ControlleurChamps;
 import services.ControlleurMembre;
+import services.ServiceEmail;
 
 /**
  * FXML Controller class
  *
  * @author houssem
  */
-public class MembreIHMController implements Initializable {
+public class IHM_inscriptionController implements Initializable {
 
     @FXML
     private TextField nom;
@@ -45,11 +53,13 @@ public class MembreIHMController implements Initializable {
     @FXML
     private TextField email;
     @FXML
+    private TextField conf;
+    @FXML
+    private ChoiceBox<String> type;
+    @FXML
     private Button brows;
     @FXML
     private TextField doc;
-    @FXML
-    private ChoiceBox<String> type;
     @FXML
     private Label Erornom;
     @FXML
@@ -68,29 +78,24 @@ public class MembreIHMController implements Initializable {
     private Label ErrorePhoto;
     @FXML
     private Label Erortype;
-    @FXML
-    private TextField conf;
 
+    public static int code;
+    public static Membre m;
+    public static String types;
     /**
      * Initializes the controller class.
-     *
-     * @param url
-     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-       
+     
         type.getItems().add("simple utilisateur");
          type.getItems().add("veterinere");
         type.getItems().add("dresseur");
-        
-    }
+    }    
 
     @FXML
-    private void ajouter(ActionEvent event) throws SQLException {
-     
-            ControlleurMembre ca = new ControlleurMembre();
+    private void ajouter(ActionEvent event)  {
+         ControlleurMembre ca = new ControlleurMembre();
             ControlleurChamps cc = new ControlleurChamps();
             int c=1 ;
 
@@ -133,7 +138,17 @@ public class MembreIHMController implements Initializable {
                              {  ErorEmail.setText("il faut ajouter un email valide");}
                             else
                             {  ErorEmail.setText("email existe déja");}
+
+
+
                         }
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         if (motdepasse.getText().isEmpty()||!conf.getText().equals(motdepasse.getText())||motdepasse.getText().length()<8){
                                          c=0;
                              if (motdepasse.getText().isEmpty())
@@ -150,20 +165,29 @@ public class MembreIHMController implements Initializable {
                         else  
         if(type.getValue()=="simple utilisateur"&&c==1)
         {
-            int a = ca.ajoutMembre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(),ca.encrypt(motdepasse.getText()) );
-        if (a==1)
-        {
-        Alert alert;
-        alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Ajout effectuer avec succés");
-            alert.show();
-        }else
-        {
-          Alert alert;
-        alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("verifier vos donner");
-            alert.show();  
-        }
+             m = new Membre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(),motdepasse.getText() );
+        Random rand = new Random();
+
+                this.code = rand.nextInt(4000) + 1000;
+        ServiceEmail se = new ServiceEmail();
+            System.out.println("voila l'email   "+email.getText() +"voila le code" +code);
+        se.sendEmail(email.getText(), code+"");
+        
+        
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ConfirmationCode.fxml"));
+       
+        Parent root1;
+             try {
+                 root1 = (Parent) fxmlLoader.load();
+                  Stage stage = new Stage();
+                stage.setScene(new Scene(root1));  
+                stage.setX(m.getIdMembre());       
+                stage.show();
+             } catch (IOException ex) {
+                 System.out.println("error dans la redirection au confirmation de compte");             }
+               
+             
+         
         }
         else if(type.getValue()=="veterinere"&&c==1)
         {int a = ca.ajoutVeterinaire(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(), motdepasse.getText());
@@ -210,20 +234,18 @@ public class MembreIHMController implements Initializable {
     @FXML
     private void brows(ActionEvent event) {
         
-        
         JFileChooser file = new JFileChooser();
         
         file.showOpenDialog(null);
         File f = file.getSelectedFile();
         doc.setText(f.getAbsolutePath());
-        
     }
 
     @FXML
     private void annuler(ActionEvent event) {
-        Stage stage = new Stage();
+         Stage stage = new Stage();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 stage.hide();
     }
-
+    
 }

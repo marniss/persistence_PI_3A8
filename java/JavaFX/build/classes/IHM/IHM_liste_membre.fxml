@@ -40,5 +40,6 @@
       <Button layoutX="216.0" layoutY="346.0" mnemonicParsing="false" onAction="#afficher" text="afficher" />
       <TextField layoutX="554.0" layoutY="76.0" promptText="recherche" />
       <Button layoutX="658.0" layoutY="16.0" mnemonicParsing="false" onAction="#logout" text="logout" />
+      <Button layoutX="589.0" layoutY="346.0" mnemonicParsing="false" onAction="#Retour" text="Retour" />
    </children>
 </AnchorPane>

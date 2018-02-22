@@ -37,7 +37,7 @@ public class Membre {
     private int note;
     private int etat;
     private int tel;
-    
+    private int connecte;
     // getters
 
     public int getIdMembre() {
@@ -149,6 +149,15 @@ public class Membre {
     public void setNum(int num) {
         this.num = num;
     }
+
+    public int getConnecte() {
+        return connecte;
+    }
+
+    public void setConnecte(int connecte) {
+        this.connecte = connecte;
+    }
+    
 
 
     public Membre() {
@@ -318,6 +327,8 @@ public class Membre {
                 leResultat.num=res.getInt("num");
                 leResultat.idMembre=res.getInt("id_membre");
                 leResultat.DateInscription=res.getDate("DateInscription");
+                leResultat.connecte=res.getInt("connecter");
+
                 
                 /*et la suite ***/
             }
@@ -364,6 +375,7 @@ public class Membre {
                 System.out.println("le id est "+leResultat.getIdMembre());
                 leResultat.DateInscription=res.getDate("DateInscription");
                 leResultat.email=res.getString("email");
+                leResultat.connecte=res.getInt("connecter");
                 
                 /*et la suite ***/
                 
@@ -454,6 +466,36 @@ public class Membre {
             aCrypter=aCrypter+(char)c; 
         }
         return aCrypter;
+    }
+        public void setConnected() {
+     String request = "UPDATE membre SET connect=? WHERE id=?";
+    try {
+      
+        PreparedStatement st = conn.prepareStatement(request);
+        st.setObject(1, 1);
+        st.setObject(2, this.idMembre);
+  
+        st.executeUpdate();
+        
+        
+    } catch (SQLException ex) {
+        System.out.println("error dans la requete de setConnected");    }
+        
+    }
+       public void setDeconnected() {
+     String request = "UPDATE membre SET connect=? WHERE id=?";
+    try {
+      
+        PreparedStatement st = conn.prepareStatement(request);
+        st.setObject(1, null);
+        st.setObject(2, this.idMembre);
+  
+        st.executeUpdate();
+        
+        
+    } catch (SQLException ex) {
+        System.out.println("error dans la requete de setDeConnected");    }
+        
     }
     
     

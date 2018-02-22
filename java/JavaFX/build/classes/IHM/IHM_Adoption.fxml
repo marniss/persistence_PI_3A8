@@ -26,5 +26,7 @@
          <font>
             <Font size="18.0" />
          </font></Button>
+      <Button layoutX="508.0" layoutY="348.0" mnemonicParsing="false" onAction="#annuler" text="Annuler" />
+      <Button layoutX="432.0" layoutY="348.0" mnemonicParsing="false" onAction="#Retour" text="Retour" />
    </children>
 </AnchorPane>
