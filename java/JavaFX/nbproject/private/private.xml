@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
             <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/services/DataSource.java</file>
@@ -20,6 +21,10 @@
             <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/entites/Animal.java</file>
             <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_ajouter_donnationController.java</file>
 >>>>>>> houssem_marnissi
+=======
+            <file>file:/C:/Users/salah/Desktop/persistence_PI_3A8/java/JavaFX/src/entites/Accessoire.java</file>
+            <file>file:/C:/Users/salah/Desktop/persistence_PI_3A8/java/JavaFX/src/entites/Categorie.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>

@@ -17,11 +17,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import services.DataSource;
 
 /**
  *
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
  * @author salah
  */
 public class Animal {
@@ -165,6 +172,7 @@ public class Animal {
         }
         return 0;
 
+
     }
     public ArrayList<Animal> selectAll(int id) {
          ArrayList<Animal> le = new ArrayList();
@@ -193,4 +201,43 @@ public class Animal {
         return null;
         }
 }
+/*
+    }
+    
+    
+    
+     public Animal getAnimal(int id){
+        Animal leResultat = new Animal();
+         try {
+            stmt = conn.createStatement();
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la creation du statment \n");
+            System.out.println(ex.getMessage());
+        }
+        // preparation de la requette
+        String maRequette = "SELECT * FROM animal WHERE id_animal = "+ id +";";
+        
+        // execution de la requette
+        try{
+            ResultSet res = stmt.executeQuery(maRequette);
+            System.out.println(" la recuperation des donnees est effectue");
+            while(res.next()){
+                leResultat.idAnimal=res.getInt(1);
+                leResultat.idAdoption=res.getInt(2);
+                leResultat.idSosDisparition=res.getInt(3);
+                leResultat.type=res.getString(3);
+                /*et la suite 
+            }
+          
+        }catch(SQLException e){
+            System.out.println("erreur lors de l'exxecution de la requete de la supprission \n");
+            System.out.println(e.getMessage());
+            
+        }
+        
+        
+        return leResultat;
+    }*/
+    
+
 }
