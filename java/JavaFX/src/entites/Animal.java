@@ -6,13 +6,22 @@
 package entites;
 
 import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 import services.DataSource;
 
 /**
  *
+<<<<<<< HEAD
  * @author salah
  */
 public class Animal {
@@ -155,41 +164,33 @@ public class Animal {
             
         }
         return 0;
+
     }
-    
-    
-    
-     public Animal getAnimal(int id){
-        Animal leResultat = new Animal();
-         try {
-            stmt = conn.createStatement();
-        } catch (SQLException ex) {
-            System.out.println("erreur lors de la creation du statment \n");
-            System.out.println(ex.getMessage());
-        }
-        // preparation de la requette
-        String maRequette = "SELECT * FROM animal WHERE id_animal = "+ id +";";
-        
-        // execution de la requette
-        try{
-            ResultSet res = stmt.executeQuery(maRequette);
-            System.out.println(" la recuperation des donnees est effectue");
-            while(res.next()){
-                leResultat.idAnimal=res.getInt(1);
-                leResultat.idAdoption=res.getInt(2);
-                leResultat.idSosDisparition=res.getInt(3);
-                leResultat.type=res.getString(3);
-                /*et la suite ***/
-            }
+    public ArrayList<Animal> selectAll(int id) {
+         ArrayList<Animal> le = new ArrayList();
+        try {
+            PreparedStatement st = conn.prepareStatement(
+            "SELECT `id_animal`, `race`, `photo`, `sexe`, `nom`, `etat`, `id_membre`"
+                    + " FROM `animal` WHERE `etat`=1 "
+                    + "AND `id_membre` = "+id);
            
-        }catch(SQLException e){
-            System.out.println("erreur lors de l'exxecution de la requete de la supprission \n");
-            System.out.println(e.getMessage());
-            
+            ResultSet res = st.executeQuery();
+            while (res.next()) {
+                Animal e = new Animal();
+                e.setIdAnimal(res.getInt(1));
+             
+                /*e.set(res.getString(4));
+                e.setRace(res.getString(2));
+                e.setPhoto(res.getString(3));
+                e.setNom(res.getString(5));  */
+               
+                
+                le.add(e);
+            }
+            return le;
+        } catch (SQLException ex) {
+            System.out.println("ereuur dans l'aafichage");
+        return null;
         }
-        
-        
-        return leResultat;
-    }
-    
+}
 }
