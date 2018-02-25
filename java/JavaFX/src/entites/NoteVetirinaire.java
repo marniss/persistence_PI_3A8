@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import services.ControlleurListeVeterinaire;
 import services.DataSource;
 
@@ -143,15 +144,15 @@ public class NoteVetirinaire {
             System.out.println("Erreur de creation de Statement");
         }
         try {
+            /**
+             * Execution de La Requette*
+             */
             ResultSet executeQuery = stm.executeQuery(req);
             while (executeQuery.next()) {
                 System.out.println("Ahmado " + executeQuery.getString(1));
-                //System.out.println("entit   [" + executeQuery.getString(1).length() + "]");
-                // System.out.println(executeQuery.getObject(1));
+
                 return executeQuery.getString(1);
             }
-            //System.out.println("Ahmeeeeed");
-            //return executeQuery.getString(1);
         } catch (SQLException ex) {
             System.out.println(ex);
             System.out.println("Erreur de l'Execution");
@@ -179,10 +180,12 @@ public class NoteVetirinaire {
                 System.out.println(ex.getMessage());
             }
 
+            /**
+             * Execution de La Requette*
+             */
             ResultSet rzs = sttt.executeQuery(req);
 
             while (rzs.next()) {
-                System.out.println("dans la boucle");
                 temp.note = rzs.getFloat("note");
 
             }
@@ -210,18 +213,50 @@ public class NoteVetirinaire {
                 /*
                 *Creation Du Statememnt
                  */
-                System.out.println("1");
                 sttt = conn.createStatement();
-                System.out.println("2");
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-            System.out.println("3");
             sttt.executeUpdate(req);
-            System.out.println("4");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    public int getLastidNote() {
+        ArrayList<NoteVetirinaire> nvsList = new ArrayList<>();
+        try {
+            try {
+
+                Statement sttt = null;
+                String req = "select * from notevetirinaire ";
+                System.out.println(req);
+                try {
+
+                    sttt = conn.createStatement();
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                    System.out.println("Erreur de creation de statement");
+                }
+                rs = sttt.executeQuery(req);
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+
+            }
+            while (rs.next()) {
+                NoteVetirinaire nv = new NoteVetirinaire();
+                nv.id_note = rs.getInt("idnoteVet");
+                System.out.println(nv.id_note);
+                nvsList.add(nv);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("ssss");
+        }
+
+        return nvsList.get(nvsList.size() - 1).id_note;
+
     }
 
 }

@@ -21,11 +21,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import org.controlsfx.control.Rating;
 import services.ControlleurListeVeterinaire;
+import services.ControlleurNoteVeterinaire;
 
 /**
  * FXML Controller class
  *
- * @author pc asus
+ * @author makni
  */
 public class ListeVeterinaireController implements Initializable {
 
@@ -56,6 +57,7 @@ public class ListeVeterinaireController implements Initializable {
     @FXML
     private Rating rateVet;
     float not;
+    private int idnote;
 
     /*
      * Initializes the controller class.
@@ -80,10 +82,10 @@ public class ListeVeterinaireController implements Initializable {
         }
         listevet.setOnMouseClicked(
         (event) -> {
-
             if (event.getClickCount() == 2) {
                 ListeVeterinaireController.iddd = listevet.getItems().get(listevet.getSelectionModel().getSelectedIndex()).getId();
                 nomvet.setText(listevet.getItems().get(listevet.getSelectionModel().getSelectedIndex()).getNom());
+                idnote = listevet.getItems().get(listevet.getSelectionModel().getSelectedIndex()).getId_note();
                 note.setText("" + clv.getLaNote(iddd));
                 rateVet.setDisable(false);
                 rateVet.setRating(clv.getLaNote(iddd));
@@ -94,7 +96,22 @@ public class ListeVeterinaireController implements Initializable {
 
     @FXML
     private void valider(ActionEvent event) {
-        Float x = (Float.parseFloat(note.getText()) + not) / 2;
+        /*
+        if (idnote != 0) {
+            Float x = (clv.getLaNote(iddd) + not) / 2;
+            System.out.println(x);
+            clv.affecternote(x);
+            rateVet.setDisable(true);
+        } else {
+            clv.ajouterNote(1, idnote, "");
+            int numNote = clv.getLastidNote();
+            listevet.getItems().get(listevet.getSelectionModel().getSelectedIndex()).setId_note(numNote);
+            clv.affecteridnote(iddd, numNote);
+            clv.affecternote(not);
+            System.out.println(numNote);
+            System.out.println("id note nuLL   " + idnote);
+        }*/
+        Float x = (clv.getLaNote(iddd) + not) / 2;
         System.out.println(x);
         clv.affecternote(x);
         rateVet.setDisable(true);
@@ -105,5 +122,4 @@ public class ListeVeterinaireController implements Initializable {
     private void evalvet(MouseEvent event) {
         not = (float) rateVet.getRating();
     }
-
 }

@@ -56,6 +56,7 @@ public class ListeDresseurController implements Initializable {
     @FXML
     private Rating rateDress;
     Float not;
+    private int idnote;
 
     /**
      * Initializes the controller class.
@@ -81,25 +82,43 @@ public class ListeDresseurController implements Initializable {
             if (event.getClickCount() == 2) {
                 ListeDresseurController.iddd = listedress.getItems().get(listedress.getSelectionModel().getSelectedIndex()).getId();
                 nomvet.setText(listedress.getItems().get(listedress.getSelectionModel().getSelectedIndex()).getNom());
+                idnote = listedress.getItems().get(listedress.getSelectionModel().getSelectedIndex()).getId_note();
                 note.setText("" + cld.getLaNote(iddd));
                 rateDress.setDisable(false);
                 rateDress.setRating(cld.getLaNote(iddd));
             }
-
         }
         );
     }
 
     @FXML
     private void valider(ActionEvent event) {
-        Float x = (Float.parseFloat(note.getText()) + not) / 2;
+        /* if (idnote != 0) {
+            Float x = (Float.parseFloat(note.getText()) + not) / 2;
+            System.out.println(x);
+            cld.affecternote(x);
+            rateDress.setDisable(true);
+        } else {
+            System.out.println("Vue");
+            cld.ajouterNote(1, idnote, "");
+            int numNote = cld.getLastidNote();
+            listedress.getItems().get(listedress.getSelectionModel().getSelectedIndex()).setId_note(numNote);
+            cld.affecteridnote(iddd, numNote);
+            cld.affecternote(not);
+            System.out.println(numNote);
+            System.out.println("id note nuLL   " + idnote);
+
+        }*/
+        Float x = (cld.getLaNote(iddd) + not) / 2;
         System.out.println(x);
         cld.affecternote(x);
         rateDress.setDisable(true);
+
     }
 
     @FXML
-    private void evaldress(MouseEvent event) {
+    private void evaldress(MouseEvent event
+    ) {
         not = (float) rateDress.getRating();
     }
 

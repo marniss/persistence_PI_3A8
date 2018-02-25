@@ -26,10 +26,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -41,7 +39,7 @@ import services.ControlleurFicheDeDressage;
 /**
  * FXML Controller class
  *
- * @author pc asus
+ * @author makni
  */
 public class FicheDeDressageIHMController implements Initializable {
 
@@ -139,7 +137,6 @@ public class FicheDeDressageIHMController implements Initializable {
                 poids.setText(String.valueOf(fs.getAnimal(id).getPoids()));
                 photo.setText(fs.getAnimal(id).getPhoto());
                 espece.setText(fs.getAnimal(id).getEspece());
-
             }
         });
 
@@ -270,6 +267,7 @@ public class FicheDeDressageIHMController implements Initializable {
 
     @FXML
     private void imprimer(ActionEvent event) throws FileNotFoundException, DocumentException {
+
         Document doc = new Document();
         PdfWriter.getInstance(doc, new FileOutputStream("fiche de dressage.pdf"));
         doc.open();

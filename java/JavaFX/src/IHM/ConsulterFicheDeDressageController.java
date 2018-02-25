@@ -36,7 +36,7 @@ import services.ControlleurFicheDeDressage;
 /**
  * FXML Controller class
  *
- * @author pc asus
+ * @author makni
  */
 public class ConsulterFicheDeDressageController implements Initializable {
 

@@ -8,7 +8,6 @@ package IHM;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
-import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +19,7 @@ import services.ControlleurAjoutAccessoire;
 /**
  * FXML Controller class
  *
- * @author Ahmed
+ * @author makni
  */
 public class IHM_Ajouter_AccessoireController implements Initializable {
 
@@ -57,7 +56,7 @@ public class IHM_Ajouter_AccessoireController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void actionEvent(ActionEvent event) {
@@ -68,6 +67,5 @@ public class IHM_Ajouter_AccessoireController implements Initializable {
     @FXML
     private void supprimer(ActionEvent event) {
     }
-    
-    
+
 }

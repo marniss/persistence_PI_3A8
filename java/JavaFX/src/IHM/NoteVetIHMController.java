@@ -17,10 +17,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import services.ControlleurNoteVeterinaire;
 
-/*
+/**
  * FXML Controller class
  *
- * @author pc asus
+ * @author makni
  */
 public class NoteVetIHMController implements Initializable {
 

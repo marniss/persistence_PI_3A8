@@ -63,6 +63,11 @@ public class ListeDesDresseurs {
     }
 //Getters
 
+    public ListeDesDresseurs(int id, int id_note) {
+        this.id = id;
+        this.id_note = id_note;
+    }
+
     public int getId() {
         return id;
     }
@@ -123,8 +128,12 @@ public class ListeDesDresseurs {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
-    //toString
 
+    public void setId_note(int id_note) {
+        this.id_note = id_note;
+    }
+
+    //toString
     @Override
     public String toString() {
         return "ListeDesDresseurs{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel + ", adresse=" + adresse + ", mail=" + mail + ", photo=" + photo + '}';
@@ -139,13 +148,15 @@ public class ListeDesDresseurs {
 
     /*Nos Methodes */
     public int ajouterDresseur() {
-
+        NoteDresseur x = new NoteDresseur(1, 0, "");
+        x.ajouterNote();
+        int i = x.getLastidNote();
         try {
 
             /**
              * Creation du req*
              */
-            String req = "INSERT INTO `listedesdresseurs`(`nom`, `prenom`, `tel`, `adresse`, `mail`, `photo`,`etat`) VALUES (?,?,?,?,?,?,1)";
+            String req = "INSERT INTO `listedesdresseurs`(`nom`, `prenom`, `tel`, `adresse`, `mail`, `photo`,`etat`,`idnote`) VALUES (?,?,?,?,?,?,1,?)";
 
             try {
                 /*
@@ -158,12 +169,11 @@ public class ListeDesDresseurs {
                 ps.setString(4, this.adresse);
                 ps.setString(5, this.mail);
                 ps.setString(6, this.photo);
+                ps.setInt(7, i);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-
             ps.execute();
-
             return 1;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -301,4 +311,34 @@ public class ListeDesDresseurs {
         return temp;
 
     }
+
+    public int setidnote() {
+        try {
+
+            /**
+             * Creation du req*
+             */
+            String req = "update listedesdresseurs set id_note= ? where `idnote`=? ";
+
+            try {
+                /*
+                *Creation Du Statememnt
+                 */
+                ps = conn.prepareStatement(req);
+                ps.setInt(1, this.id_note);
+                ps.setInt(2, this.id);
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            ps.execute();
+
+            return 1;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return 0;
+
+    }
+
 }

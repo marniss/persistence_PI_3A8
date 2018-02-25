@@ -54,6 +54,11 @@ public class ListeDesVetirinaires {
         this.photo = photo;
     }
 
+    public ListeDesVetirinaires(int id, int id_note) {
+        this.id = id;
+        this.id_note = id_note;
+    }
+
     public ListeDesVetirinaires(int id) {
         this.id = id;
     }
@@ -110,6 +115,10 @@ public class ListeDesVetirinaires {
         return photo;
     }
 
+    public void setId_note(int id_note) {
+        this.id_note = id_note;
+    }
+
     @Override
     public String toString() {
         return "ListeDesVetirinaires{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel + ", adresse=" + adresse + ", mail=" + mail + ", photo=" + photo + '}';
@@ -131,17 +140,19 @@ public class ListeDesVetirinaires {
      *Les Methodes
      */
     public int ajouterVetirinaire() {
-
+        NoteVetirinaire x = new NoteVetirinaire(1, 0, "");
+        x.ajouterNote();
+        int i = x.getLastidNote();
         try {
 
-            /**
+            /*
              * Creation du req*
              */
-            String req = "INSERT INTO `listedesvetirinaire`(`nom`, `prenom`, `tel`, `adresse`, `mail`, `photo`,`etat`) VALUES (?,?,?,?,?,?,1)";
+            String req = "INSERT INTO `listedesvetirinaire`(`nom`, `prenom`, `tel`, `adresse`, `mail`, `photo`,`etat`,`id_note`) VALUES (?,?,?,?,?,?,1,?)";
 
             try {
                 /*
-                *Creation Du Statememnt
+                *Creation Du PraparetStatememnt
                  */
                 ps = conn.prepareStatement(req);
                 ps.setString(1, this.nom);
@@ -150,6 +161,7 @@ public class ListeDesVetirinaires {
                 ps.setString(4, this.adresse);
                 ps.setString(5, this.mail);
                 ps.setString(6, this.photo);
+                ps.setInt(7, i);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -328,6 +340,34 @@ public class ListeDesVetirinaires {
             System.out.println(ex.getMessage());
         }
         return temp;
+    }
+
+    public int setidnote() {
+        try {
+
+            /**
+             * Creation du req*
+             */
+            String req = "update listedesvetirinaire set id_note= ? where `id_ved`=? ";
+
+            try {
+                /*
+                *Creation Du Statememnt
+                 */
+                ps = conn.prepareStatement(req);
+                ps.setInt(1, this.id_note);
+                ps.setInt(2, this.id);
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            ps.execute();
+            return 1;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return 0;
+
     }
 
 }

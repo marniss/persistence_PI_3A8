@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import services.ControlleurListeDresseur;
 import services.DataSource;
 
@@ -89,7 +90,6 @@ public class NoteDresseur {
                 /**
                  * Creation Statement
                  */
-
                 ps = (PreparedStatement) conn.prepareStatement(req);
                 ps.setInt(1, this.id_membre);
                 ps.setFloat(2, this.note);
@@ -98,7 +98,6 @@ public class NoteDresseur {
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
                 System.out.println("Erreur Creation de Statement");
-
             }
             /**
              * Execution de La Requette*
@@ -214,5 +213,41 @@ public class NoteDresseur {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    public int getLastidNote() {
+        ArrayList<NoteDresseur> nvsList = new ArrayList<>();
+        System.out.println("dsfsfsfsecfefs");
+        try {
+            try {
+                Statement sttt = null;
+                String req = "select * from notedresseur ";
+                System.out.println(req);
+                try {
+                    System.out.println("staaaateeement");
+                    sttt = conn.createStatement();
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                    System.out.println("Erreur de creation de statement");
+                }
+                rs = sttt.executeQuery(req);
+                System.out.println("eeeeeeeeexxx");
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+                System.out.println("Erreur Execution");
+            }
+            while (rs.next()) {
+                System.out.println("eeeeeeeeexxx");
+                NoteDresseur nd = new NoteDresseur();
+                nd.id_note = rs.getInt("idnote");
+                System.out.println(nd.id_note);
+                nvsList.add(nd);
+            }
+        } catch (SQLException ex) {
+            System.out.println("ssss");
+        }
+        System.out.println("Ahmeeed" + nvsList.get(nvsList.size() - 1).id_note);
+        return nvsList.get(nvsList.size() - 1).id_note;
+
     }
 }

@@ -25,7 +25,7 @@ import services.ControlleurListeVeterinaire;
 /**
  * FXML Controller class
  *
- * @author pc asus
+ * @author makni
  */
 public class ListeDesVeterinaireAdminController implements Initializable {
 

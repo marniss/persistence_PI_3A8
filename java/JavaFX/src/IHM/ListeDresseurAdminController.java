@@ -26,7 +26,7 @@ import services.ControlleurListeDresseur;
 /**
  * FXML Controller class
  *
- * @author pc asus
+ * @author makni
  */
 public class ListeDresseurAdminController implements Initializable {
 
@@ -112,6 +112,7 @@ public class ListeDresseurAdminController implements Initializable {
                 mailtext.setText(dresseur.getMail());
                 phototext.setText(dresseur.getPhoto());
                 id = dresseur.getId();
+                //ajouter.setVisible(false);
 
             }
         });
@@ -130,8 +131,10 @@ public class ListeDresseurAdminController implements Initializable {
     @FXML
     private void modifier(ActionEvent event) {
         if (verif()) {
+
             System.out.println("modifier" + id);
             cld.modifierDresseur(id, nomtext.getText(), prenomtext.getText(), teltext.getText(), adressetext.getText(), mailtext.getText(), phototext.getText());
+            //  ajouter.setVisible(true);
         }
 
     }
@@ -139,16 +142,13 @@ public class ListeDresseurAdminController implements Initializable {
     @FXML
     private void ajouter(ActionEvent event) {
         if (verif()) {
-            cld.ajouterDresseur(nomtext.getText(), prenomtext.getText(), teltext.getText(), adressetext.getText(), mailtext.getText(), phototext.getText());
             Alert alert = new Alert(AlertType.INFORMATION);
+            cld.ajouterDresseur(nomtext.getText(), prenomtext.getText(), teltext.getText(), adressetext.getText(), mailtext.getText(), phototext.getText());
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("Dresseur Ajouter");
             alert.showAndWait();
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Dresseur Modifier");
-            alert.showAndWait();
+
         }
 
     }

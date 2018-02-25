@@ -20,7 +20,7 @@ import services.ControlleurNoteDresseur;
 /**
  * FXML Controller class
  *
- * @author pc asus
+ * @author makni
  */
 public class NoteDresseurController implements Initializable {
 

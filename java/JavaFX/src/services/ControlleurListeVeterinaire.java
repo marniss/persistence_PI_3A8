@@ -51,4 +51,21 @@ public class ControlleurListeVeterinaire {
 
     }
 
+    public int ajouterNote(int id_membre, float note, String observation) {
+        NoteVetirinaire nv = new NoteVetirinaire(id_membre, note, observation);
+        System.out.println("Controlleur");
+        return nv.ajouterNote();
+    }
+
+    public int getLastidNote() {
+        NoteVetirinaire nv = new NoteVetirinaire();
+        return nv.getLastidNote();
+
+    }
+
+    public int affecteridnote(int id, int numNote) {
+        ListeDesVetirinaires ldv = new ListeDesVetirinaires(id, numNote);
+        return ldv.setidnote();
+    }
+
 }

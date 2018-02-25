@@ -50,4 +50,23 @@ public class ControlleurListeDresseur {
         System.out.println("0.1");
         tempo.setLaNote(f);
     }
+
+    public int ajouterNote(int id_membre, float idnote, String observation) {
+        NoteDresseur nd = new NoteDresseur(id_membre, idnote, observation);
+        System.out.println("Controlleur");
+        System.out.println("Ajouter Note Controlleur");
+        return nd.ajouterNote();
+
+    }
+
+    public int getLastidNote() {
+        NoteDresseur nd = new NoteDresseur();
+        return nd.getLastidNote();
+
+    }
+
+    public int affecteridnote(int id, int numNote) {
+        ListeDesDresseurs ldd = new ListeDesDresseurs(id, numNote);
+        return ldd.setidnote();
+    }
 }

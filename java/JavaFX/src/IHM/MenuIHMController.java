@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author pc asus
+ * @author makni
  */
 public class MenuIHMController implements Initializable {
 

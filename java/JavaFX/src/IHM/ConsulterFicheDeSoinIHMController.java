@@ -39,7 +39,7 @@ import services.ControlleurFicheDeSoin;
 /**
  * FXML Controller class
  *
- * @author pc makni
+ * @author makni
  */
 public class ConsulterFicheDeSoinIHMController implements Initializable {
 
