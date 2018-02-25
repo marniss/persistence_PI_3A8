@@ -20,8 +20,8 @@ public class ControlleurFicheDeSoin {
     //Attributs
     //Controle de saisie
     //Instancier
-    public int ajouterFicheDeSoin(int id_membre, String observation, String medicament, Date prochainRDV, int id_animal, int etat) {
-        FicheDeSoin fsSoin = new FicheDeSoin(id_membre, observation, medicament, prochainRDV, id_animal, 1);
+    public int ajouterFicheDeSoin(int id_membre, String observation, String medicament, Date datcreation, Date prochainRDV, int id_animal, int etat) {
+        FicheDeSoin fsSoin = new FicheDeSoin(id_membre, observation, medicament, datcreation, prochainRDV, id_animal, 1);
         return fsSoin.ajouterFicheDeSoin();
     }
 
@@ -41,12 +41,11 @@ public class ControlleurFicheDeSoin {
         return fsSoin.supprimerFicheDeSoin();
     }
 
-    public int ajouterAhmed(int id, int id_membre, String nom, String espece, float poids, Date datePoids, Date neLe, String genre, String observation, String photo, String medicament, String proprietaire, Date prochainRDV, int etat) {
-        Animal x = new Animal();
-        Animal y = x.getAnimal(id);
-        FicheDeSoin fsSoin = new FicheDeSoin(id_membre, observation, medicament, prochainRDV, id, 1);
-
-        return fsSoin.ajouterFicheDeSoin();
-
-    }
+//    public int ajouterAhmed(int id, int id_membre, String nom, String espece, float poids, Date datePoids, Date neLe, String genre, String observation, String photo, String medicament, String proprietaire, Date prochainRDV, int etat) {
+//        Animal x = new Animal();
+//        Animal y = x.getAnimal(id);
+//        FicheDeSoin fsSoin = new FicheDeSoin(id_membre, observation, medicament, prochainRDV, id, 1);
+//
+//        return fsSoin.ajouterFicheDeSoin();
+//  }
 }

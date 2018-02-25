@@ -13,6 +13,7 @@ import ientites.ificheDeSoinInterface;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,8 +30,9 @@ public class FicheDeSoin implements ificheDeSoinInterface {
     private String medicament;
     private Date prochainRDV;
     private int id_animal;
+    private Date datecreation;
     private int etat;
-
+    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 //Les attributs DB
     Connection conn = DataSource.getInstance().getConnection();
     private ResultSet rs;
@@ -56,11 +58,12 @@ public class FicheDeSoin implements ificheDeSoinInterface {
         this.etat = etat;
     }
 
-    public FicheDeSoin(int id_membre, String observation, String medicament, Date prochainRDV, int id_animal, int etat) {
+    public FicheDeSoin(int id_membre, String observation, String medicament, Date datecreation, Date prochainRDV, int id_animal, int etat) {
 
         this.id_membre = id_membre;
         this.observation = observation;
         this.medicament = medicament;
+        this.datecreation = datecreation;
         this.prochainRDV = prochainRDV;
         this.id_animal = id_animal;
         this.etat = etat;
@@ -141,11 +144,11 @@ public class FicheDeSoin implements ificheDeSoinInterface {
          * Creation de la Requette**
          *
          */
-        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
-        String dateprrdv = formater.format(this.prochainRDV);
-        System.out.println("dattteeeeeee rdv " + dateprrdv);
 
-        String req = "INSERT INTO `f_soin`(`id_f_Soin`, `id_membre`, `observation`, `medicament`, `prochainRDV`, `id_animal`, `etat`) VALUES (" + this.id_f_Soin + "," + this.id_membre + ",'" + this.observation + "','" + this.medicament + "','" + dateprrdv + "'," + this.id_animal + ",1)";
+        String dateprrdv = formater.format(this.prochainRDV);
+        String datepcre = formater.format(this.datecreation);
+
+        String req = "INSERT INTO `f_soin`(`id_f_Soin`, `id_membre`, `observation`, `medicament`, `dateCreation`,`prochainRDV`, `id_animal`, `etat`) VALUES (" + this.id_f_Soin + "," + this.id_membre + ",'" + this.observation + "','" + this.medicament + "','" + datepcre + "','" + dateprrdv + "'," + this.id_animal + ",1)";
         try {
             /**
              * execution de la requette**
@@ -177,7 +180,7 @@ public class FicheDeSoin implements ificheDeSoinInterface {
         /**
          * Creation de la Requette**
          */
-        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+
         String date = formater.format(prochainRDV);
         System.out.println("Ahmeeeed date" + date);
         String req = "UPDATE `f_soin` SET `id_membre`=" + this.id_membre + ",`observation`='" + this.observation + "',`medicament`='" + this.medicament + "',`prochainRDV`='" + date + "' WHERE `id_f_Soin`=" + this.id_f_Soin + ";";
@@ -242,8 +245,9 @@ public class FicheDeSoin implements ificheDeSoinInterface {
                 fs.id_f_Soin = rs.getInt(1);
                 fs.id_membre = rs.getInt(2);
                 fs.observation = rs.getString(3);
-                fs.medicament = rs.getString(4);
-                fs.prochainRDV = rs.getDate(5);
+                fs.medicament = rs.getString("medicament");
+                fs.datecreation = rs.getDate("dateCreation");
+                fs.prochainRDV = rs.getDate("prochainRDV");
                 fs.id_animal = rs.getInt("id_animal");
                 ficheDeSoins.add(fs);
             }

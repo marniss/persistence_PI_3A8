@@ -66,6 +66,7 @@ public class ListeDesVeterinaireAdminController implements Initializable {
     @FXML
     private Button brouse;
     ControlleurListeVeterinaire clv = new ControlleurListeVeterinaire();
+    ArrayList<ListeDesVetirinaires> listedesvetArrayList = clv.displayList();
     private int id;
     @FXML
     private Label erreurnom;
@@ -131,18 +132,17 @@ public class ListeDesVeterinaireAdminController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         // TODO
-        ArrayList<ListeDesVetirinaires> listedesvetArrayList = clv.displayList();
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         tel.setCellValueFactory(new PropertyValueFactory<>("tel"));
         adresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
         mail.setCellValueFactory(new PropertyValueFactory<>("mail"));
         photo.setCellValueFactory(new PropertyValueFactory<>("photo"));
-        for (ListeDesVetirinaires vet : listedesvetArrayList) {
-            listedvet.getItems().addAll(vet);
 
-        }
+        listedvet.getItems().addAll(listedesvetArrayList);
+
         listedvet.setOnMouseClicked((event) -> {
             if (event.getClickCount() == 2) {
                 ListeDesVetirinaires vetirinaire = listedvet.getItems().get(listedvet.getSelectionModel().getSelectedIndex());
@@ -153,6 +153,7 @@ public class ListeDesVeterinaireAdminController implements Initializable {
                 mailtext.setText(vetirinaire.getMail());
                 phototext.setText(vetirinaire.getPhoto());
                 id = vetirinaire.getId();
+                ajouter.setDisable(true);
             }
 
         });
@@ -162,11 +163,12 @@ public class ListeDesVeterinaireAdminController implements Initializable {
     private void supprimer(ActionEvent event) {
 
         clv.supprimerVeterinaire(listedvet.getItems().get(listedvet.getSelectionModel().getSelectedIndex()));
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Information Dialog");
         alert.setHeaderText(null);
-        alert.setContentText("Veterinaire Supprimer");
+        alert.setContentText("Voulez-vous supprimer ?");
         alert.showAndWait();
+        ref();
     }
 
     @FXML
@@ -178,6 +180,7 @@ public class ListeDesVeterinaireAdminController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Veterinaire Modifier");
             alert.showAndWait();
+            ref();
 
         }
 
@@ -192,13 +195,26 @@ public class ListeDesVeterinaireAdminController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Veterinaire Ajouter");
             alert.showAndWait();
+            ref();
         }
 
     }
 
+    public void ref() {
+        listedvet.getItems().clear();
+        listedvet.getItems().addAll(clv.displayList());
+
+    }
+
     @FXML
-    private void Annuler(ActionEvent event
-    ) {
+    private void Annuler(ActionEvent event) {
+        nomtext.setText("");
+        prenomtext.setText("");
+        teltext.setText("");
+        adressetext.setText("");
+        mailtext.setText("");
+        phototext.setText("");
+        ajouter.setDisable(false);
     }
 
     @FXML

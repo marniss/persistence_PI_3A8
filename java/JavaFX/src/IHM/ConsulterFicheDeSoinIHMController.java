@@ -14,8 +14,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -75,26 +73,30 @@ public class ConsulterFicheDeSoinIHMController implements Initializable {
     private DatePicker prchRDV;
     @FXML
     private TextField medi;
-    ControlleurFicheDeSoin cfds = new ControlleurFicheDeSoin();
-    int id;
-    int idanim;
+
     @FXML
     private Label erreurobserv;
     @FXML
     private Label erreurdaterdv;
     @FXML
     private Label erreurMedi;
+    int id;
+    int idanim;
+    /**
+     * Instanciation Du Controlleur*
+     */
+    ControlleurFicheDeSoin cfds = new ControlleurFicheDeSoin();
+
+    ArrayList<FicheDeSoin> ficheDeSoins = cfds.ConsulterFicheDeSoin();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        modifer.setDisable(true);
 
-        /**
-         * Instanciation Du Controlleur*
-         */
-        ArrayList<FicheDeSoin> ficheDeSoins = cfds.ConsulterFicheDeSoin();
+
         /*
          *Deffinition des Colonnes
          */
@@ -104,10 +106,8 @@ public class ConsulterFicheDeSoinIHMController implements Initializable {
         prochainRDV.setCellValueFactory(new PropertyValueFactory("prochainRDV"));
         id_animal.setCellValueFactory(new PropertyValueFactory("id_animal"));
 
-        for (FicheDeSoin fs : ficheDeSoins) {
-            listeFicheDeSoin.getItems().addAll(fs);
+        listeFicheDeSoin.getItems().addAll(ficheDeSoins);
 
-        }
         listeFicheDeSoin.setOnMouseClicked((event) -> {
 
             if (event.getClickCount() == 2) {
@@ -118,6 +118,7 @@ public class ConsulterFicheDeSoinIHMController implements Initializable {
                 medi.setText(fs.getMedicament());
                 id = fs.getId_f_Soin();
                 idanim = fs.getId_animal();
+                modifer.setDisable(false);
 
             }
         });
@@ -144,6 +145,11 @@ public class ConsulterFicheDeSoinIHMController implements Initializable {
 
     }
 
+    public void ref() {
+        listeFicheDeSoin.getItems().clear();
+        listeFicheDeSoin.getItems().addAll(ficheDeSoins);
+    }
+
     @FXML
 
     private void modifier(ActionEvent event) throws ParseException {
@@ -156,7 +162,7 @@ public class ConsulterFicheDeSoinIHMController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("fiche de soin modifer");
             alert.showAndWait();
-
+            ref();
         }
 
     }
@@ -186,8 +192,9 @@ public class ConsulterFicheDeSoinIHMController implements Initializable {
             window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(new Scene(root));
             window.show();
+            ref();
         } catch (IOException ex) {
-            Logger.getLogger(ConsulterFicheDeSoinIHMController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.toString());
         }
 
     }

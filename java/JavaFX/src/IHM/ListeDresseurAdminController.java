@@ -82,6 +82,7 @@ public class ListeDresseurAdminController implements Initializable {
     private Label erreurmail;
     @FXML
     private Label erreuradres;
+    ArrayList<ListeDesDresseurs> listedesdreArrayList = cld.displayList();
 
     /*
      * Initializes the controller class.
@@ -90,7 +91,6 @@ public class ListeDresseurAdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-        ArrayList<ListeDesDresseurs> listedesdreArrayList = cld.displayList();
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         tel.setCellValueFactory(new PropertyValueFactory<>("tel"));
@@ -98,10 +98,8 @@ public class ListeDresseurAdminController implements Initializable {
         mail.setCellValueFactory(new PropertyValueFactory<>("mail"));
         photo.setCellValueFactory(new PropertyValueFactory<>("photo"));
 
-        for (ListeDesDresseurs dre : listedesdreArrayList) {
-            System.out.println(dre);
-            listedress.getItems().addAll(dre);
-        }
+        listedress.getItems().addAll(listedesdreArrayList);
+
         listedress.setOnMouseClicked((event) -> {
             if ((event.getClickCount() == 2)) {
                 ListeDesDresseurs dresseur = listedress.getItems().get(listedress.getSelectionModel().getSelectedIndex());
@@ -112,7 +110,7 @@ public class ListeDresseurAdminController implements Initializable {
                 mailtext.setText(dresseur.getMail());
                 phototext.setText(dresseur.getPhoto());
                 id = dresseur.getId();
-                //ajouter.setVisible(false);
+                ajouter.setDisable(true);
 
             }
         });
@@ -121,11 +119,12 @@ public class ListeDresseurAdminController implements Initializable {
     @FXML
     private void supprimer(ActionEvent event) {
         cld.supprimerDresseur(listedress.getItems().get(listedress.getSelectionModel().getSelectedIndex()));
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Information Dialog");
         alert.setHeaderText(null);
-        alert.setContentText("Dresseur supprimer");
+        alert.setContentText("Voulez-vous supprimer ?");
         alert.showAndWait();
+        ref();
     }
 
     @FXML
@@ -134,7 +133,14 @@ public class ListeDresseurAdminController implements Initializable {
 
             System.out.println("modifier" + id);
             cld.modifierDresseur(id, nomtext.getText(), prenomtext.getText(), teltext.getText(), adressetext.getText(), mailtext.getText(), phototext.getText());
-            //  ajouter.setVisible(true);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Dresseur Modifier");
+            alert.showAndWait();
+            ref();
+            ajouter.setDisable(false);
+
         }
 
     }
@@ -148,6 +154,7 @@ public class ListeDresseurAdminController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Dresseur Ajouter");
             alert.showAndWait();
+            ref();
 
         }
 
@@ -205,6 +212,13 @@ public class ListeDresseurAdminController implements Initializable {
     @FXML
     private void Annuler(ActionEvent event
     ) {
+        nomtext.setText("");
+        prenomtext.setText("");
+        teltext.setText("");
+        adressetext.setText("");
+        mailtext.setText("");
+        phototext.setText("");
+        ajouter.setDisable(false);
     }
 
     @FXML
@@ -216,6 +230,12 @@ public class ListeDresseurAdminController implements Initializable {
     private void suivant(ActionEvent event
     ) {
         //listedress.getItems().
+    }
+
+    public void ref() {
+        listedress.getItems().clear();
+        listedress.getItems().addAll(cld.displayList());
+
     }
 
 }

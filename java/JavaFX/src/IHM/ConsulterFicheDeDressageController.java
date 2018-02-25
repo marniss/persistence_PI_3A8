@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,6 +31,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import services.ControlleurChamps;
 import services.ControlleurFicheDeDressage;
 
@@ -87,6 +89,7 @@ public class ConsulterFicheDeDressageController implements Initializable {
     private DatePicker datedep;
     @FXML
     private DatePicker datef;
+    private final Label jobStatus = new Label();
     /**
      * test ahmed*
      */
@@ -105,6 +108,8 @@ public class ConsulterFicheDeDressageController implements Initializable {
     private Label erreurdeb;
     @FXML
     private Label erreurfin;
+    @FXML
+    private Button impri;
 
     /**
      * Initializes the controller class.
@@ -112,6 +117,7 @@ public class ConsulterFicheDeDressageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        Modifier.setDisable(true);
         id.setCellValueFactory(new PropertyValueFactory<>("id_f_Dressage"));
         specialite.setCellValueFactory(new PropertyValueFactory<>("specialite"));
         displine.setCellValueFactory(new PropertyValueFactory<>("displine"));
@@ -121,12 +127,8 @@ public class ConsulterFicheDeDressageController implements Initializable {
         noteTotal.setCellValueFactory(new PropertyValueFactory<>("noteTotal"));
         dateDebut.setCellValueFactory(new PropertyValueFactory<>("dateDebut"));
         dateFin.setCellValueFactory(new PropertyValueFactory<>("dateFin"));
-        for (FicheDeDressage fichedressage : arrayficheDeDressages) {
-            System.out.println(fichedressage);
-            listeFicheDeDressage.getItems().addAll(fichedressage);
 
-        }
-
+        listeFicheDeDressage.getItems().addAll(arrayficheDeDressages);
         listeFicheDeDressage.setOnMouseClicked(
         (event) -> {
 
@@ -142,10 +144,19 @@ public class ConsulterFicheDeDressageController implements Initializable {
                 LocalDate ld1 = LocalDate.parse(fs.getDateFin().toString());
                 datedep.setValue(ld);
                 datef.setValue(ld1);
-
+                Modifier.setDisable(false);
             }
         }
         );
+        impri.setOnAction((ActionEvent event) -> {
+            printSetup(listeFicheDeDressage);
+        });
+    }
+
+    public void ref() {
+        listeFicheDeDressage.getItems().clear();
+        listeFicheDeDressage.getItems().addAll(arrayficheDeDressages);
+
     }
 
     private boolean verif() {
@@ -225,7 +236,6 @@ public class ConsulterFicheDeDressageController implements Initializable {
         System.out.println(id_anim);
         if (verif()) {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
             Date datedeb = format.parse(datedep.getValue().toString());
             Date datFin = format.parse(datef.getValue().toString());
             Float notet = Float.parseFloat(displinetext.getText()) + Float.parseFloat(obeissancetext.getText()) + Float.parseFloat(accompagnementtext.getText()) + Float.parseFloat(interceptiontext.getText()) / 4;
@@ -235,6 +245,7 @@ public class ConsulterFicheDeDressageController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("fiche de dressage modifier");
             alert.showAndWait();
+            ref();
 
         }
     }
@@ -264,6 +275,47 @@ public class ConsulterFicheDeDressageController implements Initializable {
 
     @FXML
     private void annuler(ActionEvent event) {
+    }
+
+    private void printSetup(Node node) {
+        // Create the PrinterJob
+        PrinterJob job = PrinterJob.createPrinterJob();
+
+        if (job == null) {
+            return;
+        }
+        Window owner = null;
+
+        // Show the print setup dialog
+        boolean proceed = job.showPrintDialog(owner);
+
+        if (proceed) {
+            print(job, node);
+        }
+    }
+
+    private void print(PrinterJob job, Node node) {
+        // Set the Job Status Message
+        jobStatus.textProperty().bind(job.jobStatusProperty().asString());
+
+        // Print the node
+        boolean printed = job.printPage(node);
+
+        if (printed) {
+            job.endJob();
+        }
+
+    }
+
+    @FXML
+    private void imprimer(ActionEvent event) {
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if (job != null) {
+//            job.showPrintDialog(window); // Window must be your main Stage
+//            job.printPage(yourNode);
+            job.endJob();
+        }
+
     }
 
 }

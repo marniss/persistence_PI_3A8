@@ -9,6 +9,7 @@ import entites.Animal;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -43,13 +44,13 @@ public class FicheDeSoinIHMController implements Initializable {
     private Text id_membre;
 
     @FXML
-    private TextField nom;
+    private Label nom;
     @FXML
-    private TextField espece;
+    private Label espece;
     @FXML
     private TextArea observation;
     @FXML
-    private TextField poids;
+    private Label poids;
     @FXML
     private RadioButton male;
     @FXML
@@ -60,27 +61,20 @@ public class FicheDeSoinIHMController implements Initializable {
     private TextField medi;
     @FXML
     private Button annuler;
-    @FXML
-    private TextField photo;
 
-    @FXML
-    private DatePicker nele;
     @FXML
     private DatePicker datep;
     @FXML
     private DatePicker revoirerdv;
 
     @FXML
-    private Button brouse;
-
-    @FXML
     ToggleGroup genre;
     @FXML
-    private TextField id_vete;
+    private Label id_vete;
     @FXML
     private Button ajouterFiche;
     @FXML
-    private TextField prop;
+    private Label prop;
     @FXML
     private TableView<Animal> listeanimal;
     @FXML
@@ -101,26 +95,24 @@ public class FicheDeSoinIHMController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        ajouterFiche.setDisable(true);
         id_anim.setCellValueFactory(new PropertyValueFactory("id"));
         nom_anim.setCellValueFactory(new PropertyValueFactory("nom"));
-        for (Animal anim : animals) {
-            listeanimal.getItems().addAll(anim);
-            System.out.println(anim);
-            System.out.println("animal Vue");
-        }
+        listeanimal.getItems().addAll(animals);
+
         listeanimal.setOnMouseClicked((event) -> {
             if (event.getClickCount() == 2) {
 
                 Animal fs = listeanimal.getItems().get(listeanimal.getSelectionModel().getSelectedIndex());
                 id = fs.getId();
-                nom.setText(fs.getAnimal(id).getNom());
-                prop.setText(fs.getAnimal(id).getProprietaire());
-                poids.setText(String.valueOf(fs.getAnimal(id).getPoids()));
-                photo.setText(fs.getAnimal(id).getPhoto());
-                espece.setText(fs.getAnimal(id).getEspece());
-                System.out.println("Noooooom +" + fs.getAnimal(id).getNom());
-                System.out.println("Noooooom +" + fs.getAnimal(id).getProprietaire());
+                nom.setText("Nom : " + fs.getAnimal(id).getNom());
+                prop.setText("Proprietaire : " + fs.getAnimal(id).getProprietaire());
+                poids.setText("Poids : " + String.valueOf(fs.getAnimal(id).getPoids()));
+
+                espece.setText("race : " + fs.getAnimal(id).getEspece());
+                datep.setValue(LocalDate.now());
+                ajouterFiche.setDisable(false);
+            } else {
 
             }
         });
@@ -157,10 +149,6 @@ public class FicheDeSoinIHMController implements Initializable {
     }
 
     @FXML
-    private void brouse(ActionEvent event) {
-    }
-
-    @FXML
     private void ajouterFicheSoin(ActionEvent event) throws ParseException {
         ControlleurFicheDeSoin cfds = new ControlleurFicheDeSoin();
         String gen;
@@ -169,18 +157,17 @@ public class FicheDeSoinIHMController implements Initializable {
         } else {
             gen = "Male";
         }
-        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
-        Date dateRDV = formater.parse(revoirerdv.getValue().toString());
-        System.out.println("3*******" + revoirerdv.getValue() + dateRDV/*dateRDV*/);
         if (verif()) {
-            cfds.ajouterFicheDeSoin(1, observation.getText(), medi.getText(), dateRDV, id, 1);
+            SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+            Date dateRDV = formater.parse(revoirerdv.getValue().toString());
+            Date dateNoW = formater.parse(datep.getValue().toString());
+            cfds.ajouterFicheDeSoin(1, observation.getText(), medi.getText(), dateNoW, dateRDV, id, 1);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("fiche de dressage créer");
             alert.showAndWait();
         }
-
     }
 
     @FXML

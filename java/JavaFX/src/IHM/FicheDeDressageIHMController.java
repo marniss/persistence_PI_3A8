@@ -21,6 +21,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.print.PrinterJob;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -32,6 +34,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import services.ControlleurAnimal;
 import services.ControlleurChamps;
 import services.ControlleurFicheDeDressage;
@@ -46,11 +49,10 @@ public class FicheDeDressageIHMController implements Initializable {
     @FXML
     private Text id_membre;
     @FXML
-    private TextField prop;
+    private Label prop;
+    private Label nom;
     @FXML
-    private TextField nom;
-    @FXML
-    private TextField espece;
+    private Label espece;
     @FXML
     private RadioButton male;
     @FXML
@@ -58,12 +60,9 @@ public class FicheDeDressageIHMController implements Initializable {
     @FXML
     private RadioButton female;
     @FXML
-    private Text id_f_Soin;
-    @FXML
     private Button ajouter;
     @FXML
     private Button annuler;
-    @FXML
     private TextField photo;
     @FXML
     private DatePicker dated;
@@ -73,8 +72,7 @@ public class FicheDeDressageIHMController implements Initializable {
     private TextField id_dres;
     @FXML
     private TextField specialite;
-    private TextField noteTotale;
-    @FXML
+
     private TextField poids;
     @FXML
     private TextField despline;
@@ -84,7 +82,9 @@ public class FicheDeDressageIHMController implements Initializable {
     private TextField accompagnement;
     @FXML
     private TextField interception;
+    private final Label jobStatus = new Label();
     float note = 0;
+
     ControlleurFicheDeDressage cfdd = new ControlleurFicheDeDressage();
     @FXML
     private TableView<Animal> listeanimal;
@@ -113,6 +113,12 @@ public class FicheDeDressageIHMController implements Initializable {
     private Label erreurdeb;
     @FXML
     private Label erreurfin;
+    @FXML
+    private Label racelab;
+    @FXML
+    private Label nomlab;
+    @FXML
+    private Label poidslab;
 
     /**
      * Initializes the controller class.
@@ -120,24 +126,24 @@ public class FicheDeDressageIHMController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        ajouter.setDisable(true);
         id_anim.setCellValueFactory(new PropertyValueFactory("id"));
         nom_anim.setCellValueFactory(new PropertyValueFactory("nom"));
-        for (Animal anim : animals) {
-            listeanimal.getItems().addAll(anim);
-            System.out.println(anim);
-            System.out.println("animal Vue");
-        }
+
+        listeanimal.getItems().addAll(animals);
         listeanimal.setOnMouseClicked((event) -> {
             if (event.getClickCount() == 2) {
-
                 Animal fs = listeanimal.getItems().get(listeanimal.getSelectionModel().getSelectedIndex());
                 id = fs.getId();
-                nom.setText(fs.getAnimal(id).getNom());
-                prop.setText(fs.getAnimal(id).getProprietaire());
-                poids.setText(String.valueOf(fs.getAnimal(id).getPoids()));
-                photo.setText(fs.getAnimal(id).getPhoto());
-                espece.setText(fs.getAnimal(id).getEspece());
+                nomlab.setText("Nom : " + fs.getAnimal(id).getNom());
+                prop.setText("Propritére : " + fs.getAnimal(id).getProprietaire());
+                poidslab.setText("Poids : " + String.valueOf(fs.getAnimal(id).getPoids()));
+                racelab.setText("Race : " + fs.getAnimal(id).getEspece());
+                ajouter.setDisable(false);
             }
+        });
+        imprimer.setOnAction((ActionEvent event) -> {
+            //printSetup(textArea, );
         });
 
     }
@@ -240,29 +246,33 @@ public class FicheDeDressageIHMController implements Initializable {
     private void annuler(ActionEvent event) {
     }
 
-    private float brouse(ActionEvent event) {
-        noteTotale.setText(String.valueOf(note));
-        return note += Float.parseFloat(noteTotale.getText());
+    private void printSetup(Node node, Stage owner) {
+        // Create the PrinterJob
+        PrinterJob job = PrinterJob.createPrinterJob();
+
+        if (job == null) {
+            return;
+        }
+
+        // Show the print setup dialog
+        boolean proceed = job.showPrintDialog(owner);
+
+        if (proceed) {
+            print(job, node);
+        }
     }
 
-    private float adddes(ActionEvent event) {
-        noteTotale.setText(String.valueOf(note));
-        return note += Float.parseFloat(despline.getText());
-    }
+    private void print(PrinterJob job, Node node) {
+        // Set the Job Status Message
+        jobStatus.textProperty().bind(job.jobStatusProperty().asString());
 
-    private float addobei(ActionEvent event) {
-        noteTotale.setText(String.valueOf(note));
-        return note += Float.parseFloat(obeissance.getText());
-    }
+        // Print the node
+        boolean printed = job.printPage(node);
 
-    private float addacom(ActionEvent event) {
-        noteTotale.setText(String.valueOf(note));
-        return note += Float.parseFloat(accompagnement.getText());
-    }
+        if (printed) {
+            job.endJob();
+        }
 
-    private float addinter(ActionEvent event) {
-        noteTotale.setText(String.valueOf(note));
-        return note += Float.parseFloat(interception.getText());
     }
 
     @FXML

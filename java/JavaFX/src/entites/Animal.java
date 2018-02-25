@@ -137,11 +137,11 @@ public class Animal {
             while (rs.next()) {
                 x.id = rs.getInt(1);
                 x.nom = rs.getString(5);
-                x.espece = rs.getString(2);
-                x.poids = rs.getFloat(7);
-                x.photo = rs.getString(8);
-                x.genre = rs.getString(5);
-                x.proprietaire = rs.getString(6);
+                x.espece = rs.getString("espece");
+                x.poids = rs.getFloat("poids");
+                x.photo = rs.getString("photo");
+                x.genre = rs.getString("type");
+                x.proprietaire = rs.getString("proprietaire");
                 System.out.println(x);
                 System.out.println("animal iddddd model");
             }
