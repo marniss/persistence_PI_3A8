@@ -170,16 +170,17 @@ public class IHM_inscriptionController implements Initializable {
 
                 this.code = rand.nextInt(4000) + 1000;
         ServiceEmail se = new ServiceEmail();
-            System.out.println("voila l'email   "+email.getText() +"voila le code" +code);
-        se.sendEmail(email.getText(), code+"");
+        se.sendEmail(email.getText(), "votre code confirmation est :"+code+"");
         
-        
+        types="simpleUtilisateur";
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ConfirmationCode.fxml"));
        
         Parent root1;
              try {
                  root1 = (Parent) fxmlLoader.load();
                   Stage stage = new Stage();
+                  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.hide();
                 stage.setScene(new Scene(root1));  
                 stage.setX(m.getIdMembre());       
                 stage.show();
@@ -189,40 +190,57 @@ public class IHM_inscriptionController implements Initializable {
              
          
         }
-        else if(type.getValue()=="veterinere"&&c==1)
-        {int a = ca.ajoutVeterinaire(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(), motdepasse.getText());
+        else if(type.getValue()=="veterinaire"&&c==1)
+        { m = new Membre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(),motdepasse.getText() );
+        Random rand = new Random();
 
-        if (a==1)
-        {
-        Alert alert;
-        alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Ajout effectuer avec succés");
-            alert.show();
-        }else
-        {
-          Alert alert;
-        alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("verifier vos donner");
-            alert.show();  
-        }
-                
+                this.code = rand.nextInt(4000) + 1000;
+        ServiceEmail se = new ServiceEmail();
+        se.sendEmail(email.getText(), "votre code confirmation est :"+code+"");
+        
+        types="Veterinaire";
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ConfirmationCode.fxml"));
+       
+        Parent root1;
+             try {
+                 root1 = (Parent) fxmlLoader.load();
+                  Stage stage = new Stage();
+                  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(new Scene(root1));  
+                stage.setX(m.getIdMembre());       
+                stage.show();
+             } catch (IOException ex) {
+                 System.out.println("error dans la redirection au confirmation de compte");             }
+               
+             
+         
                 }
         else if(type.getValue()=="dresseur"&&c==1){
-          int  a = ca.ajoutDresseur(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(), motdepasse.getText());
-            if (a==1)
-        {
-        Alert alert;
-        alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Ajout effectuer avec succés");
-            alert.show();
-            
-        }else
-        {
-          Alert alert;
-        alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("verifier vos donner");
-            alert.show();  
-        }
+           m = new Membre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(),motdepasse.getText() );
+        Random rand = new Random();
+
+                this.code = rand.nextInt(4000) + 1000;
+        ServiceEmail se = new ServiceEmail();
+        se.sendEmail(email.getText(), "votre code confirmation est :"+code+"");
+        
+        types="dresseur";
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ConfirmationCode.fxml"));
+       
+        Parent root1;
+             try {
+                 root1 = (Parent) fxmlLoader.load();
+                  Stage stage = new Stage();
+                  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(new Scene(root1));  
+                stage.setX(m.getIdMembre());       
+                stage.show();
+             } catch (IOException ex) {
+                 System.out.println("error dans la redirection au confirmation de compte");             }
+               
+             
+         
         }
         
         else{
@@ -233,6 +251,8 @@ public class IHM_inscriptionController implements Initializable {
 
     @FXML
     private void brows(ActionEvent event) {
+        
+        
         
         JFileChooser file = new JFileChooser();
         

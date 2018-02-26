@@ -31,11 +31,14 @@ public class JavaFX extends Application {
         System.out.println(cry);
         System.out.println(cm.decrypt(cry)); */
        
+       
      Parent root = FXMLLoader.load(getClass().getResource("/IHM/IHM_login.fxml"));
       //Parent root = FXMLLoader.load(getClass().getResource("/IHM/IHM_Adoption.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        
+        
         /*
         FicheDeSoin fs = new FicheDeSoin(1, "STYLESHEET_MODENA", "STYLESHEET_MODENA", 4, "2017-08-01", "2015-02-06", "STYLESHEET_MODENA", "STYLESHEET_CASPIAN", "STYLESHEET_MODENA", "STYLESHEET_MODENA", "STYLESHEET_CASPIAN", "2018-02-22");
         FicheDeSoinService fsService = new FicheDeSoinService();

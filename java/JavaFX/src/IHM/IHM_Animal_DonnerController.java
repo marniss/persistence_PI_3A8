@@ -89,7 +89,7 @@ public class IHM_Animal_DonnerController implements Initializable {
       {
            Alert alert;
         alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("choisir un membre pour modifier");
+            alert.setHeaderText("choisir un animal pour donner ou ajouter un autre animal");
             alert.show(); 
       }
         else

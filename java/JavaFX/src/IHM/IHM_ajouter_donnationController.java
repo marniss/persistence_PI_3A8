@@ -58,7 +58,7 @@ public class IHM_ajouter_donnationController implements Initializable {
 
     @FXML
     private void retour(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_mal_Donner.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_Animal_Donner.fxml"));
        
         Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();

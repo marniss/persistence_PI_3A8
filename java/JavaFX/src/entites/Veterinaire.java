@@ -58,7 +58,7 @@ public class Veterinaire  extends Membre{
             System.out.println(ex.getMessage());
         }
         // preparation de la requette
-         String maRequette = "INSERT INTO `membre`("
+        String maRequette = "INSERT INTO `membre`("
               
                 + "`nom`, "
                 + "`prenom`, "
@@ -88,13 +88,12 @@ public class Veterinaire  extends Membre{
             stmt.executeUpdate(maRequette);
             System.out.println(" l'ajout est effectue");
             return 1;
-        }catch(SQLException ahmed_makni){
+        }catch(SQLException houssem_marnissi){
             System.out.println("erreur lors de l'execution de la requete d'ajout d'un veterinaire \n");
-            System.out.println(ahmed_makni.getMessage());
+            System.out.println(houssem_marnissi.getMessage());
             
         }
         return 0;
-        
     }
     
     //supprission d'un acc

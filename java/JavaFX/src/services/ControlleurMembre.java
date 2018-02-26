@@ -9,6 +9,7 @@ import entites.Administrateur;
 import entites.Dresseur;
 import entites.Membre;
 import entites.Veterinaire;
+import java.util.ArrayList;
 
 /**
  *
@@ -45,6 +46,11 @@ public class ControlleurMembre {
     {
       return  m1.modifierMembre(x);
     }
+    public int modifierPasword(Membre m1,int x)
+    {
+      return  m1.modifierasword(x);
+    }
+    
     
     public Membre getMembre(int m)
     {
@@ -84,5 +90,10 @@ public class ControlleurMembre {
     }
     public void setDeconnected(Membre m){
         m.setDeconnected();
+    }
+    
+    public ArrayList<Membre> selectAll(int i){
+        Membre m = new Membre();
+        return m.selectAll(i);
     }
 }

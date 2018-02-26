@@ -52,9 +52,12 @@ public class IHM_AdoptionController implements Initializable {
     @FXML
     private void deleger(ActionEvent event) {
          try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ajouter_delegation.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_Animal_Deleger.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.hide();
+              
                 stage.setScene(new Scene(root1));  
                 stage.show();
         } catch(IOException e) {
@@ -69,6 +72,9 @@ public class IHM_AdoptionController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_Adoption_afficher.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.hide();
+                
                 stage.setScene(new Scene(root1));  
                 stage.show();
         } catch(IOException e) {

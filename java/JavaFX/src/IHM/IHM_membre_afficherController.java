@@ -7,15 +7,22 @@ package IHM;
 
 import entites.Membre;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import javax.swing.ImageIcon;
 import services.ControlleurMembre;
 
@@ -27,17 +34,15 @@ import services.ControlleurMembre;
 public class IHM_membre_afficherController implements Initializable {
 
     @FXML
-    private TextField nom;
+    private Label nom;
     @FXML
-    private TextField prenom;
+    private Label prenom;
     @FXML
-    private TextField tel;
+    private Label tel;
     @FXML
-    private Button modifier;
+    private Label adresse;
     @FXML
-    private TextField adresse;
-    @FXML
-    private TextField email;
+    private Label email;
     @FXML
     private Label date;
     @FXML
@@ -68,5 +73,21 @@ URL imageURL = getClass().getResource("/image/maphoto.jpg");
 image.setImage(i);
 
     }    
+
+    @FXML
+    private void retour(ActionEvent event) throws IOException {
+                Stage stage = new Stage();
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.hide();
+                
+    }
+
+    @FXML
+    private void Annuler(ActionEvent event) {
+      Stage stage = new Stage();
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.hide();
+                
+    }
     
 }

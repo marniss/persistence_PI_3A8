@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+import services.ControlleurMembre;
 import services.DataSource;
 
 /**
@@ -297,6 +298,34 @@ public class Membre {
         }
         return 0;
     }
+    public int modifierasword(int id){
+        try {
+            stmt = conn.createStatement();
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la creation du statment \n");
+            System.out.println(ex.getMessage());
+        }
+        // preparation de la requette
+        
+        ControlleurMembre cm = new ControlleurMembre();
+        String maRequette = "UPDATE `membre` SET "
+                + "`pasword`='"+cm.encrypt(this.pasword)  +
+                
+                 "' WHERE id_membre= "+id
+                + ";";
+        
+        // execution de la requette
+        try{
+            stmt.executeUpdate(maRequette);
+            System.out.println("la modification est ffectuer");
+            return 1;
+        }catch(SQLException ahmed_makni){
+            System.out.println("erreur lors de l'exxecution de la requete de la modification \n");
+            System.out.println(ahmed_makni.getMessage());
+            
+        }
+        return 0;
+    }
     
     
     
@@ -391,12 +420,12 @@ public class Membre {
         return leResultat;
     }
     
-    public ArrayList<Membre> selectAll() {
+    public ArrayList<Membre> selectAll(int id) {
          ArrayList<Membre> le = new ArrayList();
         try {
             PreparedStatement st = conn.prepareStatement(
             "SELECT id_membre,type,photo,nom"
-                    + ",prenom,num,DateInscription,email ,adresse ,note,etat FROM membre where etat=1");
+                    + ",prenom,num,DateInscription,email ,adresse ,note,etat FROM membre  WHERE `etat`=1 AND `id_membre`<> "+id);
             ResultSet res = st.executeQuery();
             while (res.next()) {
                 Membre e = new Membre();
@@ -497,7 +526,53 @@ public class Membre {
         System.out.println("error dans la requete de setDeConnected");    }
         
     }
-    
+    public String getForgetPasword(String emails){
+         Membre leResultat = new Membre();
+         try {
+            stmt = conn.createStatement();
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la creation du statment \n");
+            System.out.println(ex.getMessage());
+        }
+         System.out.println("'chest lemail"+emails+"aa");
+        
+        // execution de la requette
+        try{
+            // preparation de la requette
+        String maRequette = "SELECT `pasword` FROM `membre` WHERE `email`='"+emails+"'";
+        
+            ResultSet res = stmt.executeQuery(maRequette);
+            System.out.println(" la recuperation des donnees est effectue dans getmembrby email");
+            while(res.next()){
+                leResultat.setNom(res.getString("nom"));
+                
+                leResultat.prenom=res.getString("prenom");
+                System.out.println("le prenom estt"+leResultat.getPrenom());
+
+                leResultat.adresse=res.getString("adresse");
+                leResultat.photo=res.getString("photo");
+                leResultat.type=res.getString("type");
+                leResultat.pasword=res.getString("pasword");
+                leResultat.num=res.getInt("num");
+                leResultat.setIdMembre(res.getInt("id_membre"));
+                System.out.println("le id est "+leResultat.getIdMembre());
+                leResultat.DateInscription=res.getDate("DateInscription");
+                leResultat.email=res.getString("email");
+                leResultat.connecte=res.getInt("connecter");
+                
+                /*et la suite ***/
+                
+            return leResultat.getPasword();
+            }
+        }catch(SQLException houssem_marnissi){
+            System.out.println("erreur lors de l'exxecution de la requete de la getmembreby email \n");
+            System.out.println(houssem_marnissi.getMessage());
+           
+        }
+                    return null;
+
+        
+    }
     
     
     
