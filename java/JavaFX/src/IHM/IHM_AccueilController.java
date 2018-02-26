@@ -63,7 +63,6 @@ public class IHM_AccueilController implements Initializable {
        stage1116.show();
     }
 
-    @FXML
     private void Animal(ActionEvent event) throws IOException { Parent parent125 = FXMLLoader.load(getClass().getResource("IHM_login.fxml"));
     /*   Scene scene1116 = new Scene(parent125 );
        Stage stage1116  = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -74,6 +73,16 @@ public class IHM_AccueilController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) {
+    }
+
+    @FXML
+    private void profil(ActionEvent event) throws IOException {
+         Parent parent125 = FXMLLoader.load(getClass().getResource("IHM_Profil.fxml"));
+       Scene scene1116 = new Scene(parent125 );
+       Stage stage1116  = (Stage)((Node)event.getSource()).getScene().getWindow();
+       stage1116 .hide();
+       stage1116 .setScene(scene1116 );
+       stage1116.show();
     }
     
 }

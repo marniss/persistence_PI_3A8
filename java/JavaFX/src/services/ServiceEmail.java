@@ -40,7 +40,7 @@ protected  PasswordAuthentication gePasswordAuthenticationt(){
       message.setFrom(new InternetAddress(from));
       message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
 
-      message.setSubject("hello");
+      message.setSubject("Zanimo");
       message.setText(text);
         System.out.println("1");
       Transport transport =session.getTransport("smtp");

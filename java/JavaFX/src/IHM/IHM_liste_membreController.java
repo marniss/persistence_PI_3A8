@@ -8,7 +8,12 @@ package IHM;
 import entites.Membre;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -54,6 +60,13 @@ public class IHM_liste_membreController implements Initializable {
     private TableColumn<Membre, String> etat;
     
     public static int idZbotrech ;
+    
+    
+ControlleurMembre cm = new ControlleurMembre();
+        ArrayList<Membre> membres = cm.selectAll(IHM_loginController.membre.getIdMembre());
+     ObservableList<Membre> membre = FXCollections.observableArrayList(membres);
+    @FXML
+    private TextField reherchefield;
 
     /**
      * Initializes the controller class.
@@ -62,8 +75,9 @@ public class IHM_liste_membreController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         Membre m = new Membre();
+        System.out.println("kuhdljsmjjdk;bdomjb"+IHM_loginController.membre.getIdMembre());
         
-        for (Membre mem : m.selectAll())
+        for (Membre mem : m.selectAll(IHM_loginController.membre.getIdMembre()))
             
         {            table.getItems().add(mem);
       		id.setCellValueFactory(new PropertyValueFactory<>("idMembre"));
@@ -82,23 +96,20 @@ public class IHM_liste_membreController implements Initializable {
                 
 
         }
+        initial();
         
         
     }    
 
     @FXML
-    private void ajouter(ActionEvent event) {
-         try {
+    private void ajouter(ActionEvent event) throws IOException {
+     
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MembreIHM.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root1));  
                 stage.show();
-        } catch(IOException e) {
-            
-             System.out.println("erreur dans la redirection a membreIHM pour l'ajout d'un membre");
-          }
-         
+       
     }
 
     @FXML
@@ -182,9 +193,7 @@ public class IHM_liste_membreController implements Initializable {
        stage1116.show();
     }
 
-    @FXML
-    private void ajouter(MouseEvent event) {
-    }
+   
 
     @FXML
     private void afficher(ActionEvent event) throws IOException {
@@ -239,4 +248,44 @@ Notifications.create().text("vous etes deconnecter ").showInformation();;
                 stage.setScene(new Scene(root1));  
                 stage.show();
     }
+    private void initial (){
+        FilteredList<Membre> filteredData = new FilteredList<>(  membre, p -> true);
+        // 2. Set the filter Predicate whenever the filter changes.
+        reherchefield.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(ev -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+                try {
+                    if (ev.getNom().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; // Filter matches first name.
+                    } else if (ev.getNom().contains(lowerCaseFilter))/*.toLowerCase().contains(lowerCaseFilter)) */ {
+                        return true; // Filter matches last name.
+                    } 
+                    return false; // Does not match.
+                } catch (NullPointerException ex) {
+                    System.out.println(ex.toString());
+                }
+                    return false;
+                    });
+            });
+         
+       
+
+        // 3. Wrap the FilteredList in a SortedList. 
+        SortedList<Membre> sortedData = new SortedList<>(filteredData);
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        // 5. Add sorted (and filtered) data to the table.
+        table.setItems(sortedData);
+    }
+
+    @FXML
+    private void ajouter(MouseEvent event) {
+    }
+    
+
 }

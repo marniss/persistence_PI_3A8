@@ -19,7 +19,8 @@
         <columns>
           <TableColumn fx:id="type" prefWidth="99.0" text="type" />
           <TableColumn fx:id="lieu" prefWidth="103.0" text="lieu" />
-            <TableColumn fx:id="description" prefWidth="297.0" text="description" />
+            <TableColumn fx:id="description" prefWidth="223.0" text="description" />
+            <TableColumn fx:id="action" prefWidth="73.0" text="Action" />
         </columns>
       </TableView>
       <Button layoutX="419.0" layoutY="361.0" mnemonicParsing="false" onAction="#retour" text="retour" />

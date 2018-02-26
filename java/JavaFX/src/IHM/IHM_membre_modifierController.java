@@ -11,9 +11,12 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import services.ControlleurMembre;
 
 /**
@@ -29,14 +32,11 @@ public class IHM_membre_modifierController implements Initializable {
     private TextField prenom;
     @FXML
     private TextField tel;
-    @FXML
     private TextField motdepasse;
     @FXML
     private TextField adresse;
     @FXML
     private TextField email;
-    @FXML
-    private ChoiceBox<String> type;
     @FXML
     private Button brows;
     @FXML
@@ -45,7 +45,7 @@ public class IHM_membre_modifierController implements Initializable {
     @FXML
     private Button modifier;
     @FXML
-    private TextField confirmerMDP;
+    private ImageView photo;
     /**
      * Initializes the controller class.
      */
@@ -59,12 +59,12 @@ public class IHM_membre_modifierController implements Initializable {
       adresse.setText(""+m.getAdresse());
       nom.setText(""+m.getNom());
       prenom.setText(""+m.getPrenom());
-      motdepasse.setText(""+m.getPasword());
+     // motdepasse.setText(""+m.getPasword());
       email.setText(""+m.getEmail());
       tel.setText(""+m.getNum());
       doc.setText(""+m.getPhoto());
-      motdepasse.setText(m.getPasword());
-      confirmerMDP.setText(m.getPasword());
+      /*motdepasse.setText(m.getPasword());
+      confirmerMDP.setText(m.getPasword()); */
       
         // TODO
     }    
@@ -76,8 +76,10 @@ public class IHM_membre_modifierController implements Initializable {
 
     @FXML
     private void modifier(ActionEvent event) {
+        Membre x = new Membre();
+      Membre m=x.getMembre(IHM_liste_membreController.idZbotrech);
         
-        Membre x2 = new Membre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(), motdepasse.getText());
+        Membre x2 = new Membre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(), m.getPasword());
 ;
       
             ControlleurMembre cm = new ControlleurMembre();
@@ -88,6 +90,15 @@ System.exit(0);
       
 
       
+    }
+
+    @FXML
+    private void Annuler(ActionEvent event) {
+        
+         Stage stage = new Stage();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.hide();
+        
     }
     
 }

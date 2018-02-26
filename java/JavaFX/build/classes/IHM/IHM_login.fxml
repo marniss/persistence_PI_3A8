@@ -18,9 +18,9 @@
          </font>
       </Label>
       <PasswordField fx:id="pasword" layoutX="99.0" layoutY="206.0" prefHeight="25.0" prefWidth="186.0" promptText="mot de passe" />
-      <Button layoutX="99.0" layoutY="86.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="186.0" text="Se connecter avec Facebook" textFill="#4c21e8" />
+      <Button layoutX="99.0" layoutY="86.0" mnemonicParsing="false" onAction="#ConnecterFB" prefHeight="27.0" prefWidth="186.0" text="Se connecter avec Facebook" textFill="#4c21e8" />
       <Button layoutX="98.0" layoutY="49.0" mnemonicParsing="false" onAction="#inscription" prefHeight="25.0" prefWidth="186.0" text="S'inscrire" />
-      <Label layoutX="107.0" layoutY="239.0" text="Mot de passe oublier" textFill="#2e12b9" underline="true">
+      <Label layoutX="107.0" layoutY="239.0" onMouseClicked="#forget" onMouseDragExited="#forget" text="Mot de passe oublier" textFill="#2e12b9" underline="true">
          <font>
             <Font size="13.0" />
          </font>

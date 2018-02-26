@@ -28,9 +28,19 @@ public class Adoption {
     private int etatAdoption;
     private String description;
     private  String type;
+    private int idAnimal;
 //constructeurs
     public Adoption() {
     }
+
+    public Adoption(int idMembre, String lieu, String description, String type, int idAnimal) {
+        this.idMembre = idMembre;
+        this.lieu = lieu;
+        this.description = description;
+        this.type = type;
+        this.idAnimal = idAnimal;
+    }
+    
 
     public Adoption(int idMembre,  Date dateAnnonce, String lieu, int etatAdoption, String description) {
         this.idMembre = idMembre;
@@ -39,7 +49,18 @@ public class Adoption {
         this.etatAdoption = etatAdoption;
         this.description = description;
     }
+// les getters et stters
 
+    public int getIdAnimal() {
+        return idAnimal;
+    }
+
+    public void setIdAnimal(int idAnimal) {
+        this.idAnimal = idAnimal;
+    }
+    
+    
+    
     public String getType() {
         return type;
     }
@@ -127,17 +148,19 @@ public class Adoption {
                 + "`dateAnnonce`, "
                 + "`id_membre`,"
                 + "`etatAdoption`,"
-                + "`description`"
+                + "`description,`"
+                + "`id_animal`"
                 + ") "
                 + " VALUES ( '"
                 
                 + this.lieu+"','donner',now(),"
                 + this.idMembre
                 +",1,'"
-                + this.description
+                + this.description+"',"
+                + this.idAnimal
                 
                 
-                + "');";
+                + ");";
         // execution de la requette
         try{
             stmt.executeUpdate(maRequette);

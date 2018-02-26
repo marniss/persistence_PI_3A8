@@ -27,6 +27,16 @@ public class ControlleurAdoption {
         Adoption a = new Adoption(idMembre, dateAnnonce, lieu, etatAdoption, description);
      return a.ajouterDelegation();
     }
+     public int ajoutDonnation(int idMembre, String lieu, String description, String type, int idAnimal)
+    {
+        Adoption a = new Adoption(idMembre, lieu,  description ,type,idAnimal);
+     return a.ajouterDonnation();
+    }
+     public int ajoutDelegation(int idMembre, String lieu, String description, String type, int idAnimal)
+    {
+        Adoption a = new Adoption(idMembre, lieu,  description ,type,idAnimal);
+     return a.ajouterDelegation();
+    }
 
    public  ArrayList<Adoption> selectAll()
    {Adoption a = new Adoption();
