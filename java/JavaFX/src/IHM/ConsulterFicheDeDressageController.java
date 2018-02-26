@@ -155,7 +155,7 @@ public class ConsulterFicheDeDressageController implements Initializable {
 
     public void ref() {
         listeFicheDeDressage.getItems().clear();
-        listeFicheDeDressage.getItems().addAll(arrayficheDeDressages);
+        listeFicheDeDressage.getItems().addAll(cfdd.afficherFicheDeDressage());
 
     }
 

@@ -161,12 +161,21 @@ public class FicheDeSoinIHMController implements Initializable {
             SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
             Date dateRDV = formater.parse(revoirerdv.getValue().toString());
             Date dateNoW = formater.parse(datep.getValue().toString());
-            cfds.ajouterFicheDeSoin(1, observation.getText(), medi.getText(), dateNoW, dateRDV, id, 1);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("fiche de dressage créer");
-            alert.showAndWait();
+            Date d = new Date();
+            if (dateRDV.before(d)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("date non valide");
+                alert.showAndWait();
+            } else {
+                cfds.ajouterFicheDeSoin(1, observation.getText(), medi.getText(), dateNoW, dateRDV, id, 1);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("fiche de dressage créer");
+                alert.showAndWait();
+            }
         }
     }
 

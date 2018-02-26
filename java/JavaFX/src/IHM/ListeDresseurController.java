@@ -193,7 +193,5 @@ public class ListeDresseurController implements Initializable, MapComponentIniti
     public void ref() {
         listedress.getItems().clear();
         listedress.getItems().addAll(cld.displayList());
-
     }
-
 }

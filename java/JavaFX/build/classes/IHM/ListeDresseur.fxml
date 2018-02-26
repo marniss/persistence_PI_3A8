@@ -30,15 +30,15 @@
                 <Font name="System Bold Italic" size="27.0" />
             </font>
         </Label>
-      <Label fx:id="nomvet" layoutX="567.0" layoutY="134.0" text="Label" />
-      <Label fx:id="note" layoutX="567.0" layoutY="183.0" text="Label" />
-      <Button fx:id="valide" layoutX="608.0" layoutY="246.0" mnemonicParsing="false" onAction="#valider" text="Valider" />
-      <Rating fx:id="rateDress" layoutX="546.0" layoutY="53.0" onMouseClicked="#evaldress" partialRating="true" rating="0.0" />
-      <AnchorPane fx:id="mapGoogle" layoutX="546.0" layoutY="304.0" prefHeight="170.0" prefWidth="195.0">
-         <children>
-            <GoogleMapView fx:id="gmap" layoutX="171.0" layoutY="24.0" prefHeight="358.0" prefWidth="505.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-         </children>
-      </AnchorPane>
-      <Button fx:id="mapi" layoutX="608.0" layoutY="492.0" mnemonicParsing="false" onAction="#mapi" text="Map" />
+        <Label fx:id="nomvet" layoutX="567.0" layoutY="134.0" text="Label" />
+        <Label fx:id="note" layoutX="567.0" layoutY="183.0" text="Label" />
+        <Button fx:id="valide" layoutX="608.0" layoutY="246.0" mnemonicParsing="false" onAction="#valider" text="Valider" />
+        <Rating fx:id="rateDress" layoutX="546.0" layoutY="53.0" onMouseClicked="#evaldress" partialRating="true" rating="0.0" />
+        <AnchorPane fx:id="mapGoogle" layoutX="546.0" layoutY="304.0" prefHeight="170.0" prefWidth="195.0">
+            <children>
+                <GoogleMapView fx:id="gmap" layoutX="171.0" layoutY="24.0" prefHeight="358.0" prefWidth="505.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </children>
+        </AnchorPane>
+        <Button fx:id="mapi" layoutX="608.0" layoutY="492.0" mnemonicParsing="false" onAction="#mapi" text="Map" />
     </children>
 </AnchorPane>

@@ -229,15 +229,22 @@ public class FicheDeDressageIHMController implements Initializable {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Date datedeb = format.parse(dated.getValue().toString());
             Date datFin = format.parse(dateF.getValue().toString());
+            if (datFin.before(datedeb)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Information Dialog");
+                alert.setContentText("klhjkl");
+                alert.showAndWait();
 
-            float ntotal = Float.parseFloat(despline.getText()) + Float.parseFloat(obeissance.getText()) + Float.parseFloat(accompagnement.getText()) + Float.parseFloat(interception.getText()) / 4;
+            } else {
+                float ntotal = Float.parseFloat(despline.getText()) + Float.parseFloat(obeissance.getText()) + Float.parseFloat(accompagnement.getText()) + Float.parseFloat(interception.getText()) / 4;
 
-            cfdd.ajouterFicheDeDressage(2, specialite.getText(), Float.parseFloat(despline.getText()), Float.parseFloat(obeissance.getText()), Float.parseFloat(accompagnement.getText()), Float.parseFloat(interception.getText()), ntotal, datedeb, datFin, id, 1);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("fiche de soin créer");
-            alert.showAndWait();
+                cfdd.ajouterFicheDeDressage(2, specialite.getText(), Float.parseFloat(despline.getText()), Float.parseFloat(obeissance.getText()), Float.parseFloat(accompagnement.getText()), Float.parseFloat(interception.getText()), ntotal, datedeb, datFin, id, 1);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("fiche de soin créer");
+                alert.showAndWait();
+            }
         }
 
     }
@@ -281,8 +288,8 @@ public class FicheDeDressageIHMController implements Initializable {
         Document doc = new Document();
         PdfWriter.getInstance(doc, new FileOutputStream("fiche de dressage.pdf"));
         doc.open();
-        doc.add(new Paragraph("                                     Fiche de Dressage:"));
-        doc.add(new Paragraph("proprietére :" + prop.getText().toString()));
+        doc.add(new Paragraph("                             Fiche de Dressage:"));
+        doc.add(new Paragraph("proprietére :" + prop.getText()));
         doc.add(new Paragraph("despline" + String.valueOf(despline.getText())));
         doc.add(new Paragraph("obeissance" + String.valueOf(obeissance.getText())));
         doc.add(new Paragraph("accompagnement" + String.valueOf(accompagnement.getText())));

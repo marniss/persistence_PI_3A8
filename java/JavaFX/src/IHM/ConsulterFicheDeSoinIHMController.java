@@ -147,7 +147,7 @@ public class ConsulterFicheDeSoinIHMController implements Initializable {
 
     public void ref() {
         listeFicheDeSoin.getItems().clear();
-        listeFicheDeSoin.getItems().addAll(ficheDeSoins);
+        listeFicheDeSoin.getItems().addAll(cfds.ConsulterFicheDeSoin());
     }
 
     @FXML

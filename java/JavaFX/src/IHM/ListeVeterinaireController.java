@@ -19,7 +19,9 @@ import com.lynden.gmapsfx.service.geocoding.GeocodingService;
 import entites.ListeDesVetirinaires;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -94,7 +96,7 @@ public class ListeVeterinaireController implements Initializable, MapComponentIn
         photo.setCellValueFactory(new PropertyValueFactory<>("photo"));
 
         listevet.getItems().addAll(clv.displayList());
-
+        recherche();
         listevet.setOnMouseClicked(
         (event) -> {
             if (event.getClickCount() == 2) {
@@ -109,6 +111,14 @@ public class ListeVeterinaireController implements Initializable, MapComponentIn
             }
         }
         );
+    }
+
+    public ArrayList<ListeDesVetirinaires> recherche() {
+        List<ListeDesVetirinaires> vet = listevet.getItems().stream().filter(t -> t.getNom().startsWith("a")).collect(Collectors.toList());
+        System.out.println("ahmeeeed");
+        vet.stream().forEach(e -> System.out.println(e));
+        return (ArrayList<ListeDesVetirinaires>) vet;
+
     }
 
     @FXML
