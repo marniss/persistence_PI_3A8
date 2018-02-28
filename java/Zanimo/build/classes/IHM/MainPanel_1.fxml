@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.MainPanelController">
+   <children>
+      <Button layoutX="189.0" layoutY="91.0" mnemonicParsing="false" onAction="#animalview" prefHeight="61.0" prefWidth="222.0" text="animal" />
+      <Button layoutX="181.0" layoutY="256.0" mnemonicParsing="false" onAction="#sosview" prefHeight="61.0" prefWidth="222.0" text="Sos_Disparition" />
+   </children>
+</AnchorPane>

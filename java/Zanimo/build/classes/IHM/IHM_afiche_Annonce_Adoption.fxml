@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="527.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.IHM_afiche_Annonce_AdoptionController">
+   <children>
+      <ImageView fx:id="imageANimal" fitHeight="186.0" fitWidth="247.0" layoutX="38.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../thumb_gofrette_super_heros.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="329.0" layoutY="63.0" text="Race :" />
+      <Label fx:id="race" layoutX="386.0" layoutY="63.0" text="Label" />
+      <Label layoutX="320.0" layoutY="92.0" prefHeight="17.0" prefWidth="94.0" text="type d'annonce  :" />
+      <Label fx:id="typeAnnonce" layoutX="443.0" layoutY="92.0" text="Label" />
+      <Label layoutX="321.0" layoutY="131.0" prefHeight="17.0" prefWidth="79.0" text="age d'animal :" />
+      <Label fx:id="ageanimal" layoutX="429.0" layoutY="131.0" text="Label" />
+      <Label layoutX="333.0" layoutY="170.0" text="Adresse :" />
+      <Label fx:id="Adresse" layoutX="415.0" layoutY="170.0" text="Label" />
+      <Label layoutX="62.0" layoutY="267.0" prefHeight="17.0" prefWidth="79.0" text="Description: " />
+      <Text fx:id="Description" layoutX="139.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="493.13671875" />
+      <Button layoutX="443.0" layoutY="471.0" mnemonicParsing="false" onAction="#retour" prefHeight="25.0" prefWidth="66.0" text="Retour" />
+      <Button layoutX="545.0" layoutY="471.0" mnemonicParsing="false" onAction="#annuler" text="Annuler" />
+      <Label fx:id="contact" layoutX="45.0" layoutY="430.0" onMouseClicked="#contacterAnonceur" prefHeight="17.0" prefWidth="144.0" text="Contacter l'annonceur" textFill="#310ef8" underline="true">
+         <font>
+            <Font name="Baskerville Old Face" size="13.0" />
+         </font></Label>
+      <Label layoutX="316.0" layoutY="216.0" text="Nom d'annonceur :" />
+   </children>
+</AnchorPane>

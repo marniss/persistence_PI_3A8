@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.IHM_Liste_ParticipationController">
+   <children>
+      <Button fx:id="annuler" layoutX="536.0" layoutY="361.0" mnemonicParsing="false" onAction="#annuler" text="annuler" />
+      <Button fx:id="btntest" layoutX="62.0" layoutY="88.0" mnemonicParsing="false" onAction="#testeraaaaaaaaaaa" prefHeight="55.0" prefWidth="449.0" text="participer a un concours" />
+      <Button fx:id="btnApprouver" layoutX="62.0" layoutY="243.0" mnemonicParsing="false" onAction="#onClickApprouver" prefHeight="46.0" prefWidth="449.0" text="Approuver les participations" />
+   </children>
+</AnchorPane>

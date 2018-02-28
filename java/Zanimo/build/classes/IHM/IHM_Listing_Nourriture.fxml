@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.IHM_Listing_NourritureController">
+   <children>
+      <Pane layoutX="25.0" layoutY="77.0" prefHeight="154.0" prefWidth="671.0" />
+      <TableView fx:id="tbv" layoutX="4.0" layoutY="50.0" prefHeight="334.0" prefWidth="691.0">
+         <columns>
+            <TableColumn fx:id="id" prefWidth="30.0" text="Id" />
+            <TableColumn fx:id="titre" prefWidth="75.0" text="Titre" />
+            <TableColumn fx:id="cate" prefWidth="99.0" text="date de fabrication" />
+            <TableColumn fx:id="prix" prefWidth="51.0" text="Prix" />
+            <TableColumn fx:id="quan" prefWidth="75.0" text="Quantite" />
+            <TableColumn fx:id="datepub" prefWidth="75.0" text="Date publication" />
+            <TableColumn fx:id="vali" prefWidth="75.0" text="validite" />
+            <TableColumn fx:id="des" prefWidth="188.0" text="Description" />
+         </columns>
+      </TableView>
+      <Button fx:id="homebtn" layoutX="17.0" layoutY="18.0" mnemonicParsing="false" onAction="#onclickback" text="← Retour" />
+   </children>
+</AnchorPane>

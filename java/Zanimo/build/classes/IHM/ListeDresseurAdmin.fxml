@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="568.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ListeDresseurAdminController">
+    <stylesheets>
+        <URL value="@listedresseur.css" />
+    </stylesheets>
+    <children>
+        <TableView fx:id="listedress" layoutX="14.0" layoutY="176.0" prefHeight="370.0" prefWidth="450.0">
+            <columns>
+                <TableColumn fx:id="nom" prefWidth="75.0" text="nom" />
+                <TableColumn fx:id="prenom" prefWidth="75.0" text="prenom" />
+                <TableColumn fx:id="tel" prefWidth="75.0" text="Tel" />
+                <TableColumn fx:id="adresse" prefWidth="75.0" text="Adresse" />
+                <TableColumn fx:id="mail" prefWidth="75.0" text="Mail" />
+                <TableColumn fx:id="photo" prefWidth="75.0" text="Photo" />
+            </columns>
+        </TableView>
+        <Label layoutX="117.0" layoutY="22.0" prefHeight="39.0" prefWidth="429.0" text="La Liste Des Dresseurs Admin">
+            <font>
+                <Font name="System Bold Italic" size="27.0" />
+            </font>
+        </Label>
+        <Button fx:id="supprimer" layoutX="474.0" layoutY="526.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+        <Button fx:id="modifier" layoutX="714.0" layoutY="526.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+        <Button fx:id="ajouter" layoutX="638.0" layoutY="526.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+        <Button fx:id="Annuler" layoutX="565.0" layoutY="526.0" mnemonicParsing="false" onAction="#Annuler" text="Annuler" />
+        <TextField fx:id="nomtext" layoutX="549.0" layoutY="176.0" promptText="Nom" />
+        <TextField fx:id="prenomtext" layoutX="548.0" layoutY="234.0" promptText="Prenom" />
+        <TextField fx:id="teltext" layoutX="548.0" layoutY="295.0" promptText="Tel" />
+        <TextField fx:id="adressetext" layoutX="548.0" layoutY="351.0" promptText="Adresse" />
+        <TextField fx:id="mailtext" layoutX="549.0" layoutY="397.0" promptText="Mail" />
+        <TextField fx:id="phototext" layoutX="549.0" layoutY="454.0" promptText="Photo" />
+        <Label layoutX="489.0" layoutY="176.0" text="Nom" />
+        <Label layoutX="489.0" layoutY="236.0" text="Prenom" />
+        <Label layoutX="489.0" layoutY="302.0" text="Tel" />
+        <Label layoutX="489.0" layoutY="359.0" text="Adresse" />
+        <Label layoutX="489.0" layoutY="405.0" text="Mail" />
+        <Label layoutX="489.0" layoutY="462.0" text="Photo" />
+        <Button fx:id="brouse" layoutX="714.0" layoutY="454.0" mnemonicParsing="false" onAction="#brouse" text="parcourir" />
+        <Label fx:id="erreurnom" layoutX="563.0" layoutY="211.0" textFill="#fc0c0c" />
+        <Label fx:id="erreurpre" layoutX="563.0" layoutY="271.0" textFill="#fc0c0c" />
+        <Label fx:id="erreurtel" layoutX="566.0" layoutY="343.0" textFill="#fc0c0c" />
+        <Label fx:id="erreurmail" layoutX="566.0" layoutY="439.0" textFill="#fc0c0c" />
+        <Label fx:id="erreuradres" layoutX="563.0" layoutY="386.0" textFill="#fc0c0c" />
+      <TextField fx:id="find" layoutX="100.0" layoutY="108.0" onKeyReleased="#findAc" prefHeight="25.0" prefWidth="288.0" promptText="Recherche" />
+    </children>
+</AnchorPane>

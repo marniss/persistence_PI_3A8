@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.IHM_SosDisparitionController">
+   <children>
+      <Label layoutX="396.0" layoutY="14.0" text="Description" />
+      <Label layoutX="31.0" layoutY="173.0" text="Id_membre" />
+      <TextField fx:id="membre" layoutX="150.0" layoutY="169.0" />
+      <Button layoutX="251.0" layoutY="318.0" mnemonicParsing="false" onAction="#ajouterSosDisparition" prefWidth="164.0" text="Ajouter" />
+      <Button fx:id="afficher" layoutX="251.0" layoutY="353.0" mnemonicParsing="false" onAction="#afficher" prefWidth="164.0" text="Afficher" />
+      <Label fx:id="error" layoutX="426.0" layoutY="91.0">
+         <tooltip>
+            <Tooltip text="erooorrrr" />
+         </tooltip>
+      </Label>
+      <Label layoutX="17.0" layoutY="39.0" text="Nom" />
+      <TextField fx:id="nom" layoutX="150.0" layoutY="35.0" />
+      <TextField fx:id="num_tel" layoutX="150.0" layoutY="106.0" />
+      <Label layoutX="17.0" layoutY="109.0" text="Numero de Téléphone" />
+      <TextArea fx:id="description" layoutX="386.0" layoutY="37.0" prefHeight="163.0" prefWidth="200.0" />
+      <Label fx:id="errornum" layoutX="150.0" layoutY="131.0" prefHeight="17.0" prefWidth="149.0" textFill="#e41717" />
+      <Label fx:id="errornom" layoutX="150.0" layoutY="60.0" prefHeight="19.0" prefWidth="149.0" textFill="#e41717" />
+      <Label fx:id="errordes" layoutX="386.0" layoutY="210.0" prefHeight="17.0" prefWidth="200.0" textFill="#fc0e0e" />
+      <Label layoutX="47.0" layoutY="219.0" text="E-mail" />
+      <TextField fx:id="email" layoutX="150.0" layoutY="215.0" />
+      <Label layoutX="50.0" layoutY="260.0" text="Adersse" />
+      <TextField fx:id="adresse" layoutX="150.0" layoutY="265.0" />
+   </children>
+</AnchorPane>

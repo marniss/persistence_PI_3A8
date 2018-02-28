@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.lynden.gmapsfx.GoogleMapView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#recherche" prefHeight="460.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.IHM_ListCD">
+   <children>
+      <TableView fx:id="listCD" layoutX="26.0" layoutY="123.0" onMouseClicked="#selection" prefHeight="292.0" prefWidth="347.0">
+         <columns>
+            <TableColumn fx:id="listnom" prefWidth="75.0" text="Nom" />
+            <TableColumn fx:id="listtype" prefWidth="75.0" text="Type" />
+            <TableColumn fx:id="listeadr" prefWidth="75.0" text="Adresse" />
+            <TableColumn fx:id="listetel" prefWidth="122.0" text="Telephone" />
+            <TableColumn fx:id="listenote" prefWidth="109.0" text="Note sur 5" visible="false" />
+            <TableColumn fx:id="listid" prefWidth="75.0" text="ID" visible="false" />
+         </columns>
+      </TableView>
+      <TextField fx:id="word" layoutX="131.0" layoutY="76.0" onKeyReleased="#recherche" />
+      <Label layoutX="59.0" layoutY="80.0" text="Recherche" />
+      <Rating fx:id="evalCD" disable="true" layoutX="459.0" layoutY="64.0" onMouseClicked="#evaluer" partialRating="true" rating="0.0" updateOnHover="true" />
+      <Label layoutX="505.0" layoutY="45.0" text="Evaluer ce Centre" />
+      <Label layoutX="481.0" layoutY="101.0" text="Emplacement du centre" />
+      <Label layoutX="212.0" layoutY="10.0" text="Liste des Centres de Dressage">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+      <Button layoutX="137.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#exportPDF" text="Exporter la liste en PDF" />
+      <GoogleMapView fx:id="m" disable="true" layoutX="387.0" layoutY="124.0" onMouseClicked="#cachep" onMouseReleased="#localiser" prefHeight="292.0" prefWidth="293.0" />
+      <RadioButton contentDisplay="GRAPHIC_ONLY" graphicTextGap="6.0" layoutX="523.0" layoutY="261.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="4.0" selected="true" />
+   </children>
+</Pane>

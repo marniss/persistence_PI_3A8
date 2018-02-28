@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="IHM.IHM_Home_Wiki_CommercialController">
+   <children>
+      <Button fx:id="btncommercial" layoutY="-2.0" mnemonicParsing="false" onAction="#affichermenucommercial" prefHeight="409.0" prefWidth="410.0" text="Commercial" />
+      <Button fx:id="btnwiki" layoutX="344.0" mnemonicParsing="false" onAction="#affichermenuwiki" prefHeight="402.0" prefWidth="359.0" text="Wiki" />
+   </children>
+</AnchorPane>

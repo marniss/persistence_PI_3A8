@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#recherche" prefHeight="434.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.IHM_GestionCS">
+   <children>
+      <Button fx:id="ajout" layoutX="366.0" layoutY="134.0" mnemonicParsing="false" onAction="#ajouterCS" prefHeight="25.0" prefWidth="109.0" text="Ajouter" />
+      <Label layoutX="30.0" layoutY="63.0" text="nom" />
+      <Label layoutX="30.0" layoutY="95.0" text="type" />
+      <Label layoutX="297.0" layoutY="63.0" text="numero" />
+      <Label layoutX="305.0" layoutY="95.0" text="note" />
+      <Label layoutX="30.0" layoutY="125.0" text="adresse" />
+      <TextField fx:id="adress" layoutX="92.0" layoutY="121.0" />
+      <TextField fx:id="type" layoutX="92.0" layoutY="91.0" />
+      <TextField fx:id="nom" layoutX="92.0" layoutY="59.0" />
+      <TextField fx:id="numero" layoutX="346.0" layoutY="59.0" />
+      <Label layoutX="192.0" layoutY="21.0" prefHeight="17.0" prefWidth="217.0" text="GESTION DES CENTRES DE SOINS" />
+      <TableView fx:id="listCS" layoutX="30.0" layoutY="216.0" onMouseClicked="#fillToUpdate" prefHeight="200.0" prefWidth="452.0">
+         <columns>
+            <TableColumn fx:id="listmat" prefWidth="75.0" text="Matricule" />
+            <TableColumn fx:id="listnom" prefWidth="75.0" text="Nom" />
+            <TableColumn fx:id="listtype" prefWidth="75.0" text="Type" />
+            <TableColumn fx:id="listeadr" prefWidth="75.0" text="Adresse" />
+            <TableColumn fx:id="listetel" prefWidth="75.0" text="Telephone" />
+            <TableColumn fx:id="listenote" prefWidth="75.0" text="Note" />
+         </columns>
+      </TableView>
+      <Button fx:id="modif" layoutX="490.0" layoutY="226.0" mnemonicParsing="false" onAction="#modifierCS" prefHeight="25.0" prefWidth="100.0" text="Modifier" />
+      <Button layoutX="490.0" layoutY="266.0" mnemonicParsing="false" onAction="#supprimerCS" prefHeight="25.0" prefWidth="100.0" text="Supprimer" />
+      <Rating fx:id="note" layoutX="349.0" layoutY="88.0" partialRating="true" rating="0.0" />
+      <TextField fx:id="word" layoutX="192.0" layoutY="166.0" onKeyReleased="#recherche" />
+      <Label layoutX="107.0" layoutY="170.0" text="Rechercher" />
+   </children>
+</AnchorPane>

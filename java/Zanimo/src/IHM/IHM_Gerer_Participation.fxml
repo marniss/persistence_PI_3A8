@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.IHM_Gerer_ParticipationController">
+   <children>
+      <Label layoutX="140.0" layoutY="14.0" text="En tant que Administrateur je veux gerer les demandes de participation" />
+      <TableView fx:id="tvGestionParticipation" layoutX="46.0" layoutY="51.0" prefHeight="276.0" prefWidth="621.0">
+        <columns>
+          <TableColumn fx:id="idparticipation" prefWidth="94.0" text="Id participation" />
+          <TableColumn fx:id="typeConcour" minWidth="0.0" prefWidth="119.0" text="Type concours" />
+            <TableColumn fx:id="nbPlaceDispo" prefWidth="164.0" text="nombre de places restantes" />
+            <TableColumn fx:id="typeAnimal" minWidth="0.0" prefWidth="78.0" text="Type Animal" />
+            <TableColumn fx:id="idAnimal" prefWidth="66.0" text="Id Animal" />
+            <TableColumn fx:id="adresseMembre" prefWidth="99.0" text="adresse mail" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnConfirm" layoutX="140.0" layoutY="340.0" mnemonicParsing="false" onAction="#onClickConfirm" text="Confirmer la demande " />
+      <Button fx:id="btnSupp" layoutX="398.0" layoutY="340.0" mnemonicParsing="false" onAction="#onClickDele" text="Supprimer la demande" />
+      <Button fx:id="btnRetour" layoutX="602.0" layoutY="365.0" mnemonicParsing="false" onAction="#annuler" text="Retour" />
+   </children>
+</AnchorPane>

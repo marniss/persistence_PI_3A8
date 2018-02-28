@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="322.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.IHM_AjouterAnimalController">
+   <children>
+      <Button fx:id="ajout" layoutX="13.0" layoutY="218.0" mnemonicParsing="false" onAction="#ajouteranimal" prefHeight="39.0" prefWidth="566.0" text="Ajouter" textOverrun="CLIP">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <Label layoutX="63.0" layoutY="142.0" text="Sexe">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <TextField fx:id="type" layoutX="125.0" layoutY="138.0" promptText="Sexe *" />
+      <Button fx:id="afficher" layoutX="13.0" layoutY="271.0" mnemonicParsing="false" onAction="#afficherlist" prefHeight="39.0" prefWidth="566.0" text="Afficher">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <TextField fx:id="nom" layoutX="125.0" layoutY="23.0" promptText="Nom *" />
+      <Label layoutX="62.0" layoutY="28.0" text="Nom">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="61.0" layoutY="74.0" prefHeight="25.0" prefWidth="52.0" text="Race">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="312.0" layoutY="28.0" text="Date naissance">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="328.0" layoutY="142.0" text="Description ">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="345.0" layoutY="78.0" text="Photo">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <TextField fx:id="race" layoutX="125.0" layoutY="74.0" promptText="Race*" />
+      <TextField fx:id="photo" layoutX="414.0" layoutY="74.0" prefHeight="25.0" prefWidth="123.0" promptText="Image" />
+      <TextArea fx:id="description" layoutX="414.0" layoutY="125.0" prefHeight="83.0" prefWidth="149.0" promptText="Description" />
+      <DatePicker fx:id="date" layoutX="414.0" layoutY="23.0" prefHeight="25.0" prefWidth="149.0" />
+      <Button fx:id="brows" layoutX="537.0" layoutY="74.0" mnemonicParsing="false" onAction="#Ajouter_Photo" prefHeight="25.0" prefWidth="28.0">
+         <graphic>
+            <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/image.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Label fx:id="errorNom" layoutX="143.0" layoutY="49.0" textFill="#e40b0b" />
+      <Label fx:id="erroeidadoption" layoutX="143.0" layoutY="99.0" textFill="#f20a0a" />
+      <Label layoutX="63.0" layoutY="186.0" text="Poid">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="poid" layoutX="125.0" layoutY="182.0" promptText="Poid *" />
+      <RadioButton fx:id="femelle" layoutX="125.0" layoutY="117.0" mnemonicParsing="false" selected="true" text="Femelle">
+         <toggleGroup>
+            <ToggleGroup fx:id="genre" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="male" layoutX="200.0" layoutY="117.0" mnemonicParsing="false" text="Male" toggleGroup="$genre" />
+   </children>
+</AnchorPane>

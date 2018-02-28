@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.IHM_ConourController">
+   <children>
+      <Button layoutX="170.0" layoutY="46.0" mnemonicParsing="false" onAction="#concour" prefHeight="100.0" prefWidth="204.0" text="CONCOURS">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Button>
+      <Button layoutX="175.0" layoutY="209.0" mnemonicParsing="false" onAction="#Participation" prefHeight="90.0" prefWidth="193.0" text="PARTICIPATION">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="datelim" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.Ihm_Ajouter_NourritureController">
+   <children>
+      <Label layoutX="39.0" layoutY="128.0" text="Titre :" />
+      <Label layoutX="396.0" layoutY="128.0" text="Prix : " />
+      <Label layoutX="39.0" layoutY="164.0" text="Quantité :" />
+      <Label layoutX="397.0" layoutY="164.0" text="Type :" />
+      <Label layoutX="40.0" layoutY="298.0" text="Description :" />
+      <Label layoutX="40.0" layoutY="240.0" text="Date de Fabrication :" />
+      <Label layoutX="41.0" layoutY="202.0" text="Validité : " />
+      <Label layoutX="397.0" layoutY="202.0" text="Photo :" />
+      <TextField fx:id="nom" layoutX="166.0" layoutY="124.0" />
+      <TextField fx:id="qte" layoutX="167.0" layoutY="160.0" />
+      <TextArea fx:id="description" layoutX="150.0" layoutY="278.0" prefHeight="90.0" prefWidth="362.0" />
+      <TextField fx:id="prix" layoutX="492.0" layoutY="124.0" />
+      <TextField fx:id="type" layoutX="493.0" layoutY="160.0" />
+      <ChoiceBox fx:id="validite" layoutX="168.0" layoutY="198.0" prefWidth="150.0" />
+      <Button fx:id="buttonValider" layoutX="528.0" layoutY="368.0" mnemonicParsing="false" onAction="#buttonValiderAction" text="Valider" />
+      <Button fx:id="buttonAnnulerAction" layoutX="617.0" layoutY="368.0" mnemonicParsing="false" onAction="#buttonAnnulerAction" text="Annuler" />
+      <Label layoutX="396.0" layoutY="236.0" text="Date de Limite :" />
+      <DatePicker fx:id="datefavb" layoutX="169.0" layoutY="236.0" />
+      <DatePicker fx:id="datelimite" layoutX="491.0" layoutY="232.0" />
+      <Button fx:id="homebtn" layoutX="17.0" layoutY="18.0" mnemonicParsing="false" onAction="#onclickback" text="← Retour" />
+      <TextField fx:id="photo" editable="false" layoutX="491.0" layoutY="198.0" prefHeight="25.0" prefWidth="110.0" />
+      <Button fx:id="btnparcourir" layoutX="601.0" layoutY="198.0" mnemonicParsing="false" onAction="#onClickparcourir" text="Parcourir" />
+      <Label fx:id="erorqte" layoutX="317.0" layoutY="164.0" text="*" textFill="#ff0101" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="erortitre" layoutX="317.0" layoutY="125.0" text="*" textFill="#ff0101" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="erorvali" layoutX="318.0" layoutY="202.0" text="*" textFill="#ff0101" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="erordf" layoutX="347.0" layoutY="238.0" text="*" textFill="#ff0101" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="erorprix" layoutX="646.0" layoutY="124.0" text="*" textFill="#ff0101" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="erortype" layoutX="647.0" layoutY="162.0" text="*" textFill="#ff0101" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="erordl" layoutX="668.0" layoutY="234.0" text="*" textFill="#ff0101" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="msgEror" layoutX="242.0" layoutY="372.0" text="Verifier les champs avec *" textFill="RED" visible="false" />
+   </children>
+</AnchorPane>
