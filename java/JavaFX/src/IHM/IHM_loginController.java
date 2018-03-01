@@ -137,7 +137,7 @@ public class IHM_loginController implements Initializable {
 
 
     @FXML
-    private void ConnecterFB(ActionEvent event) {
+    private void ConnecterFB(ActionEvent event) throws IOException {
      /*  String FBToken ="EAANmZB5FSZAzoBAPxLXXrD5FKR6WojrVpMOeA8SVwBsgfiOIO3BXvrScQl91I3krqkpJWDAGEqE7usFgLxqGleM2bV7bmgAWy4qmhap9ZAxBDcMpqefzaodo7MsHm7T9aZCIZCEeQOdvdQZC4MzYcEdSQ1onefqhhTqBKICEGeRDwwEZAQSqBjpbJXrryHvMCYZD";
         System.out.println("1");
      
@@ -205,7 +205,9 @@ public class IHM_loginController implements Initializable {
             }
        
         }*/
-    String domain = "http://radixcode.com";
+   
+   //avant dernier
+  /*  String domain = "http://radixcode.com";
         String appId = "957655591053114";
        
         String authUrl = "https://www.facebook.com/v2.12/dialog/oauth?" +
@@ -228,10 +230,10 @@ public class IHM_loginController implements Initializable {
                 System.out.println("1");
             String url = driver.getCurrentUrl();
                 System.out.println("2");
-            accessToken = "AQBbSSoSkIyxN_gWzQCVUh";
+            accessToken = "EAANmZB5FSZAzoBAPlc1mFeygu1xUSHBhs7hbtvmFNfQ844cGMPRf8yUgtPZBlZCprWQHALGRpsm9qZBKzjo4INTShyVxbFiEpZADRpNmEc4iBAZCWgdXK8s9PW1wyB4HZCLZAlDGelhr1zJUJlHWwQLiQ6EnM0Pq3rZC1v4lYntgdCigZDZD";
                 System.out.println("3");
            
-           driver.quit();
+           //driver.quit();
                 System.out.println("4");
            
                 FacebookClient fbClient = new DefaultFacebookClient(accessToken,Version.VERSION_2_12);
@@ -241,13 +243,84 @@ public class IHM_loginController implements Initializable {
                
                 System.out.println(user.getEmail());
                 System.out.println(user.getName());
-                System.out.println(user.getEmail());
+               
            b=false;
             }
        
        
-    }
-    
+    }*/
+   String domain = "http://radixcode.com";
+        String appId = "1536537523327125";
+       
+        String authUrl = "https://graph.facebook.com/oauth/authorize?type=user_agent&client_id="+appId+"&redirect_uri="+domain+"&scope=user_about_me,email,user_photos,user_birthday";
+
+                //+ 
+        User user=null;
+        System.setProperty("webdirver.chrome.driver", "chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.get(authUrl);
+        String accessToken;
+        Boolean test=true;
+        while(test){
+       
+            if(!driver.getCurrentUrl().contains("facebook.com")){
+                test=false;
+            String url = driver.getCurrentUrl();
+                       System.out.println(url);
+           accessToken = url.replaceAll(".*#access_token=(.+)&.*", "$1");
+           //System.out.println(accessToken);
+            driver.quit();
+           
+               FacebookClient fbClient = new DefaultFacebookClient(accessToken);
+               user = fbClient.fetchObject("me",User.class,Parameter.with("fields", "name,email,first_name,last_name,gender"));
+               // System.out.println(user.getEmail()+user.getGender());
+                System.out.println(user.getGender());
+                System.out.println(user.getEmail());
+                System.out.println(user.getBirthday());
+                System.out.println(user.getFirstName());
+                System.out.println(user.getLastName());
+                System.out.println(user.getPicture());
+                ControlleurMembre cm = new  ControlleurMembre();
+                membre =cm.getMembreByEmail(user.getEmail());
+
+                if(cm.emailExiste(user.getEmail())==1){
+                            
+            System.out.println("je seuiw"+membre);
+             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_Accueil.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(new Scene(root1));  
+                stage.show();
+                
+                Notifications.create()
+                                .title("Succée")
+                                .text("bienvenue "+membre.getNom()+" " + membre.getPrenom()+" vous etes connecter")
+                                .showInformation();
+            
+                    
+                }
+                else {
+                    cm.ajoutMembre(user.getName(), user.getLastName(), "", user.getEmail(), 0, "", "");
+                    System.out.println("je seuiw"+membre);
+             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_Accueil.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(new Scene(root1));  
+                stage.show();
+                
+                     Notifications.create()
+                                .title("Succée")
+                                .text("bienvenue "+membre.getNom()+" " + membre.getPrenom()+" vous étes inscri avec succés vous pouvez saisir vos coordonnés")
+                                .showInformation();
+            
+                }
+            }
+       
+        }
     
     
     }

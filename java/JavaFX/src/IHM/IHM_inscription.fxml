@@ -5,9 +5,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="IHM.IHM_inscriptionController">
+<AnchorPane id="AnchorPane" fx:id="imageView" prefHeight="468.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.IHM_inscriptionController">
      
    <children>
       <Label layoutX="42.0" layoutY="45.0" text="Nom *" />
@@ -40,5 +41,6 @@
       <Label fx:id="Erortype" layoutX="433.0" layoutY="267.0" textFill="#f50c0c" />
       <PasswordField fx:id="motdepasse" layoutX="422.0" layoutY="115.0" promptText="mot de passe" />
       <PasswordField fx:id="conf" layoutX="424.0" layoutY="182.0" promptText="confirmer mot de passe" />
+      <ImageView fx:id="image" fitHeight="79.0" fitWidth="200.0" layoutX="52.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

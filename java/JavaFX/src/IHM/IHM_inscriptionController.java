@@ -8,7 +8,12 @@ package IHM;
 import entites.Membre;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -25,6 +30,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JFileChooser;
 import services.ControlleurChamps;
@@ -82,190 +91,188 @@ public class IHM_inscriptionController implements Initializable {
     public static int code;
     public static Membre m;
     public static String types;
+
+    @FXML
+    private ImageView image;
+
+    private static Path destination1;
+    private static File selectedfile1;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     
+
         type.getItems().add("simple utilisateur");
-         type.getItems().add("veterinere");
+        type.getItems().add("veterinere");
         type.getItems().add("dresseur");
-    }    
+    }
 
     @FXML
-    private void ajouter(ActionEvent event)  {
-         ControlleurMembre ca = new ControlleurMembre();
-            ControlleurChamps cc = new ControlleurChamps();
-            int c=1 ;
+    private void ajouter(ActionEvent event) throws IOException {
+        ControlleurMembre ca = new ControlleurMembre();
+        ControlleurChamps cc = new ControlleurChamps();
+        int c = 1;
 
-                        if (nom.getText().isEmpty()||!cc.isName(nom.getText())){
-                             c=0;
-                             if(nom.getText().isEmpty()){
-                                Erornom.setText("il faut ajouter un nom");
+        if (nom.getText().isEmpty() || !cc.isName(nom.getText())) {
+            c = 0;
+            if (nom.getText().isEmpty()) {
+                Erornom.setText("il faut ajouter un nom");
 
-                            }else          
-                             {  Erornom.setText("il faut ajouter un nom  valide");}
+            } else {
+                Erornom.setText("il faut ajouter un nom  valide");
+            }
 
-
-                        }
-                        if (prenom.getText().isEmpty()||!cc.isName(prenom.getText())){
-                             c=0;
-                             if(prenom.getText().isEmpty()){
-                                Errorprenom.setText("il faut ajouter un prénom");
-
-                            }else          
-                             {  Errorprenom.setText("il faut ajouter un prenom  valide");}
-
-
-                        }
-                        if (tel.getText().isEmpty()||!cc.isNum(tel.getText())){
-                             c=0;
-                             if(tel.getText().isEmpty()){
-                                erroreTel.setText("il faut ajouter un numero de téléphone");
-
-                            }else          
-                             {  erroreTel.setText("il faut ajouter un numero  valide");}
-
-
-                        }
-                        if (email.getText().isEmpty()||!cc.isEmail(email.getText())||ca.emailExiste(email.getText())==1){
-                             c=0;
-                             if(email.getText().isEmpty()){
-                                ErorEmail.setText("il faut ajouter un email");
-
-                            }else if   (!cc.isEmail(email.getText()))       
-                             {  ErorEmail.setText("il faut ajouter un email valide");}
-                            else
-                            {  ErorEmail.setText("email existe déja");}
-
-
-
-                        }
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        if (motdepasse.getText().isEmpty()||!conf.getText().equals(motdepasse.getText())||motdepasse.getText().length()<8){
-                                         c=0;
-                             if (motdepasse.getText().isEmpty())
-                             { errorMotPAsse.setText("il faut ajouter un mot de passe");}
-                              else  if (motdepasse.getText().length()<8)
-                              { errorMotPAsse.setText("il faut plus de 8 caractére");}
-
-                                 else  if (!conf.getText().equals(motdepasse.getText())){
-            
-                              errorConfirmerMotdePass.setText("il faut confirmer le mot de passe");
-            
-                                        }
-                        }
-                        else  
-        if(type.getValue()=="simple utilisateur"&&c==1)
-        {
-             m = new Membre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(),motdepasse.getText() );
-        Random rand = new Random();
-
-                this.code = rand.nextInt(4000) + 1000;
-        ServiceEmail se = new ServiceEmail();
-        se.sendEmail(email.getText(), "votre code confirmation est :"+code+"");
-        
-        types="simpleUtilisateur";
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ConfirmationCode.fxml"));
-       
-        Parent root1;
-             try {
-                 root1 = (Parent) fxmlLoader.load();
-                  Stage stage = new Stage();
-                  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.hide();
-                stage.setScene(new Scene(root1));  
-                stage.setX(m.getIdMembre());       
-                stage.show();
-             } catch (IOException ex) {
-                 System.out.println("error dans la redirection au confirmation de compte");             }
-               
-             
-         
         }
-        else if(type.getValue()=="veterinaire"&&c==1)
-        { m = new Membre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(),motdepasse.getText() );
-        Random rand = new Random();
+        if (prenom.getText().isEmpty() || !cc.isName(prenom.getText())) {
+            c = 0;
+            if (prenom.getText().isEmpty()) {
+                Errorprenom.setText("il faut ajouter un prénom");
 
-                this.code = rand.nextInt(4000) + 1000;
-        ServiceEmail se = new ServiceEmail();
-        se.sendEmail(email.getText(), "votre code confirmation est :"+code+"");
-        
-        types="Veterinaire";
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ConfirmationCode.fxml"));
-       
-        Parent root1;
-             try {
-                 root1 = (Parent) fxmlLoader.load();
-                  Stage stage = new Stage();
-                  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.hide();
-                stage.setScene(new Scene(root1));  
-                stage.setX(m.getIdMembre());       
-                stage.show();
-             } catch (IOException ex) {
-                 System.out.println("error dans la redirection au confirmation de compte");             }
-               
-             
-         
-                }
-        else if(type.getValue()=="dresseur"&&c==1){
-           m = new Membre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(),motdepasse.getText() );
-        Random rand = new Random();
+            } else {
+                Errorprenom.setText("il faut ajouter un prenom  valide");
+            }
 
-                this.code = rand.nextInt(4000) + 1000;
-        ServiceEmail se = new ServiceEmail();
-        se.sendEmail(email.getText(), "votre code confirmation est :"+code+"");
-        
-        types="dresseur";
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ConfirmationCode.fxml"));
-       
-        Parent root1;
-             try {
-                 root1 = (Parent) fxmlLoader.load();
-                  Stage stage = new Stage();
-                  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.hide();
-                stage.setScene(new Scene(root1));  
-                stage.setX(m.getIdMembre());       
-                stage.show();
-             } catch (IOException ex) {
-                 System.out.println("error dans la redirection au confirmation de compte");             }
-               
-             
-         
         }
-        
-        else{
-                        Erortype.setText("il faut choisir un type d'utilisation");
+        if (tel.getText().isEmpty() || !cc.isNum(tel.getText())) {
+            c = 0;
+            if (tel.getText().isEmpty()) {
+                erroreTel.setText("il faut ajouter un numero de téléphone");
+
+            } else {
+                erroreTel.setText("il faut ajouter un numero  valide");
+            }
+
+        }
+        if (email.getText().isEmpty() || !cc.isEmail(email.getText()) || ca.emailExiste(email.getText()) == 1) {
+            c = 0;
+            if (email.getText().isEmpty()) {
+                ErorEmail.setText("il faut ajouter un email");
+
+            } else if (!cc.isEmail(email.getText())) {
+                ErorEmail.setText("il faut ajouter un email valide");
+            } else {
+                ErorEmail.setText("email existe déja");
+            }
+
+        }
+
+        if (motdepasse.getText().isEmpty() || !conf.getText().equals(motdepasse.getText()) || motdepasse.getText().length() < 8) {
+            c = 0;
+            if (motdepasse.getText().isEmpty()) {
+                errorMotPAsse.setText("il faut ajouter un mot de passe");
+            } else if (motdepasse.getText().length() < 8) {
+                errorMotPAsse.setText("il faut plus de 8 caractére");
+            } else if (!conf.getText().equals(motdepasse.getText())) {
+
+                errorConfirmerMotdePass.setText("il faut confirmer le mot de passe");
+
+            }
+        } else if (type.getValue() == "simple utilisateur" && c == 1) {
+            m = new Membre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(), motdepasse.getText());
+            if (selectedfile1 != null) {
+                Files.copy(selectedfile1.toPath(), destination1, StandardCopyOption.REPLACE_EXISTING);
+            }
+
+            Random rand = new Random();
+
+            this.code = rand.nextInt(4000) + 1000;
+            ServiceEmail se = new ServiceEmail();
+            se.sendEmail(email.getText(), "votre code confirmation est :" + code + "");
+
+            types = "simpleUtilisateur";
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ConfirmationCode.fxml"));
+
+            Parent root1;
+            try {
+                root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(new Scene(root1));
+                stage.setX(m.getIdMembre());
+                stage.show();
+            } catch (IOException ex) {
+                System.out.println("error dans la redirection au confirmation de compte");
+            }
+
+        } else if (type.getValue() == "veterinaire" && c == 1) {
+            m = new Membre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(), motdepasse.getText());
+            Random rand = new Random();
+            if (selectedfile1 != null) {
+                Files.copy(selectedfile1.toPath(), destination1, StandardCopyOption.REPLACE_EXISTING);
+            }
+
+            this.code = rand.nextInt(4000) + 1000;
+            ServiceEmail se = new ServiceEmail();
+            se.sendEmail(email.getText(), "votre code confirmation est :" + code + "");
+
+            types = "Veterinaire";
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ConfirmationCode.fxml"));
+
+            Parent root1;
+            try {
+                root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(new Scene(root1));
+                stage.setX(m.getIdMembre());
+                stage.show();
+            } catch (IOException ex) {
+                System.out.println("error dans la redirection au confirmation de compte");
+            }
+
+        } else if (type.getValue() == "dresseur" && c == 1) {
+            if (selectedfile1 != null) {
+                Files.copy(selectedfile1.toPath(), destination1, StandardCopyOption.REPLACE_EXISTING);
+            }
+
+            m = new Membre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(), motdepasse.getText());
+            Random rand = new Random();
+
+            this.code = rand.nextInt(4000) + 1000;
+            ServiceEmail se = new ServiceEmail();
+            se.sendEmail(email.getText(), "votre code confirmation est :" + code + "");
+
+            types = "dresseur";
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ConfirmationCode.fxml"));
+
+            Parent root1;
+            try {
+                root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(new Scene(root1));
+                stage.setX(m.getIdMembre());
+                stage.show();
+            } catch (IOException ex) {
+                System.out.println("error dans la redirection au confirmation de compte");
+            }
+
+        } else {
+            Erortype.setText("il faut choisir un type d'utilisation");
 
         }
     }
 
     @FXML
-    private void brows(ActionEvent event) {
-        
-        
-        
-        JFileChooser file = new JFileChooser();
-        
-        file.showOpenDialog(null);
-        File f = file.getSelectedFile();
-        doc.setText(f.getAbsolutePath());
+    private void brows(ActionEvent event) throws MalformedURLException {
+
+        FileChooser fc = new FileChooser();
+        selectedfile1 = fc.showOpenDialog(null);
+        destination1 = Paths.get("C:\\wamp64\\www\\PIZanimo\\photo_membre", selectedfile1.getName());
+        doc.setText(selectedfile1.getName());
+
     }
 
     @FXML
     private void annuler(ActionEvent event) {
-         Stage stage = new Stage();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.hide();
+        Stage stage = new Stage();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.hide();
     }
-    
+
 }

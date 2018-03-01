@@ -54,10 +54,6 @@ public class IHM_liste_membreController implements Initializable {
     private TableColumn<Membre, String> num;
     @FXML
     private TableColumn<Membre, String> email;
-    @FXML
-    private TableColumn<Membre, String> note;
-    @FXML
-    private TableColumn<Membre, String> etat;
     
     public static int idZbotrech ;
     
@@ -87,8 +83,7 @@ ControlleurMembre cm = new ControlleurMembre();
       		adresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
       		num.setCellValueFactory(new PropertyValueFactory<>("num"));
       		email.setCellValueFactory(new PropertyValueFactory<>("email"));
-      		note.setCellValueFactory(new PropertyValueFactory<>("note"));
-      		etat.setCellValueFactory(new PropertyValueFactory<>("etat"));
+      		;
                 
                 
                 
@@ -283,9 +278,6 @@ Notifications.create().text("vous etes deconnecter ").showInformation();;
         table.setItems(sortedData);
     }
 
-    @FXML
-    private void ajouter(MouseEvent event) {
-    }
-    
+ 
 
 }

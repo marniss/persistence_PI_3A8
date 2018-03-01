@@ -23,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 /**
  * FXML Controller class
@@ -37,6 +38,10 @@ public class IHM_ajouter_donnationController implements Initializable {
     private TextField lieu;
     @FXML
     private TextArea desc;
+    @FXML
+    private Label ErrorLieu;
+    @FXML
+    private Label errorDesc;
 
     /**
      * Initializes the controller class.
@@ -48,12 +53,26 @@ public class IHM_ajouter_donnationController implements Initializable {
 
     @FXML
     private void ajouter(ActionEvent event) {
+        int i=1;
+        if (lieu.getText().isEmpty()){
+          ErrorLieu.setText("il faut ajouter votre adresse");
+          i=0;
+            
+        }
+        if (desc.getText().isEmpty()){
+            errorDesc.setText("il faut ajouter une description");
+          i=0; 
+        }
+        if( i==1){
+            
+        
         ControlleurAdoption ca = new ControlleurAdoption();
-        ca.ajoutDonnation(1, new Date(), lieu.getText(), 0, desc.getText());
+        ca.ajoutDonnation(IHM_loginController.membre.getIdMembre(), lieu.getText(), desc.getText(), "Donner", IHM_Animal_DonnerController.idAnimal);
          Alert alert;
         alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("Ajout effectuer avec succés");
             alert.show();
+        }
     }
 
     @FXML

@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_ProfilController.java</file>
-            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_AccueilController.java</file>
-            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_Profil.fxml</file>
-            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_membre_afficherController.java</file>
+            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_liste_membreController.java</file>
+            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_contacter_annonce_AdoptionController.java</file>
+            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_Adoption_afficherController.java</file>
+            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/ihm_liste_membre.css</file>
+            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/IHM_loginController.java</file>
+            <file>file:/C:/Users/houssem/Desktop/pi/persistence_PI_3A8/java/JavaFX/src/IHM/ihm_isncription.css</file>
         </group>
     </open-files>
 </project-private>

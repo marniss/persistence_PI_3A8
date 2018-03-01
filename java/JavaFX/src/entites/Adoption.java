@@ -148,7 +148,7 @@ public class Adoption {
                 + "`dateAnnonce`, "
                 + "`id_membre`,"
                 + "`etatAdoption`,"
-                + "`description,`"
+                + "`description`,"
                 + "`id_animal`"
                 + ") "
                 + " VALUES ( '"
@@ -190,14 +190,17 @@ public class Adoption {
                 + "`dateAnnonce`, "
                 + "`id_membre`,"
                 + "`etatAdoption`,"
-                + "`description`"
+                + "`description`,"
+               + "`id_animal`"
+
                 + ") "
                 + " VALUES ( '"
                 
                 + this.lieu+"','deleger',now(),"
                 + this.idMembre
                 +",1,'"
-                + this.description
+                + this.description+"',"
+                + this.idAnimal
                 
                 
                 + "');";

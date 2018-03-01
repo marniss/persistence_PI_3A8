@@ -54,15 +54,26 @@ public class IHM_ajouter_delegationController implements Initializable {
     @FXML
     private void ajouter(ActionEvent event) {
         
-        
-         ControlleurAdoption ca = new ControlleurAdoption();
-        ca.ajoutDelegation(1, new Date(), lieu.getText(), 0, desc.getText());
+   int i=1;
+        if (lieu.getText().isEmpty()){
+          erreurLieu.setText("il faut ajouter votre adresse");
+          i=0;
+            
+        }
+        if (desc.getText().isEmpty()){
+            erreurDes.setText("il faut ajouter une description");
+          i=0; 
+        }
+        if( i==1){
             
         
-        Alert alert;
+        ControlleurAdoption ca = new ControlleurAdoption();
+        ca.ajoutDelegation(IHM_loginController.membre.getIdMembre(), lieu.getText(), desc.getText(), "Donner", IHM_Animal_DelegerController.idAnimal);
+         Alert alert;
         alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("Ajout effectuer avec succés");
             alert.show();
+        }
     }
 
     @FXML
