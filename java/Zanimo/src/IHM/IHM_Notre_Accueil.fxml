@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.IHM_Notre_AccueilController">
+   <children>
+      <Label layoutX="263.0" layoutY="-5.0" text="ZanImO" textFill="#80da56">
+         <font>
+            <Font size="78.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnsonne" layoutX="626.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickAffichLogIn" text="Se connecter | S'iscrire" />
+      <Label layoutX="38.0" layoutY="119.0" text="Les derniers Accessoires" />
+      <Label layoutX="517.0" layoutY="119.0" text="La Nourriture" />
+      <VBox fx:id="vbListingAccessoire" layoutX="30.0" layoutY="145.0" prefHeight="445.0" prefWidth="283.0">
+         <children>
+            <JFXDrawer fx:id="drawer" prefHeight="414.0" prefWidth="100.0" />
+         </children></VBox>
+      <VBox fx:id="vbListingNourriture" layoutX="394.0" layoutY="140.0" prefHeight="445.0" prefWidth="276.0" />
+      <Pane fx:id="menu" layoutY="9.0" prefHeight="600.0" prefWidth="224.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutY="224.0" mnemonicParsing="false" onAction="#onClickSoin" prefHeight="43.0" prefWidth="224.0" text="Soin" />
+            <Button layoutY="168.0" mnemonicParsing="false" onAction="#onClickCommercial" prefHeight="46.0" prefWidth="224.0" text="Commercial" />
+            <Button layoutY="114.0" mnemonicParsing="false" onAction="#onClickAnimal" prefHeight="43.0" prefWidth="224.0" text="Animal" />
+            <Button layoutX="1.0" layoutY="394.0" mnemonicParsing="false" onAction="#onClickWIKI" prefHeight="43.0" prefWidth="224.0" text="WIKI" />
+            <Button layoutX="1.0" layoutY="338.0" mnemonicParsing="false" onAction="#onClickConcours" prefHeight="46.0" prefWidth="224.0" text="Concours" />
+            <Button layoutX="1.0" layoutY="284.0" mnemonicParsing="false" onAction="#onClickDressage" prefHeight="43.0" prefWidth="224.0" text="Dressage" />
+            <Button fx:id="btngestion" layoutX="1.0" layoutY="451.0" mnemonicParsing="false" onAction="#onClickGestionItilisateur" prefHeight="43.0" prefWidth="224.0" text="Gestion Utilisateurs" />
+            <Button layoutY="53.0" mnemonicParsing="false" onAction="#onClickProfil" prefHeight="43.0" prefWidth="224.0" text="Profil" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

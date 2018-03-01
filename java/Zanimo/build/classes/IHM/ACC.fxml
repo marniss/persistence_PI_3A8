@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="141.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pkg50.printapplication.ACCController">
+    <children>
+        <VBox fx:id="vboxMenu" prefHeight="600.0" prefWidth="141.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#accueil" prefHeight="43.0" prefWidth="140.0" text="Accueil" />
+                <Button mnemonicParsing="false" onAction="#profil" prefHeight="46.0" prefWidth="140.0" text="Profil" />
+                <Button mnemonicParsing="false" onAction="#adoption" prefHeight="43.0" prefWidth="140.0" text="Adoption" />
+                <Button mnemonicParsing="false" onAction="#sos_dis" prefHeight="50.0" prefWidth="140.0" text="Sos_Disparition" />
+                <Button mnemonicParsing="false" onAction="#animal" prefHeight="48.0" prefWidth="140.0" text="Animal" />
+                <Button mnemonicParsing="false" onAction="#produit" prefHeight="40.0" prefWidth="140.0" text="Produit" />
+                <Button mnemonicParsing="false" onAction="#concour" prefHeight="38.0" prefWidth="140.0" text="Concours" />
+                <Button mnemonicParsing="false" onAction="#veterinair" prefHeight="49.0" prefWidth="140.0" text="Vétéinaires" />
+                <Button mnemonicParsing="false" onAction="#dresseur" prefHeight="48.0" prefWidth="140.0" text="Dresseurs" />
+                <Button mnemonicParsing="false" onAction="#centresoin" prefHeight="51.0" prefWidth="140.0" text="Centre De Soin" />
+                <Button mnemonicParsing="false" onAction="#centredress" prefHeight="57.0" prefWidth="140.0" text="Centre De Dressage" />
+                <Button mnemonicParsing="false" onAction="#faq" prefHeight="53.0" prefWidth="140.0" text="FAQ" />
+                <Button mnemonicParsing="false" onAction="#gestionutilis" prefHeight="46.0" prefWidth="140.0" text="Gestion Utilisateur" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

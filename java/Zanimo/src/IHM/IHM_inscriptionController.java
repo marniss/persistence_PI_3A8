@@ -8,7 +8,12 @@ package IHM;
 import entites.Membre;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -25,6 +30,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JFileChooser;
 import services.ControlleurChamps;
@@ -83,6 +92,12 @@ public class IHM_inscriptionController implements Initializable {
     public static Membre m;
     public static String types;
 
+    @FXML
+    private ImageView image;
+
+    private static Path destination1;
+    private static File selectedfile1;
+
     /**
      * Initializes the controller class.
      */
@@ -95,7 +110,7 @@ public class IHM_inscriptionController implements Initializable {
     }
 
     @FXML
-    private void ajouter(ActionEvent event) {
+    private void ajouter(ActionEvent event) throws IOException {
         ControlleurMembre ca = new ControlleurMembre();
         ControlleurChamps cc = new ControlleurChamps();
         int c = 1;
@@ -155,8 +170,10 @@ public class IHM_inscriptionController implements Initializable {
 
             }
         } else if (type.getValue() == "simple utilisateur" && c == 1) {
-
             m = new Membre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(), motdepasse.getText());
+            if (selectedfile1 != null) {
+                Files.copy(selectedfile1.toPath(), destination1, StandardCopyOption.REPLACE_EXISTING);
+            }
 
             Random rand = new Random();
 
@@ -164,7 +181,7 @@ public class IHM_inscriptionController implements Initializable {
             ServiceEmail se = new ServiceEmail();
             se.sendEmail(email.getText(), "votre code confirmation est :" + code + "");
 
-            types = "simpleutilisateur";
+            types = "simpleUtilisateur";
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ConfirmationCode.fxml"));
 
             Parent root1;
@@ -183,12 +200,15 @@ public class IHM_inscriptionController implements Initializable {
         } else if (type.getValue() == "veterinaire" && c == 1) {
             m = new Membre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(), motdepasse.getText());
             Random rand = new Random();
+            if (selectedfile1 != null) {
+                Files.copy(selectedfile1.toPath(), destination1, StandardCopyOption.REPLACE_EXISTING);
+            }
 
             this.code = rand.nextInt(4000) + 1000;
             ServiceEmail se = new ServiceEmail();
             se.sendEmail(email.getText(), "votre code confirmation est :" + code + "");
 
-            types = "veterinaire";
+            types = "Veterinaire";
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ConfirmationCode.fxml"));
 
             Parent root1;
@@ -205,6 +225,10 @@ public class IHM_inscriptionController implements Initializable {
             }
 
         } else if (type.getValue() == "dresseur" && c == 1) {
+            if (selectedfile1 != null) {
+                Files.copy(selectedfile1.toPath(), destination1, StandardCopyOption.REPLACE_EXISTING);
+            }
+
             m = new Membre(nom.getText(), prenom.getText(), adresse.getText(), email.getText(), Integer.parseInt(tel.getText()), doc.getText(), motdepasse.getText());
             Random rand = new Random();
 
@@ -235,13 +259,13 @@ public class IHM_inscriptionController implements Initializable {
     }
 
     @FXML
-    private void brows(ActionEvent event) {
+    private void brows(ActionEvent event) throws MalformedURLException {
 
-        JFileChooser file = new JFileChooser();
+        FileChooser fc = new FileChooser();
+        selectedfile1 = fc.showOpenDialog(null);
+        destination1 = Paths.get("C:\\wamp64\\www\\PIZanimo\\photo_membre", selectedfile1.getName());
+        doc.setText(selectedfile1.getName());
 
-        file.showOpenDialog(null);
-        File f = file.getSelectedFile();
-        doc.setText(f.getAbsolutePath());
     }
 
     @FXML

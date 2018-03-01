@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.IHM_ProfilController">
@@ -24,5 +25,6 @@
       <Label fx:id="email" layoutX="117.0" layoutY="186.0" text="Label" />
       <Button layoutX="34.0" layoutY="241.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="194.0" text="modifier le profile" />
       <Button layoutX="34.0" layoutY="276.0" mnemonicParsing="false" onAction="#changepasword" prefHeight="25.0" prefWidth="194.0" text="Chnager mot de passe" />
+      <ImageView fx:id="image" fitHeight="135.0" fitWidth="173.0" layoutX="358.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

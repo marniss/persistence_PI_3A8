@@ -66,11 +66,21 @@ public class IHM_membre_afficherController implements Initializable {
         email.setText(m.getEmail());
         type.setText(m.getType());
         date.setText("" + m.getDateInscription());
-        System.out.println("ZZZZZZ" + m.getPhoto());
-        /*URL imageURL = getClass().getResource("/image/maphoto.jpg");
-        Image i = new Image(imageURL.toExternalForm());
+        System.out.println("ZZZZZZ" + m.getPhoto() + "zzzz");
+        System.out.println("111222555");
 
-//image.setImage(i);*/
+        if (!m.getPhoto().equals("")) {
+            File file = new File("C:\\wamp64\\www\\PIZanimo\\photo_membre\\" + m.getPhoto());
+            Image i = new Image(file.toURI().toString());
+            image.setImage(i);
+            System.out.println(file.toURI().toString());
+        } else {
+            File file2 = new File("C:\\wamp64\\www\\PIZanimo\\photo_membre\\download.jpg");
+            Image i2 = new Image(file2.toURI().toString());
+
+            image.setImage(i2);
+        }
+
     }
 
     @FXML
