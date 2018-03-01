@@ -17,7 +17,7 @@ public class ServiceAnimal {
     Animal animal = new Animal();
 
     public ArrayList<Animal> selectAll(int id) {
-        return animal.selectAllhh(id);
+        return animal.selectAllFromMembre(id);
     }
 
 }

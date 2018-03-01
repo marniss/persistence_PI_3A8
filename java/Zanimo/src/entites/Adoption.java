@@ -20,16 +20,17 @@ import services.DataSource;
  * @author houssem
  */
 public class Adoption {
-    
+
     private int idAdoption;
     private int idMembre;
     private Date dateAnnonce;
     private String lieu;
     private int etatAdoption;
     private String description;
-    private  String type;
+    private String type;
     private int idAnimal;
 //constructeurs
+
     public Adoption() {
     }
 
@@ -40,9 +41,8 @@ public class Adoption {
         this.type = type;
         this.idAnimal = idAnimal;
     }
-    
 
-    public Adoption(int idMembre,  Date dateAnnonce, String lieu, int etatAdoption, String description) {
+    public Adoption(int idMembre, Date dateAnnonce, String lieu, int etatAdoption, String description) {
         this.idMembre = idMembre;
         this.dateAnnonce = dateAnnonce;
         this.lieu = lieu;
@@ -58,9 +58,7 @@ public class Adoption {
     public void setIdAnimal(int idAnimal) {
         this.idAnimal = idAnimal;
     }
-    
-    
-    
+
     public String getType() {
         return type;
     }
@@ -69,9 +67,6 @@ public class Adoption {
         this.type = type;
     }
 
-    
-    
-    
     public String getDescription() {
         return description;
     }
@@ -97,8 +92,6 @@ public class Adoption {
         this.idMembre = idMembre;
     }
 
-  
-
     public Date getDateAnnonce() {
         return dateAnnonce;
     }
@@ -122,17 +115,18 @@ public class Adoption {
     public void setEtatAdoption(int etatAdoption) {
         this.etatAdoption = etatAdoption;
     }
-    
-    
+
     // les methodes
-    
-     // les attributs relatifs au methodes CRUD
+    // les attributs relatifs au methodes CRUD
     Connection conn = DataSource.getInstance().getConnection();
     private Statement stmt;
-    
-    /** l'ajou
-     * @return t**/
-    public int ajouterDonnation (){
+
+    /**
+     * l'ajou
+     *
+     * @return t*
+     */
+    public int ajouterDonnation() {
         try {
             stmt = conn.createStatement();
         } catch (SQLException ex) {
@@ -141,40 +135,37 @@ public class Adoption {
         }
         // preparation de la requette
         String maRequette = "INSERT INTO `adoption`("
-              
                 + "`lieu`, "
-        
                 + "`type`, "
                 + "`dateAnnonce`, "
                 + "`id_membre`,"
                 + "`etatAdoption`,"
-                + "`description,`"
+                + "`description`,"
                 + "`id_animal`"
                 + ") "
                 + " VALUES ( '"
-                
-                + this.lieu+"','donner',now(),"
+                + this.lieu + "','donner',now(),"
                 + this.idMembre
-                +",1,'"
-                + this.description+"',"
+                + ",1,'"
+                + this.description + "',"
                 + this.idAnimal
-                
-                
                 + ");";
+        System.out.println(maRequette);
         // execution de la requette
-        try{
+        try {
             stmt.executeUpdate(maRequette);
             System.out.println(" l'ajout est effectue");
             return 1;
-        }catch(SQLException ahmed_makni){
+        } catch (SQLException ahmed_makni) {
             System.out.println("erreur lors de l'exxecution de la requete d'ajout d'une donnation d'un annimal \n");
             System.out.println(ahmed_makni.getMessage());
-            
+
         }
         return 0;
-        
+
     }
-    public int ajouterDelegation (){
+
+    public int ajouterDelegation() {
         try {
             stmt = conn.createStatement();
         } catch (SQLException ex) {
@@ -182,44 +173,38 @@ public class Adoption {
             System.out.println(ex.getMessage());
         }
         // preparation de la requette
-       String maRequette = "INSERT INTO `adoption`("
-              
+        String maRequette = "INSERT INTO `adoption`("
                 + "`lieu`, "
-        
                 + "`type`, "
                 + "`dateAnnonce`, "
                 + "`id_membre`,"
                 + "`etatAdoption`,"
                 + "`description`,"
-               + "`id_animal`"
-
+                + "`id_animal`"
                 + ") "
                 + " VALUES ( '"
-                
-                + this.lieu+"','deleger',now(),"
+                + this.lieu + "','deleger',now(),"
                 + this.idMembre
-                +",1,'"
-                + this.description+"',"
+                + ",1,'"
+                + this.description + "',"
                 + this.idAnimal
-                
-                
                 + "');";
         // execution de la requette
-        try{
+        try {
             stmt.executeUpdate(maRequette);
             System.out.println(" l'ajout est effectue");
             return 1;
-        }catch(SQLException ahmed_makni){
+        } catch (SQLException ahmed_makni) {
             System.out.println("erreur lors de l'exxecution de la requete d'ajout d'un accessoire \n");
             System.out.println(ahmed_makni.getMessage());
-            
+
         }
         return 0;
-        
+
     }
-    
+
     //supprission d'un acc
-    public int supprimerAdoption(){
+    public int supprimerAdoption() {
         try {
             stmt = conn.createStatement();
         } catch (SQLException ex) {
@@ -230,26 +215,25 @@ public class Adoption {
         String maRequette = "UPDATE `adoption` "
                 + "SET `Etat_Accessoire`= 0"
                 + " WHERE Id_Accessoire = "
-                + this.idAdoption+
-                ";";
-        
+                + this.idAdoption
+                + ";";
+
         // execution de la requette
-        try{
+        try {
             stmt.executeUpdate(maRequette);
             System.out.println(" l'ajout est effectue");
             return 1;
-        }catch(SQLException ahmed_makni){
+        } catch (SQLException ahmed_makni) {
             System.out.println("erreur lors de l'exxecution de la requete de la supprission \n");
             System.out.println(ahmed_makni.getMessage());
-            
+
         }
         return 0;
-        
+
     }
-    
-    
-    //la methode modifier 
-    public int modifierAdoption(){
+
+    //la methode modifier
+    public int modifierAdoption() {
         try {
             stmt = conn.createStatement();
         } catch (SQLException ex) {
@@ -258,70 +242,66 @@ public class Adoption {
         }
         // preparation de la requette
         String maRequette = "UPDATE `adoption` SET "
-                + "`dateAnnonce`="+this.dateAnnonce+","
-                + "`lieu`="+this.lieu+","
-         
-                + "`etatAdoption`="+this.etatAdoption+","
-                + "`idMembre`="+this.idMembre
-                + "`description`="+this.description
+                + "`dateAnnonce`=" + this.dateAnnonce + ","
+                + "`lieu`=" + this.lieu + ","
+                + "`etatAdoption`=" + this.etatAdoption + ","
+                + "`idMembre`=" + this.idMembre
+                + "`description`=" + this.description
                 + "WHERE 1 "
                 + ";";
-        
+
         // execution de la requette
-        try{
+        try {
             stmt.executeUpdate(maRequette);
             System.out.println(" l'ajout est effectue");
             return 1;
-        }catch(SQLException ahmed_makni){
+        } catch (SQLException ahmed_makni) {
             System.out.println("erreur lors de l'exxecution de la requete de la supprission \n");
             System.out.println(ahmed_makni.getMessage());
-            
+
         }
         return 0;
     }
-    
-    
-    
-   //methode consultation
-    public Adoption getAdoption(int id){
+
+    //methode consultation
+    public Adoption getAdoption(int id) {
         Adoption leResultat = new Adoption();
-         try {
+        try {
             stmt = conn.createStatement();
         } catch (SQLException ex) {
             System.out.println("erreur lors de la creation du statment \n");
             System.out.println(ex.getMessage());
         }
         // preparation de la requette
-        String maRequette = "SELECT * FROM adoption WHERE Id_Adoption = "+ id +";";
-        
+        String maRequette = "SELECT * FROM adoption WHERE Id_Adoption = " + id + ";";
+
         // execution de la requette
-        try{
+        try {
             ResultSet res = stmt.executeQuery(maRequette);
             System.out.println(" la recuperation des donnees est effectue");
-            while(res.next()){
-                leResultat.idAdoption=res.getInt(1);
-                leResultat.idMembre=res.getInt(2);
-                leResultat.dateAnnonce=res.getDate(3);
-                leResultat.etatAdoption=res.getInt(4);
-                leResultat.description=res.getString(5);
+            while (res.next()) {
+                leResultat.idAdoption = res.getInt(1);
+                leResultat.idMembre = res.getInt(2);
+                leResultat.dateAnnonce = res.getDate(3);
+                leResultat.etatAdoption = res.getInt(4);
+                leResultat.description = res.getString(5);
                 /*et la suite ***/
             }
-           
-        }catch(SQLException houssem_marnissi){
+
+        } catch (SQLException houssem_marnissi) {
             System.out.println("erreur lors de l'exxecution de la requete de la supprission \n");
             System.out.println(houssem_marnissi.getMessage());
-            
+
         }
-        
-        
+
         return leResultat;
     }
-    
+
     public ArrayList<Adoption> selectAll() {
-         ArrayList<Adoption> le = new ArrayList();
+        ArrayList<Adoption> le = new ArrayList();
         try {
             PreparedStatement st = conn.prepareStatement(
-            "SELECT id_adoption,id_membre,type,dateAnnonce,lieu"
+                    "SELECT id_adoption,id_membre,type,dateAnnonce,lieu"
                     + ",etatAdoption,description FROM adoption");
             ResultSet res = st.executeQuery();
             while (res.next()) {
@@ -332,16 +312,14 @@ public class Adoption {
                 e.setDateAnnonce(res.getDate(4));
                 e.setType(res.getString(3));
                 e.setDescription(res.getString(7));
-                
+
                 le.add(e);
             }
             return le;
         } catch (SQLException ex) {
             System.out.println("ereuur dans l'aafichage");
-        return null;
+            return null;
         }
     }
-    
-    
-    
+
 }

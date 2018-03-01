@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package services;
- import java.util.Properties;
+
+import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
 
@@ -13,47 +14,42 @@ import javax.mail.internet.*;
  * @author houssem
  */
 public class ServiceEmail {
-   
 
+    public void sendEmail(String email, String text) {
+        String from = "mourynesse@gmail.com";
+        String password = "09151213";
 
-  
+        Properties props = System.getProperties();
 
-  public void sendEmail(String email , String text) {
-    String from = "touilsalah94@gmail.com";
-    String password = "salah94+";
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication gePasswordAuthenticationt() {
+                return new PasswordAuthentication(from, password);
+            }
+        });
+        MimeMessage message = new MimeMessage(session);
 
-    Properties props = System.getProperties();
+        try {
+            message.setFrom(new InternetAddress(from));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
 
-    props.put("mail.smtp.auth", "true");
-    props.put("mail.smtp.starttls.enable", "true");
-    props.put("mail.smtp.starttls.required", "true");
-    props.put("mail.smtp.host", "smtp.gmail.com");
-    props.put("mail.smtp.port", "587");
-    Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-protected  PasswordAuthentication gePasswordAuthenticationt(){
-    return new PasswordAuthentication(from, password);
-}
-    });
-    MimeMessage message = new MimeMessage(session);
+            message.setSubject("Zanimo");
+            message.setText(text);
+            System.out.println("1");
+            Transport transport = session.getTransport("smtp");
+            System.out.println("2");
+            transport.connect("smtp.gmail.com", from, password);
+            System.out.println("3");
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+            System.out.println("email envoyer avec succes");
 
-    try {
-      message.setFrom(new InternetAddress(from));
-      message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-
-      message.setSubject("Zanimo");
-      message.setText(text);
-        System.out.println("1");
-      Transport transport =session.getTransport("smtp");
-        System.out.println("2");
-      transport.connect("smtp.gmail.com", from, password);
-        System.out.println("3");
-      transport.sendMessage(message, message.getAllRecipients());
-      transport.close();
-        System.out.println("email envoyer avec succes");
-    
-    } catch (MessagingException me) {
-        System.out.println("error l'hors de l'envoi ");
+        } catch (MessagingException me) {
+            System.out.println("error l'hors de l'envoi ");
+        }
     }
-  }
 }
-

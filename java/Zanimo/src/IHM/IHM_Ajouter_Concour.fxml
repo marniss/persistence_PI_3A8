@@ -36,5 +36,6 @@
       <Label fx:id="error1" layoutX="342.0" layoutY="110.0" text="&quot;le remplisage du champs est obligatoire&quot;" textFill="#e80a0a" visible="false" />
       <Label fx:id="error2" layoutX="342.0" layoutY="270.0" text="&quot;il faut une date supperieur a date d'ajourdhui&quot;" textFill="#f20b0b" visible="false" />
       <Label fx:id="error3" layoutX="342.0" layoutY="318.0" text="&quot;il faut une date superieure à la date Début&quot;" textFill="#f80707" visible="false" />
+      <Label fx:id="capaeror" layoutX="349.0" layoutY="150.0" text="Angham ben Said" textFill="RED" visible="false" />
    </children>
 </AnchorPane>

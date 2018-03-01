@@ -53,10 +53,11 @@ public class IHM_Animal_DelegerController implements Initializable {
         System.out.println(idZbotrech);
 
         ServiceAnimal sa = new ServiceAnimal();
+        System.out.println("id membre houxwa    " + IHM_loginController.membre.getIdMembre());
         for (Animal s : sa.selectAll(IHM_loginController.membre.getIdMembre())) {
             tableAnimal.getItems().add(s);
             race.setCellValueFactory(new PropertyValueFactory<>("race"));
-            sexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
+            sexe.setCellValueFactory(new PropertyValueFactory<>("type"));
             photo.setCellValueFactory(new PropertyValueFactory<>("photo"));
             nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         }

@@ -66,7 +66,7 @@ public class IHM_ParticipationController implements Initializable {
     private void onClickConfirmer(ActionEvent event) {
         if (tvListinAnimal.getSelectionModel().getSelectedItem() != null) {
             ControlleurParticipation temp = new ControlleurParticipation();
-            int idAnimalSelectionne = tvListinAnimal.getSelectionModel().getSelectedItem().getId();
+            int idAnimalSelectionne = tvListinAnimal.getSelectionModel().getSelectedItem().getIdAnimal();
             temp.ajouterParticipation(idAnimalSelectionne, IHM_Liste_Concour_PartiController.concourSelectionner.getIdConcour());
             Alert alert;
             alert = new Alert(Alert.AlertType.INFORMATION);

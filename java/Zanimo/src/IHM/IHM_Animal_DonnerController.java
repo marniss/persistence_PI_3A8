@@ -93,6 +93,7 @@ public class IHM_Animal_DonnerController implements Initializable {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IHM_ajouter_donnation.fxml"));
                 this.idAnimal = m.getIdAnimal();
+                System.out.println("fdgfdgfdgdfgdfgfdg" + idAnimal);
 
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();

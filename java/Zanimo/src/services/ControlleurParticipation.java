@@ -54,7 +54,7 @@ public class ControlleurParticipation {
 
     public static Animal getAnimalviaid(int id) {
         Animal x = new Animal();
-        return x.getAnimalviaid(id);
+        return x.getAnimal(id);
     }
 
     public void confirm(int id) {

@@ -36,76 +36,83 @@ public class IHM_AjouterAnimalController implements Initializable {
 
     private TextField animal;
     private TextField adoption;
-    @FXML       private Button ajout;
-    @FXML       private TextField type;
-    @FXML       private Button afficher;
-    @FXML       private TextField nom;
-    @FXML       private TextField race;
-    @FXML       private DatePicker date;
-    @FXML       private TextField photo;
-    @FXML       private TextArea description;
-    @FXML       private Button brows;   
-    @FXML       private Label errorNom; 
-    @FXML       private Label erroeidadoption;
-    @FXML       private TextField poid;
+    @FXML
+    private Button ajout;
+    @FXML
+    private TextField type;
+    @FXML
+    private Button afficher;
+    @FXML
+    private TextField nom;
+    @FXML
+    private TextField race;
+    @FXML
+    private DatePicker date;
+    @FXML
+    private TextField photo;
+    @FXML
+    private TextArea description;
+    @FXML
+    private Button brows;
+    @FXML
+    private Label errorNom;
+    @FXML
+    private Label erroeidadoption;
+    @FXML
+    private TextField poid;
     @FXML
     private RadioButton femelle;
     @FXML
     private RadioButton male;
     @FXML
     private ToggleGroup genre;
-    
 
-    
-
-
-  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-  }    
-     //***************************************************************************************************************
+
+    }
+    //***************************************************************************************************************
     //                                         AJOUTER Animal
     //***************************************************************************************************************
+
     @FXML
     private void ajouteranimal(ActionEvent event) {
         String gen;
         ControlleurChamp cc = new ControlleurChamp();
-        
-          if (!cc.isRace(race.getText())) {
+
+        if (!cc.isRace(race.getText())) {
             erroeidadoption.setText("il faut un race valide");
-          }
-           else if (!cc.isName(nom.getText())) {
+        } else if (!cc.isName(nom.getText())) {
             errorNom.setText("il faut un nom valide");
-            
-        }
-           else{
-              if( femelle.isSelected()){
-                  gen="femelle";
-              }else {
-                  gen="male";
-              } 
-              System.out.println(gen);
-       String s= date.getValue().toString();
-            Date ddd= java.sql.Date.valueOf(date.getValue());
-     
-            Animal a=new Animal( gen,nom.getText(), race.getText(), ddd, description.getText(),Double.parseDouble(poid.getText()));
-            a.ajouterAnimal();       
-            
-            Alert al =new Alert (Alert.AlertType.INFORMATION);
+
+        } else {
+            if (femelle.isSelected()) {
+                gen = "femelle";
+            } else {
+                gen = "male";
+            }
+            System.out.println(gen);
+            String s = date.getValue().toString();
+            Date ddd = java.sql.Date.valueOf(date.getValue());
+
+            Animal a = new Animal(gen, nom.getText(), race.getText(), ddd, description.getText(), Double.parseDouble(poid.getText()), 1, IHM_loginController.membre.getIdMembre());
+            a.ajouterAnimal();
+
+            Alert al = new Alert(Alert.AlertType.INFORMATION);
             al.setTitle("INFORMATION");
             al.setHeaderText(null);
             al.setContentText("Animal Ajouter");
             al.showAndWait();
-    }
+        }
 
     }
-     //*************************************
+    //*************************************
     //AFFICHER List Animal
     //*************************************
+
     @FXML
     private void afficherlist(ActionEvent event) {
-          try {
+        try {
             Parent parent = FXMLLoader.load(getClass().getResource("/IHM/IHM_List_Animal.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(parent);
@@ -116,17 +123,14 @@ public class IHM_AjouterAnimalController implements Initializable {
         }
     }
 
-   @FXML
-   private void Ajouter_Photo(ActionEvent event) {
-        
+    @FXML
+    private void Ajouter_Photo(ActionEvent event) {
+
         JFileChooser file = new JFileChooser();
         file.showOpenDialog(null);
-        File f =file.getSelectedFile();
+        File f = file.getSelectedFile();
         photo.setText(f.getAbsolutePath());
-        
-    }
- 
-    
-    }
-    
 
+    }
+
+}

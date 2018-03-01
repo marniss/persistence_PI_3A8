@@ -52,7 +52,7 @@ public class IHM_Afficher_NourritureController implements Initializable {
     private TextField madate;
     @FXML
     private TextField datefab;
-    public static int idn=0;
+    public static int idn = 0;
     @FXML
     private Button btnmodifier;
     @FXML
@@ -66,92 +66,89 @@ public class IHM_Afficher_NourritureController implements Initializable {
         // TODO
         ServiceNourriture service = new ServiceNourriture();
         Nourriture temp = service.getNourriture(idn);
-        
+
         nom.setText(temp.getNom());
         nom.setEditable(false);
         nom.setMouseTransparent(true);
         nom.setFocusTraversable(false);
-        
-        idmembre.setText("Identifiant membre :         "+temp.getIdMembre()); 
-        
+
+        idmembre.setText("Identifiant membre :         " + temp.getIdMembre());
+
         description.setText(temp.getDescription());
         description.setEditable(false);
         description.setMouseTransparent(true);
         description.setFocusTraversable(false);
 
-        quantite.setText(""+temp.getQteStock());
+        quantite.setText("" + temp.getQteStock());
         quantite.setEditable(false);
         quantite.setMouseTransparent(true);
         quantite.setFocusTraversable(false);
-        
-        prix.setText(""+temp.getPrix()+"  DT");
+
+        prix.setText("" + temp.getPrix() + "  DT");
         prix.setEditable(false);
         prix.setMouseTransparent(true);
         prix.setFocusTraversable(false);
-        
+
         type.setText(temp.getType());
         type.setEditable(false);
         type.setMouseTransparent(true);
         type.setFocusTraversable(false);
-        
-        datefab.setText(""+temp.getDateFabricationNourriture());
+
+        datefab.setText("" + temp.getDateFabricationNourriture());
         datefab.setEditable(false);
         datefab.setMouseTransparent(true);
         datefab.setFocusTraversable(false);
 
-        datelim.setText(""+temp.getDateLimiteNourriture());
+        datelim.setText("" + temp.getDateLimiteNourriture());
         datelim.setEditable(false);
         datelim.setMouseTransparent(true);
         datelim.setFocusTraversable(false);
-        
-        madate.setText(""+temp.getDatePublication());
+
+        madate.setText("" + temp.getDatePublication());
         madate.setEditable(false);
         madate.setMouseTransparent(true);
         madate.setFocusTraversable(false);
-        
-        
-        File file ;
-        if(temp.getPhoto().length()==0){
+
+        File file;
+        if (temp.getPhoto().length() == 0) {
             file = new File("src/data/0.jpg");
-        }
-        else{
+        } else {
             file = new File(temp.getPhoto());
         }
-        
+
         Image image = new Image(file.toURI().toString());
         imgproduit.setImage(image);
         imgproduit.setVisible(true);
-        System.out.println(image);
-    }    
+    }
 
     @FXML
     private void onclickmodifier(ActionEvent event) {
-        try{
-                Stage stage = (Stage) btnmodifier.getScene().getWindow();
-                stage.close();
-  
-                Parent root = FXMLLoader.load(getClass().getResource("IHM_Modifier_Nourriture.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }catch(IOException o){
-                o.getMessage();
-            }
+        try {
+            Stage stage = (Stage) btnmodifier.getScene().getWindow();
+            stage.close();
+
+            Parent root = FXMLLoader.load(getClass().getResource("IHM_Modifier_Nourriture.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException o) {
+            o.getMessage();
+        }
     }
 
     @FXML
     private void onclicksupprimer(ActionEvent event) {
-        try{
-                Stage stage = (Stage) btnmodifier.getScene().getWindow();
-                stage.close();
-                
-                Parent root = FXMLLoader.load(getClass().getResource("IHM_Supprimer_Nourriture.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }catch(IOException o){
-                o.getMessage();
-            }
+        try {
+            Stage stage = (Stage) btnmodifier.getScene().getWindow();
+            stage.close();
+
+            Parent root = FXMLLoader.load(getClass().getResource("IHM_Supprimer_Nourriture.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException o) {
+            o.getMessage();
+        }
     }
 
     @FXML
@@ -159,12 +156,12 @@ public class IHM_Afficher_NourritureController implements Initializable {
         try {
             Stage stage = (Stage) homebtn.getScene().getWindow();
             stage.close();
-            
+
             homebtn.getScene().setRoot(FXMLLoader.load(getClass().getResource("IHM_Listing_Nourriture.fxml")));
         } catch (Exception e) {
             System.out.println("backbutton error");
             System.out.println(e.getMessage());
-        }        
+        }
     }
-    
+
 }

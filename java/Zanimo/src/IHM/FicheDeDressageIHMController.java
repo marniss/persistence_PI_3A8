@@ -38,6 +38,7 @@ import javafx.stage.Stage;
 import services.ControlleurAnimal;
 import services.ControlleurChamps;
 import services.ControlleurFicheDeDressage;
+import services.ControlleurMembre;
 
 /**
  * FXML Controller class
@@ -127,18 +128,21 @@ public class FicheDeDressageIHMController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         ajouter.setDisable(true);
-        id_anim.setCellValueFactory(new PropertyValueFactory("id"));
+        id_anim.setCellValueFactory(new PropertyValueFactory("id_animal"));
         nom_anim.setCellValueFactory(new PropertyValueFactory("nom"));
 
         listeanimal.getItems().addAll(animals);
         listeanimal.setOnMouseClicked((event) -> {
             if (event.getClickCount() == 2) {
                 Animal fs = listeanimal.getItems().get(listeanimal.getSelectionModel().getSelectedIndex());
-                id = fs.getId();
+                id = fs.getIdAnimal();
                 nomlab.setText("Nom : " + fs.getAnimal(id).getNom());
-                prop.setText("Propritére : " + fs.getAnimal(id).getProprietaire());
-                poidslab.setText("Poids : " + String.valueOf(fs.getAnimal(id).getPoids()));
-                racelab.setText("Race : " + fs.getAnimal(id).getEspece());
+
+                ControlleurMembre cm = new ControlleurMembre();
+                String nomp = cm.getMembre(fs.getAnimal(id).getId_membre()).getNom();
+                prop.setText("Propritére : " + nomp);
+                poidslab.setText("Poids : " + String.valueOf(fs.getAnimal(id).getPoid()));
+                racelab.setText("Race : " + fs.getAnimal(id).getRace());
                 ajouter.setDisable(false);
             }
         });

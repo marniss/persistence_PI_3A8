@@ -32,6 +32,7 @@ import javafx.scene.text.Text;
 import services.ControlleurAnimal;
 import services.ControlleurChamps;
 import services.ControlleurFicheDeSoin;
+import services.ControlleurMembre;
 
 /**
  * FXML Controller class
@@ -104,12 +105,14 @@ public class FicheDeSoinIHMController implements Initializable {
             if (event.getClickCount() == 2) {
 
                 Animal fs = listeanimal.getItems().get(listeanimal.getSelectionModel().getSelectedIndex());
-                id = fs.getId();
+                id = fs.getIdAnimal();
                 nom.setText("Nom : " + fs.getAnimal(id).getNom());
-                prop.setText("Proprietaire : " + fs.getAnimal(id).getProprietaire());
-                poids.setText("Poids : " + String.valueOf(fs.getAnimal(id).getPoids()));
 
-                espece.setText("race : " + fs.getAnimal(id).getEspece());
+                ControlleurMembre cm = new ControlleurMembre();
+                String nomp = cm.getMembre(fs.getAnimal(id).getId_membre()).getNom();
+                prop.setText("Propritére : " + nomp);
+                poids.setText("Poids : " + String.valueOf(fs.getAnimal(id).getPoid()));
+                espece.setText("Race : " + fs.getAnimal(id).getRace());
                 datep.setValue(LocalDate.now());
                 ajouterFiche.setDisable(false);
             } else {

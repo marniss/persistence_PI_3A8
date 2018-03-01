@@ -5,7 +5,6 @@
  */
 package services;
 
-
 import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,9 +13,10 @@ import java.sql.SQLException;
  *
  * @author ahmed
  */
- public class DataSource {
-    private  static DataSource data ;
-    private String url = "jdbc:mysql://localhost:3306/Zanimo";
+public class DataSource {
+
+    private static DataSource data;
+    private String url = "jdbc:mysql://localhost:3306/test3";
     private String username = "root";
     private String pasword = "";
     private Connection con;

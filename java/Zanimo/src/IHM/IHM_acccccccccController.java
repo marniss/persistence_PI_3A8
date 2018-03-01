@@ -83,6 +83,16 @@ public class IHM_acccccccccController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+
+    }
+
+    @FXML
+    private void acccc(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("IHM_Notre_Accueil.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

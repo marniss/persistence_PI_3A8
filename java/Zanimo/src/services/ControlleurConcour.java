@@ -52,8 +52,8 @@ public class ControlleurConcour {
     }
 
     public ArrayList<Animal> displayAnimal(int idpro) {
-        Animal temp = new Animal(idpro);
-        return temp.displayAnimal();
+        Animal temp = new Animal();
+        return temp.selectAllFromMembre(idpro);
     }
 
     public void incrementParticpant(String str) {

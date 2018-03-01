@@ -55,39 +55,38 @@ public class IHM_membre_afficherController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                ControlleurMembre x = new ControlleurMembre();
+        ControlleurMembre x = new ControlleurMembre();
 
-              Membre m=x.getMembre(IHM_liste_membreController.idZbotrech);
-                      
-                      nom.setText(m.getNom());
-                      adresse.setText(m.getAdresse());
-                      tel.setText(""+m.getNum());
-                      prenom.setText(m.getPrenom());
-                      email.setText(m.getEmail());
-                      type.setText(m.getType());
-                      date.setText(""+m.getDateInscription());
-                     System.out.println("ZZZZZZ"+m.getPhoto());
-URL imageURL = getClass().getResource("/image/maphoto.jpg");
- Image i = new Image(imageURL.toExternalForm());
- 
-image.setImage(i);
+        Membre m = x.getMembre(IHM_liste_membreController.idZbotrech);
 
-    }    
+        nom.setText(m.getNom());
+        adresse.setText(m.getAdresse());
+        tel.setText("" + m.getNum());
+        prenom.setText(m.getPrenom());
+        email.setText(m.getEmail());
+        type.setText(m.getType());
+        date.setText("" + m.getDateInscription());
+        System.out.println("ZZZZZZ" + m.getPhoto());
+        /*URL imageURL = getClass().getResource("/image/maphoto.jpg");
+        Image i = new Image(imageURL.toExternalForm());
+
+//image.setImage(i);*/
+    }
 
     @FXML
     private void retour(ActionEvent event) throws IOException {
-                Stage stage = new Stage();
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.hide();
-                
+        Stage stage = new Stage();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.hide();
+
     }
 
     @FXML
     private void Annuler(ActionEvent event) {
-      Stage stage = new Stage();
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.hide();
-                
+        Stage stage = new Stage();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.hide();
+
     }
-    
+
 }

@@ -136,7 +136,7 @@ public class IHM_Gerer_ParticipationController implements Initializable {
                 Animal tempAnimal = crtParticipation.getAnimalviaid(participation.getIdAnimal());
                 //ajout dans notre tab Vie
                 int angham = tempConcours.getCapacite() - tempConcours.getNbparticipant();
-                ParticipationAffectation temp = new ParticipationAffectation("" + participation.getIdParticipation(), tempConcours.getTypeConcour(), "" + angham, tempAnimal.getEspece(), "" + tempAnimal.getId(), "eamail");
+                ParticipationAffectation temp = new ParticipationAffectation("" + participation.getIdParticipation(), tempConcours.getTypeConcour(), "" + angham, tempAnimal.getRace(), "" + tempAnimal.getIdAnimal(), "eamail");
                 tvGestionParticipation.getItems().addAll(temp);
             } catch (Exception ex) {
                 System.out.println("error ihmGestionParticipation ** " + ex.getMessage());

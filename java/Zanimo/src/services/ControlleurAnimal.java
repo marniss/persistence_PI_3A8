@@ -17,7 +17,7 @@ public class ControlleurAnimal {
     public ArrayList afficherAnimal() {
         Animal fds = new Animal();
         System.out.println("animal controller");
-        return fds.displayAnimal();
+        return fds.selectAll();
     }
 
 }
