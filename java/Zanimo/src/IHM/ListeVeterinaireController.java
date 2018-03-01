@@ -30,7 +30,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.Rating;
@@ -79,6 +81,8 @@ public class ListeVeterinaireController implements Initializable, MapComponentIn
     private Button mapi;
 
     private GeocodingService G;
+    @FXML
+    private TextField find;
 
     /*
      * Initializes the controller class.
@@ -208,5 +212,25 @@ public class ListeVeterinaireController implements Initializable, MapComponentIn
         listevet.getItems().clear();
         listevet.getItems().addAll(clv.displayList());
 
+    }
+
+    @FXML
+    private void findAc(KeyEvent event) {
+        String mot = find.getText();
+        if (mot.length() > 0) {
+            List<ListeDesVetirinaires> vet = recherche(mot);
+            listevet.getItems().clear();
+            listevet.getItems().addAll(vet);
+            if (vet.size() == 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("aucun veterinaire Trouves");
+                alert.showAndWait();
+            }
+        } else {
+            listevet.getItems().clear();
+            listevet.getItems().addAll(clv.displayList());
+        }
     }
 }

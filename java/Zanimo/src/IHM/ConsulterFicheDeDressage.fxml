@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="398.0" prefWidth="1065.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ConsulterFicheDeDressageController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ConsulterFicheDeDressageController">
     <children>
-        <Label layoutX="477.0" layoutY="31.0" prefHeight="39.0" prefWidth="275.0" text="Fiches Des Dressages">
+        <Label layoutX="172.0" layoutY="32.0" prefHeight="39.0" prefWidth="275.0" text="Fiches Des Dressages">
             <font>
                 <Font name="System Bold Italic" size="27.0" />
             </font>
@@ -29,33 +29,33 @@
                 <TableColumn fx:id="dateFin" prefWidth="75.0" text="dateFin" />
             </columns>
         </TableView>
-        <Label layoutX="931.0" layoutY="42.0" text="id" />
-        <Button fx:id="Modifier" layoutX="297.0" layoutY="322.0" mnemonicParsing="false" onAction="#modi" text="Modifier" />
-        <Button fx:id="Supprimer" layoutX="403.0" layoutY="322.0" mnemonicParsing="false" onAction="#supp" text="Supprimer" />
-        <Button fx:id="ajouter" layoutX="507.0" layoutY="322.0" mnemonicParsing="false" onAction="#add" text="Ajouter" />
-        <Button fx:id="annuler" layoutX="618.0" layoutY="322.0" mnemonicParsing="false" onAction="#annuler" text="Annuler" />
-        <Label layoutX="691.0" layoutY="108.0" text="specialite" />
-        <Label layoutX="849.0" layoutY="232.0" text="displine" />
-        <Label layoutX="691.0" layoutY="160.0" text="obeissance" />
-        <Label layoutX="691.0" layoutY="223.0" text="interception" />
-        <Label layoutX="691.0" layoutY="285.0" text="date Debut" />
-        <Label layoutX="834.0" layoutY="160.0" text="accompagnement" />
-        <Label layoutX="890.0" layoutY="285.0" text="date Fin" />
-        <TextField fx:id="specialitetext" layoutX="801.0" layoutY="104.0" prefHeight="25.0" prefWidth="121.0" />
-        <TextField fx:id="obeissancetext" layoutX="771.0" layoutY="156.0" prefHeight="25.0" prefWidth="41.0" />
-        <TextField fx:id="interceptiontext" layoutX="775.0" layoutY="219.0" prefHeight="25.0" prefWidth="41.0" />
-        <TextField fx:id="displinetext" layoutX="949.0" layoutY="228.0" prefHeight="25.0" prefWidth="41.0" />
-        <TextField fx:id="accompagnementtext" layoutX="953.0" layoutY="156.0" prefHeight="25.0" prefWidth="41.0" />
-        <DatePicker fx:id="datedep" layoutX="762.0" layoutY="281.0" prefHeight="25.0" prefWidth="121.0" />
-        <DatePicker fx:id="datef" layoutX="941.0" layoutY="281.0" prefHeight="25.0" prefWidth="112.0" />
-        <Label fx:id="erreursp" layoutX="715.0" layoutY="129.0" textFill="#ff0202" />
-        <Label fx:id="erreurdes" layoutX="860.0" layoutY="253.0" textFill="#f50b0b" />
-        <Label fx:id="erreurinterc" layoutX="704.0" layoutY="253.0" textFill="#f20202" />
-        <Label fx:id="erreuraco" layoutX="864.0" layoutY="185.0" textFill="#eb0404" />
-        <Label fx:id="erreurobe" layoutX="705.0" layoutY="185.0" textFill="#eb0303" />
-        <Label fx:id="erreurdeb" layoutX="726.0" layoutY="314.0" textFill="#f50606" />
-        <Label fx:id="erreurfin" layoutX="942.0" layoutY="314.0" textFill="#f50303" />
-      <Button fx:id="impri" layoutX="775.0" layoutY="347.0" mnemonicParsing="false" onAction="#imprimer" style="-fx-border-radius: 10; -fx-background-radius: 10;" text="imprimer" />
+        <Label layoutX="825.0" layoutY="62.0" prefHeight="17.0" prefWidth="21.0" />
+        <Button fx:id="Modifier" layoutX="51.0" layoutY="319.0" mnemonicParsing="false" onAction="#modi" text="Modifier" />
+        <Button fx:id="Supprimer" layoutX="157.0" layoutY="319.0" mnemonicParsing="false" onAction="#supp" text="Supprimer" />
+        <Button fx:id="ajouter" layoutX="261.0" layoutY="319.0" mnemonicParsing="false" onAction="#add" text="Ajouter" />
+        <Button fx:id="annuler" layoutX="372.0" layoutY="319.0" mnemonicParsing="false" onAction="#annuler" text="Annuler" />
+        <Label layoutX="66.0" layoutY="398.0" text="specialite" />
+        <Label layoutX="341.0" layoutY="488.0" text="displine" />
+        <Label layoutX="66.0" layoutY="458.0" text="obeissance" />
+        <Label layoutX="341.0" layoutY="407.0" text="interception" />
+        <Label layoutX="512.0" layoutY="420.0" text="date Debut" />
+        <Label layoutX="66.0" layoutY="500.0" text="accompagnement" />
+        <Label layoutX="513.0" layoutY="480.0" text="date Fin" />
+        <TextField fx:id="specialitetext" layoutX="188.0" layoutY="394.0" prefHeight="25.0" prefWidth="121.0" />
+        <TextField fx:id="obeissancetext" layoutX="187.0" layoutY="446.0" prefHeight="25.0" prefWidth="41.0" />
+        <TextField fx:id="interceptiontext" layoutX="425.0" layoutY="403.0" prefHeight="25.0" prefWidth="41.0" />
+        <TextField fx:id="displinetext" layoutX="430.0" layoutY="484.0" prefHeight="25.0" prefWidth="41.0" />
+        <TextField fx:id="accompagnementtext" layoutX="185.0" layoutY="496.0" prefHeight="25.0" prefWidth="41.0" />
+        <DatePicker fx:id="datedep" layoutX="583.0" layoutY="416.0" prefHeight="25.0" prefWidth="121.0" />
+        <DatePicker fx:id="datef" layoutX="583.0" layoutY="476.0" prefHeight="25.0" prefWidth="121.0" />
+        <Label fx:id="erreursp" layoutX="77.0" layoutY="424.0" prefHeight="17.0" prefWidth="9.0" textFill="#ff0202" />
+        <Label fx:id="erreurdes" layoutX="348.0" layoutY="521.0" prefHeight="17.0" prefWidth="9.0" textFill="#f50b0b" />
+        <Label fx:id="erreurinterc" layoutX="343.0" layoutY="438.0" prefHeight="17.0" prefWidth="29.0" textFill="#f20202" />
+        <Label fx:id="erreuraco" layoutX="67.0" layoutY="536.0" prefHeight="17.0" prefWidth="21.0" textFill="#eb0404" />
+        <Label fx:id="erreurobe" layoutX="67.0" layoutY="480.0" prefHeight="17.0" prefWidth="29.0" textFill="#eb0303" />
+        <Label fx:id="erreurdeb" layoutX="639.0" layoutY="336.0" prefHeight="17.0" prefWidth="21.0" textFill="#f50606" />
+        <Label fx:id="erreurfin" layoutX="512.0" layoutY="521.0" prefHeight="17.0" prefWidth="21.0" textFill="#f50303" />
+      <Button fx:id="impri" layoutX="752.0" layoutY="190.0" mnemonicParsing="false" onAction="#imprimer" style="-fx-border-radius: 10; -fx-background-radius: 10;" text="imprimer" />
 
     </children>
 </AnchorPane>

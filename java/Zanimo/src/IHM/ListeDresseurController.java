@@ -19,7 +19,9 @@ import com.lynden.gmapsfx.service.geocoding.GeocodingService;
 import entites.ListeDesDresseurs;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,7 +30,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.Rating;
@@ -76,6 +80,8 @@ public class ListeDresseurController implements Initializable, MapComponentIniti
     private GoogleMapView gmap;
     private GeocodingService G;
     ArrayList<ListeDesDresseurs> listedesdreArrayList = cld.displayList();
+    @FXML
+    private TextField find;
 
     /**
      * Initializes the controller class.
@@ -190,8 +196,39 @@ public class ListeDresseurController implements Initializable, MapComponentIniti
         mapInitialized();
     }
 
+    public ArrayList<ListeDesDresseurs> recherche(String x) {
+        return (ArrayList<ListeDesDresseurs>) listedress.getItems().stream().filter(
+        t -> t.getNom().startsWith(x)
+        || t.getPrenom().startsWith(x)
+        || t.getTel().startsWith(x)
+        || t.getAdresse().startsWith(x)
+        || t.getMail().startsWith(x)
+        ).collect(Collectors.toList());
+
+    }
+
     public void ref() {
         listedress.getItems().clear();
         listedress.getItems().addAll(cld.displayList());
+    }
+
+    @FXML
+    private void findAc(KeyEvent event) {
+        String mot = find.getText();
+        if (mot.length() > 0) {
+            List<ListeDesDresseurs> dres = recherche(mot);
+            listedress.getItems().clear();
+            listedress.getItems().addAll(dres);
+            if (dres.size() == 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("aucun Dresseur Trouve");
+                alert.showAndWait();
+            } else {
+                listedress.getItems().clear();
+                listedress.getItems().addAll(cld.displayList());
+            }
+        }
     }
 }

@@ -9,7 +9,6 @@
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
     <jar href="lib\GMapsFX-2.0.9.jar" size="166541" download="eager" />
-    <jar href="lib\GMapsFX-2.10.0.jar" size="154471" download="eager" />
     <jar href="lib\byte-buddy-1.7.9.jar" size="2924116" download="eager" />
     <jar href="lib\client-combined-3.9.1-sources.jar" size="493803" download="eager" />
     <jar href="lib\client-combined-3.9.1.jar" size="1467886" download="eager" />
@@ -19,7 +18,7 @@
     <jar href="lib\controlsfx-8.40.14.jar" size="1215643" download="eager" />
     <jar href="lib\controlsfx-samples-8.40.13.jar" size="720107" download="eager" />
     <jar href="lib\controlsfx-samples-8.40.14.jar" size="725707" download="eager" />
-    <jar href="lib\fxsampler-1.0.10.jar" size="30876" download="eager" />
+    <jar href="lib\fxsampler-1.0.10.jar" size="30882" download="eager" />
     <jar href="lib\gson-2.8.2.jar" size="232932" download="eager" />
     <jar href="lib\guava-23.6-jre.jar" size="2708016" download="eager" />
     <jar href="lib\httpclient-4.5.3.jar" size="747794" download="eager" />
@@ -31,7 +30,7 @@
     <jar href="lib\okhttp-3.9.1.jar" size="406252" download="eager" />
     <jar href="lib\okio-1.13.0.jar" size="81811" download="eager" />
     <jar href="lib\restfb-2.2.0.jar" size="545965" download="eager" />
-    <jar href="v1.jar" size="3074123" download="eager" />
+    <jar href="v1.jar" size="3078008" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="v1" >
     <param name="requiredFXVersion" value="8.0+"/>

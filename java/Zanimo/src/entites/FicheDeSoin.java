@@ -5,6 +5,7 @@
  */
 package entites;
 
+import IHM.IHM_loginController;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -236,7 +237,9 @@ public class FicheDeSoin implements ificheDeSoinInterface {
     @Override
     public ArrayList<FicheDeSoin> displayFicheDeSoin() {
         ArrayList<FicheDeSoin> ficheDeSoins = new ArrayList<>();
-        String req = "Select * From f_soin where etat=1";
+        String req = "Select * From f_soin "
+        + "where etat=1"
+        + " and  id_membre = " + IHM_loginController.membre.getIdMembre();
         try {
             ps = conn.prepareStatement(req);
             rs = ps.executeQuery();

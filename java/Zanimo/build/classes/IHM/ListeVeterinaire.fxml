@@ -6,11 +6,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.Rating?>
 
-<AnchorPane id="AnchorPane" prefHeight="538.0" prefWidth="808.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ListeVeterinaireController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ListeVeterinaireController">
     <stylesheets>
         <URL value="@listeveterinaire.css" />
     </stylesheets>
@@ -20,7 +21,7 @@
             <Font name="System Bold Italic" size="27.0" />
          </font>
       </Label>
-      <TableView fx:id="listevet" layoutX="28.0" layoutY="138.0" prefHeight="283.0" prefWidth="452.0">
+      <TableView fx:id="listevet" layoutX="25.0" layoutY="214.0" prefHeight="320.0" prefWidth="452.0">
          <columns>
             <TableColumn fx:id="nom" prefWidth="75.0" text="nom" />
             <TableColumn fx:id="prenom" prefWidth="75.0" text="prenom" />
@@ -40,5 +41,6 @@
          </children>
       </AnchorPane>
       <Button fx:id="mapi" layoutX="627.0" layoutY="479.0" mnemonicParsing="false" onAction="#mapi" text="map" />
+      <TextField fx:id="find" layoutX="100.0" layoutY="108.0" onKeyReleased="#findAc" prefHeight="25.0" prefWidth="357.0" promptText="Recherche" />
    </children>
 </AnchorPane>

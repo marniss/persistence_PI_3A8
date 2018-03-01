@@ -250,9 +250,16 @@ public class ListeDresseurAdminController implements Initializable {
     private void findAc(KeyEvent event) {
         String mot = find.getText();
         if (mot.length() > 0) {
-            List<ListeDesDresseurs> vet = recherche(mot);
+            List<ListeDesDresseurs> dres = recherche(mot);
             listedress.getItems().clear();
-            listedress.getItems().addAll(vet);
+            listedress.getItems().addAll(dres);
+            if (dres.size() == 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("aucun Dresseur Trouve");
+                alert.showAndWait();
+            }
         } else {
             listedress.getItems().clear();
             listedress.getItems().addAll(cld.displayList());

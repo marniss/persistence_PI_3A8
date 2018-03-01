@@ -247,6 +247,13 @@ public class ListeDesVeterinaireAdminController implements Initializable {
             List<ListeDesVetirinaires> vet = recherche(mot);
             listedvet.getItems().clear();
             listedvet.getItems().addAll(vet);
+            if (vet.size() == 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("aucun veterinaire Trouve");
+                alert.showAndWait();
+            }
         } else {
             listedvet.getItems().clear();
             listedvet.getItems().addAll(clv.displayList());
