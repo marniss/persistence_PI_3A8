@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -19,8 +21,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -60,13 +64,27 @@ public class ModuleCommercialController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        System.out.println("12131");
         affichageintial();
+        if (IHM_loginController.membre == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ti connectiiii");
+            // alert.setHeaderText(null);
+            alert.setContentText("vous pouver s'inscrire pour plus de fonctionalités \n Merci ");
+            alert.showAndWait();
+            btnAjouterAccessoire.setVisible(false);
+            btnAjouterNourriture.setVisible(false);
+        } else {
+            if (IHM_loginController.membre.getType().equals("membre") || IHM_loginController.membre.getType().equals("Admin")) {
+                btnAjouterAccessoire.setVisible(true);
+                btnAjouterNourriture.setVisible(true);
+            }
 
+        }
     }
 
     @FXML
-    private void affAcc(ActionEvent event) {
+    private void affAcc(ActionEvent event
+    ) {
 
         try {
             Stage stage = new Stage();
@@ -81,7 +99,8 @@ public class ModuleCommercialController implements Initializable {
     }
 
     @FXML
-    private void affNou(ActionEvent event) {
+    private void affNou(ActionEvent event
+    ) {
 
         try {
             Stage stage = new Stage();
@@ -95,7 +114,8 @@ public class ModuleCommercialController implements Initializable {
     }
 
     @FXML
-    private void ajouterAccessoire(ActionEvent event) {
+    private void ajouterAccessoire(ActionEvent event
+    ) {
         try {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("IHM_Ajouter_Accessoire.fxml"));
@@ -108,7 +128,8 @@ public class ModuleCommercialController implements Initializable {
     }
 
     @FXML
-    private void ajouterNourriture(ActionEvent event) {
+    private void ajouterNourriture(ActionEvent event
+    ) {
         try {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("Ihm_Ajouter_Nourriture.fxml"));

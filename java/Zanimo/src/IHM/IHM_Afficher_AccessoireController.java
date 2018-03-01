@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -53,12 +54,14 @@ public class IHM_Afficher_AccessoireController implements Initializable {
     private Label idmembre;
     @FXML
     private TextField madate;
-    
+
     public static int ida = 0;
     @FXML
     private Button btnmodifier;
     @FXML
     private Button homebtn;
+    @FXML
+    private Button btnsupprimer;
 
     /**
      * Initializes the controller class.
@@ -66,44 +69,43 @@ public class IHM_Afficher_AccessoireController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+
         ServiceAccessoire leservice = new ServiceAccessoire();
-        Accessoire temp = leservice.getAccessoire(ida); 
-        
+        Accessoire temp = leservice.getAccessoire(ida);
+
         nom.setText(temp.getNom());
         nom.setEditable(false);
         nom.setMouseTransparent(true);
         nom.setFocusTraversable(false);
-        
-        idmembre.setText("Identifiant membre :         "+temp.getIdMembre()); 
-        
+
+        idmembre.setText("Email du membre: abdelkader@salhaoui.tn");
+
         description.setText(temp.getDescription());
         description.setEditable(false);
         description.setMouseTransparent(true);
         description.setFocusTraversable(false);
 
-        quantite.setText(""+temp.getQteStock());
+        quantite.setText("" + temp.getQteStock());
         quantite.setEditable(false);
         quantite.setMouseTransparent(true);
         quantite.setFocusTraversable(false);
-        
-        prix.setText(""+temp.getPrix()+"  DT");
+
+        prix.setText("" + temp.getPrix() + "  DT");
         prix.setEditable(false);
         prix.setMouseTransparent(true);
         prix.setFocusTraversable(false);
-        
+
         type.setText(temp.getType());
         type.setEditable(false);
         type.setMouseTransparent(true);
         type.setFocusTraversable(false);
-        
 
-        categorie.setText(""+temp.getCategorieAccessoire().getNom());
+        categorie.setText("" + temp.getCategorieAccessoire().getNom());
         categorie.setEditable(false);
         categorie.setMouseTransparent(true);
         categorie.setFocusTraversable(false);
-        
-        madate.setText(""+temp.getDatePublication());
+
+        madate.setText("" + temp.getDatePublication());
         madate.setEditable(false);
         madate.setMouseTransparent(true);
         madate.setFocusTraversable(false);
@@ -112,32 +114,46 @@ public class IHM_Afficher_AccessoireController implements Initializable {
         Image image = new Image(file.toURI().toString());
         imgproduit.setImage(image);
         imgproduit.setVisible(true);
-    }    
+        if (IHM_loginController.membre == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ti connectiiii");
+            // alert.setHeaderText(null);
+            alert.setContentText("vous pouver s'inscrire pour plus de fonctionalités \n Merci ");
+            alert.showAndWait();
+            btnmodifier.setVisible(false);
+            btnsupprimer.setVisible(false);
+        } else {
+            if (IHM_loginController.membre.getType().equals("membre") || IHM_loginController.membre.getType().equals("Admin")) {
+                btnmodifier.setVisible(true);
+                btnsupprimer.setVisible(true);
+            }
+        }
+    }
 
- @FXML
+    @FXML
     private void onclickmodifier(ActionEvent event) {
-        try{
+        try {
             Stage stage = (Stage) homebtn.getScene().getWindow();
             stage.close();
             Parent root = FXMLLoader.load(getClass().getResource("IHM_Modifier_Acessoire.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        }catch(IOException o){
+        } catch (IOException o) {
             o.getMessage();
         }
     }
 
     @FXML
     private void onclicksupprimer(ActionEvent event) {
-        try{
+        try {
             Stage stage = (Stage) homebtn.getScene().getWindow();
             stage.close();
             Parent root = FXMLLoader.load(getClass().getResource("IHM_Supprimer_Accessoire.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        }catch(IOException o){
+        } catch (IOException o) {
             o.getMessage();
         }
     }
@@ -153,5 +169,5 @@ public class IHM_Afficher_AccessoireController implements Initializable {
             System.out.println(e.getMessage());
         }
     }
-    
+
 }

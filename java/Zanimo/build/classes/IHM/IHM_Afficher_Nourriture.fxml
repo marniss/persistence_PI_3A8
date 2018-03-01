@@ -28,7 +28,7 @@
       <Label layoutX="67.0" layoutY="234.0" text="Date de fabrication :" />
       <TextField fx:id="datefab" layoutX="181.0" layoutY="230.0" />
       <Button fx:id="btnmodifier" layoutX="533.0" layoutY="366.0" mnemonicParsing="false" onAction="#onclickmodifier" text="Modifier" />
-      <Button fx:id="btnmodifier" layoutX="617.0" layoutY="366.0" mnemonicParsing="false" onAction="#onclicksupprimer" text="Supprimer" />
+      <Button fx:id="btnsupprimer" layoutX="617.0" layoutY="366.0" mnemonicParsing="false" onAction="#onclicksupprimer" text="Supprimer" />
       <Button fx:id="homebtn" layoutX="17.0" layoutY="18.0" mnemonicParsing="false" onAction="#onclickback" text="← Retour" />
    </children>
 </AnchorPane>

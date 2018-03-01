@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -57,6 +58,8 @@ public class IHM_Afficher_NourritureController implements Initializable {
     private Button btnmodifier;
     @FXML
     private Button homebtn;
+    @FXML
+    private Button btnsupprimer;
 
     /**
      * Initializes the controller class.
@@ -72,7 +75,7 @@ public class IHM_Afficher_NourritureController implements Initializable {
         nom.setMouseTransparent(true);
         nom.setFocusTraversable(false);
 
-        idmembre.setText("Identifiant membre :         " + temp.getIdMembre());
+        idmembre.setText("Email du membre: abdelkader@salhaoui.tn");
 
         description.setText(temp.getDescription());
         description.setEditable(false);
@@ -119,6 +122,20 @@ public class IHM_Afficher_NourritureController implements Initializable {
         Image image = new Image(file.toURI().toString());
         imgproduit.setImage(image);
         imgproduit.setVisible(true);
+        if (IHM_loginController.membre == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ti connectiiii");
+            // alert.setHeaderText(null);
+            alert.setContentText("vous pouver s'inscrire pour plus de fonctionalités \n Merci ");
+            alert.showAndWait();
+            btnmodifier.setVisible(false);
+            btnsupprimer.setVisible(false);
+        } else {
+            if (IHM_loginController.membre.getType().equals("membre") || IHM_loginController.membre.getType().equals("Admin")) {
+                btnmodifier.setVisible(true);
+                btnsupprimer.setVisible(true);
+            }
+        }
     }
 
     @FXML
